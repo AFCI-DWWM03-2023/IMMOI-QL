@@ -131,6 +131,7 @@ nav {
   font-size: 2em;
   border: none;
   padding: 0 20px;
+  text-decoration: none;
 }
 .sect1 div.sect1search .searchregion:hover {
   background-color: #00C0E0;
