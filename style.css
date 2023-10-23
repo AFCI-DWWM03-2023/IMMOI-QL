@@ -1,6 +1,7 @@
 :root {
   --main-blue: #0050B0;
   --light-blue: #00A0E0;
+  --lighter-blue: #00C0E0;
   --dark-blue: #002080;
 }
 * {
@@ -25,6 +26,7 @@ nav {
   display: flex;
   align-items: center;
   color: white;
+  text-decoration: none;
   font-size: 32px;
   background-color: var(--light-blue);
   border: none;
@@ -38,7 +40,7 @@ nav {
   display: flex;
 }
 .navbtn:hover {
-  background-color: var(--main-blue);
+  background-color: var(--lighter-blue);
   cursor: pointer;
   transition: 400ms ease;
 }
@@ -119,7 +121,7 @@ nav {
   cursor: pointer;
 }
 .sect1 div.sect1search .searchgeneral .submitsearch:hover {
-  background-color: #00C0E0;
+  background-color: var(--lighter-blue);
   cursor: pointer;
   transition: 400ms ease;
 }
@@ -134,7 +136,7 @@ nav {
   text-decoration: none;
 }
 .sect1 div.sect1search .searchregion:hover {
-  background-color: #00C0E0;
+  background-color: var(--lighter-blue);
   cursor: pointer;
   transition: 400ms ease;
 }
