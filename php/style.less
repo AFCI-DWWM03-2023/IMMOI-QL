@@ -19,7 +19,6 @@ body {
 
 
 
-
 nav {
     width: 100%;
     height: 64px;
@@ -34,14 +33,14 @@ nav {
     align-items: center;
     color: white;
     text-decoration: none;
-    font-size: 32px;
+    font-size: 28px;
     background-color: var(--light-blue);
     border: none;
     padding: 10px;
 
     &:nth-of-type(1) {
         font-weight: bold;
-        font-size: 48px;
+        font-size: 40px;
 
         div {
             display: flex;
@@ -59,16 +58,34 @@ nav {
     }
 }
 
-
+.hamburgerbtn {
+    height: 56px;
+    width: 56px;
+    background-color: var(--lighter-blue);
+    display: none;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 4px;
+    border: none;
+    border-radius: 8px;
+    div {
+        background-color: white;
+        width: 70%;
+        height: 6px;
+        border-radius: 3px;
+    }
+}
 
 .sect1 {
     height: 500px;
+    width: 100%;
     background: var(--main-blue);
     display: flex;
     position: relative;
 
     div {
-        width: 50%;
+        width: 50vw;
 
         &.sect1image {
             position: absolute;
@@ -205,6 +222,13 @@ nav {
     }
 }
 
+.sect2 {
+    width: 100%;
+    height: 200px;
+    background-color: red;
+    color: lime;
+}
+
 footer {
     position: absolute;
     bottom: 0;
@@ -229,7 +253,12 @@ footer {
 }
 
 @media screen and (max-width:1100px) {
-
+    .navbtn {
+        display: none;
+    }
+    .hamburgerbtn {
+        display: flex;
+    }
     .sect1 {
         div {
             width: 100%;
@@ -246,7 +275,7 @@ footer {
         }
 
         img {
-            width: 100vw;
+            width: 100%;
         }
     }
     .sectmobile {

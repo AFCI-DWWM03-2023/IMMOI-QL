@@ -48,7 +48,6 @@ localite varchar(60) NOT NULL
 
 CREATE TABLE photo (
 idPhoto int(11) NOT NULL,
-formatPhoto varchar(10) NOT NULL,
 idBien int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -149,14 +148,14 @@ INSERT INTO `bien` (`nom`, `description`, `prixLocation`, `prixVente`, `categori
 INSERT INTO transactions (`idAgent`, `idBien`, `dateTransaction`, `montant`) VALUES
 (1, 2, '2008-03-15', 141000);
 
-INSERT INTO photo (`formatPhoto`,`idBien`) VALUES
-('png', 1),
-('png', 1),
-('png', 1),
-('jpg', 2),
-('jpg', 2),
-('jpg', 2),
-('JPEG', 2);
+INSERT INTO photo (`idBien`) VALUES
+(1),
+(1),
+(1),
+(2),
+(2),
+(2),
+(2);
 
 
 COMMIT;

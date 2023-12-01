@@ -19,6 +19,12 @@
     <a href="regionsearch.html" class="mobilesearchregion"><img src="img/france.png" alt="">Rechercher un bien par région</a>
 </section>
 
+<section class="sect2">
+
+    blabla
+
+</section>
+
 <?php
 $content = ob_get_clean();
 $titre = "Accueil";

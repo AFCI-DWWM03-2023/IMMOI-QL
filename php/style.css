@@ -27,14 +27,14 @@ nav {
   align-items: center;
   color: white;
   text-decoration: none;
-  font-size: 32px;
+  font-size: 28px;
   background-color: var(--light-blue);
   border: none;
   padding: 10px;
 }
 .navbtn:nth-of-type(1) {
   font-weight: bold;
-  font-size: 48px;
+  font-size: 40px;
 }
 .navbtn:nth-of-type(1) div {
   display: flex;
@@ -47,14 +47,33 @@ nav {
 .navbtn p {
   margin-left: 10px;
 }
+.hamburgerbtn {
+  height: 56px;
+  width: 56px;
+  background-color: var(--lighter-blue);
+  display: none;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 4px;
+  border: none;
+  border-radius: 8px;
+}
+.hamburgerbtn div {
+  background-color: white;
+  width: 70%;
+  height: 6px;
+  border-radius: 3px;
+}
 .sect1 {
   height: 500px;
+  width: 100%;
   background: var(--main-blue);
   display: flex;
   position: relative;
 }
 .sect1 div {
-  width: 50%;
+  width: 50vw;
 }
 .sect1 div.sect1image {
   position: absolute;
@@ -169,6 +188,12 @@ nav {
   width: 100px;
   margin: 0 20px 0 0;
 }
+.sect2 {
+  width: 100%;
+  height: 200px;
+  background-color: red;
+  color: lime;
+}
 footer {
   position: absolute;
   bottom: 0;
@@ -190,6 +215,12 @@ footer .footerelem:nth-of-type(1) {
   font-weight: bold;
 }
 @media screen and (max-width: 1100px) {
+  .navbtn {
+    display: none;
+  }
+  .hamburgerbtn {
+    display: flex;
+  }
   .sect1 div {
     width: 100%;
   }
@@ -202,7 +233,7 @@ footer .footerelem:nth-of-type(1) {
     padding-right: 0;
   }
   .sect1 img {
-    width: 100vw;
+    width: 100%;
   }
   .sectmobile {
     display: flex;
