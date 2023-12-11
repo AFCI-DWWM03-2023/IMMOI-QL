@@ -2,6 +2,7 @@
   --main-blue: #0050B0;
   --light-blue: #00A0E0;
   --lighter-blue: #00C0E0;
+  --lightest-blue: #50D0FF;
   --dark-blue: #002080;
 }
 * {
@@ -48,6 +49,18 @@ nav {
 .navbtn p {
   margin-left: 10px;
 }
+.connecte {
+  font-size: 28px;
+  color: white;
+  display: flex;
+  align-items: center;
+}
+.accbtn {
+  margin-left: 12px;
+}
+.conbtn {
+  display: none;
+}
 input[type=checkbox] {
   display: none;
 }
@@ -90,6 +103,14 @@ input[type=checkbox] {
 .menu ul a {
   text-decoration: none;
 }
+.menu ul a:nth-of-type(1) li,
+.menu ul a:nth-of-type(3) li {
+  background-color: var(--main-blue);
+}
+.menu ul a:nth-of-type(2) li,
+.menu ul a:nth-of-type(4) li {
+  background-color: var(--light-blue);
+}
 .menu ul a li {
   padding: 24px 16px;
   color: white;
@@ -97,12 +118,7 @@ input[type=checkbox] {
 }
 .menu ul a li svg {
   margin-right: 16px;
-}
-.menu ul a li.bgblue {
-  background-color: var(--main-blue);
-}
-.menu ul a li.bglight {
-  background-color: var(--light-blue);
+  height: 48px;
 }
 .overlaymenu {
   display: none;
@@ -160,7 +176,7 @@ input[type=checkbox]:checked ~ .overlaymenu {
   font-size: 160px;
 }
 .sect1 div.sect1image h2 {
-  font-size: 32px;
+  font-size: 28px;
   font-weight: 400;
   white-space: nowrap;
   text-align: end;
@@ -237,11 +253,11 @@ input[type=checkbox]:checked ~ .overlaymenu {
   width: 50vw;
   object-fit: cover;
 }
-.sectmobile {
+.sectmobile1 {
   display: none;
   flex-direction: column;
 }
-.sectmobile .mobilesearchregion {
+.sectmobile1 .mobilesearchregion {
   display: flex;
   align-items: center;
   background-color: var(--dark-blue);
@@ -252,19 +268,53 @@ input[type=checkbox]:checked ~ .overlaymenu {
   font-size: 40px;
   text-decoration: none;
 }
-.sectmobile .mobilesearchregion img {
+.sectmobile1 .mobilesearchregion img {
   height: 100px;
   width: 100px;
   margin: 0 20px 0 0;
 }
 .sect2 {
+  position: relative;
   width: 100%;
-  height: 200px;
-  background-color: red;
-  color: lime;
+}
+.sect2 h2 {
+  margin-top: 48px;
+  color: var(--dark-blue);
+  font-size: 80px;
+  text-align: center;
+}
+.sect2 .s2container {
+  margin: 36px auto;
+  display: flex;
+  justify-content: space-around;
+  width: 75%;
+}
+.sect2 .s2container div {
+  background-color: var(--lightest-blue);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30%;
+  text-align: center;
+  padding: 32px;
+}
+.sect2 .s2container div div {
+  background-color: white;
+  width: 108px;
+  height: 108px;
+  padding: 24px;
+  border-radius: 24px;
+}
+.sect2 .s2container div h3 {
+  font-size: 40px;
+  margin: 16px 0;
+  text-decoration: underline;
+}
+.sect2 .s2container div p {
+  font-size: 24px;
 }
 footer {
-  position: absolute;
+  position: relative;
   bottom: 0;
   display: flex;
   padding: 20px;
@@ -277,6 +327,7 @@ footer {
 footer .footerelem {
   color: white;
   font-size: 24px;
+  margin-bottom: 100px;
 }
 footer .footerelem:nth-of-type(1) {
   font-size: 32px;
@@ -287,6 +338,9 @@ footer .footerelem:nth-of-type(1) {
     height: 96px;
   }
   .navbtn {
+    display: none;
+  }
+  .connecte {
     display: none;
   }
   .hbmenu,
@@ -311,13 +365,63 @@ footer .footerelem:nth-of-type(1) {
   .sect1 img {
     width: 100%;
   }
-  .sectmobile {
+  .sectmobile1 {
     display: flex;
+  }
+  .sect2 h2 {
+    font-size: 64px;
+  }
+  .sect2 .s2container {
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+  }
+  .sect2 .s2container > div {
+    width: 80%;
+    margin-bottom: 40px;
   }
 }
 @media screen and (max-width: 520px) {
+  nav {
+    height: 64px;
+  }
+  .hbmenu {
+    height: 64px;
+    width: 64px;
+  }
+  .menu {
+    width: 280px;
+    left: -280px;
+  }
+  .menu ul {
+    padding-top: 64px;
+    font-size: 28px;
+  }
+  .menu ul a li {
+    padding: 24px 16px;
+    color: white;
+    display: flex;
+  }
+  .menu ul a li svg {
+    margin-right: 16px;
+    height: 33px;
+  }
+  input[type=checkbox]:checked ~ .hbmenu {
+    transform: translateX(280px);
+    border-radius: 0 16px 16px 0;
+  }
+  input[type=checkbox]:checked ~ .hbmenu .hbtop {
+    transform: translate(0, 17.5px) rotate(-135deg) scale(1.1, 1);
+  }
+  input[type=checkbox]:checked ~ .hbmenu .hbbot {
+    transform: translate(0, -17.5px) rotate(135deg) scale(1.1, 1);
+  }
+  input[type=checkbox]:checked ~ .menu {
+    transform: translateX(280px);
+  }
   .sect1 {
     height: 400px;
+    margin-top: 64px;
   }
   .sect1 div.sect1image h1 {
     font-size: 108px;
@@ -325,8 +429,17 @@ footer .footerelem:nth-of-type(1) {
   .sect1 div.sect1image h2 {
     font-size: 24px;
   }
-  .sectmobile .mobilesearchregion {
+  .sectmobile1 .mobilesearchregion {
     font-size: 30px;
+  }
+  .sect2 h2 {
+    font-size: 48px;
+  }
+  .sect2 .s2container {
+    width: 100%;
+  }
+  .sect2 .s2container > div {
+    width: 100%;
   }
   footer .footerelem {
     font-size: 20px;
@@ -345,10 +458,10 @@ footer .footerelem:nth-of-type(1) {
   .sect1 div.sect1image h2 {
     font-size: 18px;
   }
-  .sectmobile .mobilesearchregion {
+  .sectmobile1 .mobilesearchregion {
     font-size: 24px;
   }
-  .sectmobile .mobilesearchregion img {
+  .sectmobile1 .mobilesearchregion img {
     height: 80px;
     width: 80px;
   }

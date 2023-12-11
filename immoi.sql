@@ -145,7 +145,7 @@ INSERT INTO `bien` (`nom`, `description`, `prixLocation`, `prixVente`, `categori
 ('Appartement 1 chambre avec balcon', 'Kitchenette incluse. Vue sur la décheterie. Raccordé par fibre Orange', 600, NULL, 'Appartement', 2, 1, 21, 16, 1, 3),
 ('Maison centre-ville', NULL, NULL, 141000, 'Maison', 6, 3, 58, NULL, 3, 5);
 
-INSERT INTO transactions (`idAgent`, `idBien`, `dateTransaction`, `montant`) VALUES
+INSERT INTO `transactions` (`idAgent`, `idBien`, `dateTransaction`, `montant`) VALUES
 (1, 2, '2008-03-15', 141000);
 
 INSERT INTO photo (`idBien`) VALUES
