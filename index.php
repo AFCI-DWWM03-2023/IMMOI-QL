@@ -7,7 +7,7 @@
             <input type="search" class="searchbar" id="search" placeholder="Ex : Blablaville, maison, jardin">
             <input type="submit" value="Lancer la recherche" class="submitsearch">
         </div>
-        <a href="regionsearch.html" class="search searchregion"><img src="img/france.png" alt="">Rechercher un bien par région</a>
+        <a href="region.php" class="search searchregion"><img src="img/france.png" alt="">Rechercher un bien par région</a>
     </div>
     <img src="./img/header.jpg" alt="header"> <!-- Crédit : Binyamin Mellish -->
     <div class="sect1image">
@@ -16,7 +16,7 @@
     </div>
 </section>
 <section class="sectmobile1">
-    <a href="regionsearch.html" class="mobilesearchregion"><img src="img/france.png" alt="">Rechercher un bien par région</a>
+    <a href="region.php" class="mobilesearchregion"><img src="img/france.png" alt="">Rechercher un bien par région</a>
 </section>
 
 <section class="sect2">

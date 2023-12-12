@@ -25,9 +25,14 @@ nav {
   top: 0;
   z-index: 500;
 }
+.navleft {
+  display: flex;
+  align-items: end;
+}
 .navbtn {
   height: 64px;
   display: flex;
+  z-index: 2;
   align-items: center;
   color: white;
   text-decoration: none;
@@ -37,9 +42,6 @@ nav {
   font-weight: bold;
   font-size: 40px;
 }
-.navbtn div {
-  display: flex;
-}
 .navbtn:hover {
   background-color: var(--lighter-blue);
   cursor: pointer;
@@ -47,6 +49,27 @@ nav {
 }
 .navbtn p {
   margin-left: 10px;
+}
+.navonglet {
+  display: flex;
+  position: relative;
+  align-items: center;
+  z-index: 1;
+  padding: 10px;
+  height: 100%;
+  border-radius: 0 20px 20px 0;
+  font-size: 28px;
+  color: white;
+  background-color: var(--lighter-blue);
+  left: -300px;
+  transition: all 400ms ease;
+  text-decoration: none;
+}
+.navonglet svg {
+  margin-left: 10px;
+}
+.navonglet:hover {
+  transform: translateX(300px);
 }
 .connecte {
   font-size: 28px;
@@ -233,7 +256,7 @@ input[type=checkbox]:checked ~ .overlaymenu {
   border-radius: 54px;
   background-color: var(--light-blue);
   color: white;
-  font-size: 2em;
+  font-size: 32px;
   border: none;
   padding: 0 20px;
   text-decoration: none;
@@ -296,6 +319,7 @@ input[type=checkbox]:checked ~ .overlaymenu {
   width: 30%;
   text-align: center;
   padding: 32px;
+  border-radius: 5px;
 }
 .sect2 .s2container div div {
   background-color: white;
@@ -364,13 +388,12 @@ footer .footerelem:nth-of-type(1) {
   /* Change the background color of the header row */
   color: white;
 }
-@media screen and (max-width: 1100px) {
+@media screen and (max-width: 1180px) {
   nav {
     height: 96px;
   }
-  .navbtn {
-    display: none;
-  }
+  .navbtn,
+  .navonglet,
   .connecte {
     display: none;
   }
