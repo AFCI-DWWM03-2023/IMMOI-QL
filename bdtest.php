@@ -1,25 +1,25 @@
 <?php
 
 require_once "classes/Model.class.php";
-require_once "classes/managers/UtilisateurManager.class.php";
-require_once "classes/managers/AdresseManager.class.php";
 require_once "classes/managers/AdminManager.class.php";
+require_once "classes/managers/AdresseManager.class.php";
 require_once "classes/managers/AgenceManager.class.php";
 require_once "classes/managers/AgentManager.class.php";
 require_once "classes/managers/BienManager.class.php";
-require_once "classes/managers/TransactionManager.class.php";
 require_once "classes/managers/PhotoManager.class.php";
-require_once "classes/data/Utilisateur.class.php";
-require_once "classes/data/Adresse.class.php";
+require_once "classes/managers/TransactionManager.class.php";
+require_once "classes/managers/UtilisateurManager.class.php";
 require_once "classes/data/Admin.class.php";
+require_once "classes/data/Adresse.class.php";
 require_once "classes/data/Agence.class.php";
 require_once "classes/data/Agent.class.php";
 require_once "classes/data/Bien.class.php";
-require_once "classes/data/Transaction.class.php";
 require_once "classes/data/Photo.class.php";
+require_once "classes/data/Transaction.class.php";
+require_once "classes/data/Utilisateur.class.php";
 
-$utilisateurManager = new UtilisateurManager;
-$utilisateurManager->chargementUserlist();
+$adminManager = new AdminManager;
+$adminManager->chargementAdminlist();
 $adresseManager = new AdresseManager;
 $adresseManager->chargementAdresselist();
 $agenceManager = new AgenceManager;
@@ -28,12 +28,12 @@ $agentManager = new AgentManager;
 $agentManager->chargementAgentlist();
 $bienManager = new BienManager;
 $bienManager->chargementBienlist();
-$transactionManager = new TransactionManager;
-$transactionManager->chargementTransactionlist();
-$adminManager = new AdminManager;
-$adminManager->chargementAdminlist();
 $photoManager = new PhotoManager;
 $photoManager->chargementPhotolist();
+$transactionManager = new TransactionManager;
+$transactionManager->chargementTransactionlist();
+$utilisateurManager = new UtilisateurManager;
+$utilisateurManager->chargementUserlist();
 
 ob_start(); ?>
 
