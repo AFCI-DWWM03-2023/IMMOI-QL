@@ -30,12 +30,11 @@ nav {
 }
 
 .navbtn {
-    height: auto;
+    height: 64px;
     display: flex;
     align-items: center;
     color: white;
     text-decoration: none;
-    font-size: 28px;
     background-color: var(--light-blue);
     border: none;
     padding: 10px;
@@ -396,6 +395,38 @@ footer {
         &:nth-of-type(1) {
             font-size: 32px;
             font-weight: bold;
+        }
+    }
+}
+
+.testbdd {
+    position: relative;
+    margin-top: 64px;
+    height: fit-content;
+    width: 100%;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    h2 {
+        font-size: 96px;
+        margin: 0 auto 30px;
+    }
+    table {
+        margin: 10px auto;
+        border: double 5px black;
+        th, td {
+            border: 1px solid black; /* Change the border color to your preference */
+            padding: 10px;
+            text-align: center;
+        }
+
+        td {
+            max-width: 300px;
+        }
+
+        th {
+            background-color: #333; /* Change the background color of the header row */
+            color: white;
         }
     }
 }

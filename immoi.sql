@@ -48,6 +48,7 @@ localite varchar(60) NOT NULL
 
 CREATE TABLE photo (
 idPhoto int(11) NOT NULL,
+nom varchar(128) NOT NULL,
 idBien int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -107,6 +108,9 @@ ADD KEY `FK_AGENT` (`idAgent`),
 ADD KEY `FK_BIEN` (`idBien`),
 MODIFY `idTransaction` int(11) NOT NULL AUTO_INCREMENT;
 
+ALTER TABLE administrateur
+ADD PRIMARY KEY (`username`);
+
 ALTER TABLE utilisateur
 ADD CONSTRAINT `FK_ADRESSE` FOREIGN KEY (`idAdresse`) References `adresse` (`idAdresse`);
 
@@ -121,8 +125,8 @@ ADD CONSTRAINT `FK_AGENT` FOREIGN KEY (`idAgent`) References `agent` (`idAgent`)
 ADD CONSTRAINT `FK_BIEN` FOREIGN KEY (`idBien`) References `bien` (`idBien`);
 
 INSERT INTO `utilisateur` (`username`, `password`, `nom`, `prenom`, `telephone`, `email`) VALUES
-('brunoracon', 'tr@shPand4', 'Bruno', 'Racon', NULL, 'bruno.racon@pos.sum'),
-('TheGiantRat', 'makesupalltherules', 'Samuel', 'Rat', NULL, 'iloverats59@wanadoo.fr'),
+('brunoracon', 'tr@shPand4', 'Racon', 'Bruno', NULL, 'bruno.racon@pos.sum'),
+('TheGiantRat', 'makesupalltherules', 'Rat', 'Samuel', NULL, 'iloverats59@wanadoo.fr'),
 ('cacus', 'pikAn', NULL, NULL, NULL, 'cacus@ggmail.com');
 
 INSERT INTO `adresse` (`nomVoie`, `zipcode`, `localite`) VALUES
@@ -148,14 +152,16 @@ INSERT INTO `bien` (`nom`, `description`, `prixLocation`, `prixVente`, `categori
 INSERT INTO `transactions` (`idAgent`, `idBien`, `dateTransaction`, `montant`) VALUES
 (1, 2, '2008-03-15', 141000);
 
-INSERT INTO photo (`idBien`) VALUES
-(1),
-(1),
-(1),
-(2),
-(2),
-(2),
-(2);
+INSERT INTO `administrateur` (`username`, `password`) VALUES
+('admin', 'root');
 
+INSERT INTO `photo` (`nom`, `idBien`) VALUES
+('appart.png', 1),
+('chambre.JPEG', 1),
+('exterieur.png', 1),
+('DCIM_2655592732035.jpg', 2),
+('DCIM_4776545491165.jpg', 2),
+('DCIM_2164435922925.jpg', 2),
+('DCIM_1647364794916.jpg', 2);
 
 COMMIT;
