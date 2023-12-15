@@ -1,5 +1,8 @@
 <?php
 
+require_once "Models/data/Transaction.class.php";
+require_once "Models/Model.class.php";
+
 class TransactionManager extends BDConnexion{
     private $transactionlist;
 

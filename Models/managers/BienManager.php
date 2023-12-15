@@ -1,5 +1,8 @@
 <?php
 
+require_once "Models/data/Bien.class.php";
+require_once "Models/Model.class.php";
+
 class BienManager extends BDConnexion{
     private $bienlist;
 

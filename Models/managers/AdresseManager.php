@@ -1,5 +1,8 @@
 <?php
 
+require_once "Models/data/Adresse.class.php";
+require_once "Models/Model.class.php";
+
 class AdresseManager extends BDConnexion{
     private $adresselist;
 

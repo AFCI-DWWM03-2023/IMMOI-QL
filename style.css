@@ -171,171 +171,6 @@ input[type=checkbox]:checked ~ .menu {
 input[type=checkbox]:checked ~ .overlaymenu {
   opacity: 50%;
 }
-.sect1 {
-  height: 500px;
-  width: 100%;
-  background: var(--main-blue);
-  display: flex;
-  position: relative;
-  margin-top: 64px;
-}
-.sect1 div {
-  width: 50vw;
-}
-.sect1 div.sect1image {
-  position: absolute;
-  background: linear-gradient(to left, #FFFFFF00, var(--main-blue));
-  right: 0;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: end;
-  color: white;
-  padding-right: 50px;
-}
-.sect1 div.sect1image h1 {
-  font-size: 160px;
-}
-.sect1 div.sect1image h2 {
-  font-size: 28px;
-  font-weight: 400;
-  white-space: nowrap;
-  text-align: end;
-}
-.sect1 div.sect1search {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-.sect1 div.sect1search .search {
-  display: flex;
-  align-items: center;
-  width: auto;
-}
-.sect1 div.sect1search .searchgeneral {
-  height: 200px;
-  width: 80%;
-  border-radius: 25px;
-  background-color: white;
-  margin-bottom: 20px;
-  flex-direction: column;
-  justify-content: center;
-  padding: 0 20px;
-}
-.sect1 div.sect1search .searchgeneral label {
-  font-size: 36px;
-  margin-bottom: 20px;
-}
-.sect1 div.sect1search .searchgeneral .searchbar {
-  width: 100%;
-  border: none;
-  background-color: #eee;
-  padding: 5px 10px;
-  border-radius: 20px;
-  font-size: 20px;
-  margin-bottom: 20px;
-}
-.sect1 div.sect1search .searchgeneral .submitsearch {
-  font-size: 24px;
-  background-color: var(--light-blue);
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 50px;
-  cursor: pointer;
-}
-.sect1 div.sect1search .searchgeneral .submitsearch:hover {
-  background-color: var(--lighter-blue);
-  cursor: pointer;
-  transition: 400ms ease;
-}
-.sect1 div.sect1search .searchregion {
-  height: 108px;
-  border-radius: 54px;
-  background-color: var(--light-blue);
-  color: white;
-  font-size: 32px;
-  border: none;
-  padding: 0 20px;
-  text-decoration: none;
-}
-.sect1 div.sect1search .searchregion:hover {
-  background-color: var(--lighter-blue);
-  cursor: pointer;
-  transition: 400ms ease;
-}
-.sect1 div.sect1search .searchregion img {
-  height: 60px;
-  width: 60px;
-  margin: 0 20px 0 0;
-}
-.sect1 img {
-  width: 50vw;
-  object-fit: cover;
-}
-.sectmobile1 {
-  display: none;
-  flex-direction: column;
-}
-.sectmobile1 .mobilesearchregion {
-  display: flex;
-  align-items: center;
-  background-color: var(--dark-blue);
-  color: white;
-  border: none;
-  width: 100%;
-  padding: 20px;
-  font-size: 40px;
-  text-decoration: none;
-}
-.sectmobile1 .mobilesearchregion img {
-  height: 100px;
-  width: 100px;
-  margin: 0 20px 0 0;
-}
-.sect2 {
-  position: relative;
-  width: 100%;
-}
-.sect2 h2 {
-  margin-top: 48px;
-  color: var(--dark-blue);
-  font-size: 80px;
-  text-align: center;
-}
-.sect2 .s2container {
-  margin: 36px auto;
-  display: flex;
-  justify-content: space-around;
-  width: 75%;
-}
-.sect2 .s2container div {
-  background-color: var(--lightest-blue);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 30%;
-  text-align: center;
-  padding: 32px;
-  border-radius: 5px;
-}
-.sect2 .s2container div div {
-  background-color: white;
-  width: 108px;
-  height: 108px;
-  padding: 24px;
-  border-radius: 24px;
-}
-.sect2 .s2container div h3 {
-  font-size: 40px;
-  margin: 16px 0;
-  text-decoration: underline;
-}
-.sect2 .s2container div p {
-  font-size: 24px;
-}
 footer {
   position: relative;
   bottom: 0;
@@ -356,38 +191,6 @@ footer .footerelem:nth-of-type(1) {
   font-size: 32px;
   font-weight: bold;
 }
-.testbdd {
-  position: relative;
-  margin-top: 64px;
-  height: fit-content;
-  width: 100%;
-  padding: 30px;
-  display: flex;
-  flex-direction: column;
-}
-.testbdd h2 {
-  font-size: 96px;
-  margin: 0 auto 30px;
-}
-.testbdd table {
-  margin: 10px auto;
-  border: double 5px black;
-}
-.testbdd table th,
-.testbdd table td {
-  border: 1px solid black;
-  /* Change the border color to your preference */
-  padding: 10px;
-  text-align: center;
-}
-.testbdd table td {
-  max-width: 300px;
-}
-.testbdd table th {
-  background-color: #333;
-  /* Change the background color of the header row */
-  color: white;
-}
 @media screen and (max-width: 1180px) {
   nav {
     height: 96px;
@@ -401,38 +204,6 @@ footer .footerelem:nth-of-type(1) {
   .menu,
   .overlaymenu {
     display: flex;
-  }
-  .sect1 {
-    margin-top: 96px;
-  }
-  .sect1 div {
-    width: 100%;
-  }
-  .sect1 div.sect1search {
-    display: none;
-  }
-  .sect1 div.sect1image {
-    background: #0050B0C0;
-    align-items: center;
-    padding-right: 0;
-  }
-  .sect1 img {
-    width: 100%;
-  }
-  .sectmobile1 {
-    display: flex;
-  }
-  .sect2 h2 {
-    font-size: 64px;
-  }
-  .sect2 .s2container {
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-  }
-  .sect2 .s2container > div {
-    width: 80%;
-    margin-bottom: 40px;
   }
 }
 @media screen and (max-width: 520px) {
@@ -473,28 +244,6 @@ footer .footerelem:nth-of-type(1) {
   input[type=checkbox]:checked ~ .menu {
     transform: translateX(280px);
   }
-  .sect1 {
-    height: 400px;
-    margin-top: 64px;
-  }
-  .sect1 div.sect1image h1 {
-    font-size: 108px;
-  }
-  .sect1 div.sect1image h2 {
-    font-size: 24px;
-  }
-  .sectmobile1 .mobilesearchregion {
-    font-size: 30px;
-  }
-  .sect2 h2 {
-    font-size: 48px;
-  }
-  .sect2 .s2container {
-    width: 100%;
-  }
-  .sect2 .s2container > div {
-    width: 100%;
-  }
   footer .footerelem {
     font-size: 20px;
   }
@@ -503,22 +252,6 @@ footer .footerelem:nth-of-type(1) {
   }
 }
 @media screen and (max-width: 400px) {
-  .sect1 {
-    height: 300px;
-  }
-  .sect1 div.sect1image h1 {
-    font-size: 80px;
-  }
-  .sect1 div.sect1image h2 {
-    font-size: 18px;
-  }
-  .sectmobile1 .mobilesearchregion {
-    font-size: 24px;
-  }
-  .sectmobile1 .mobilesearchregion img {
-    height: 80px;
-    width: 80px;
-  }
   footer .footerelem {
     font-size: 18px;
   }

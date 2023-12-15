@@ -1,5 +1,8 @@
 <?php
 
+require_once "Models/data/Agence.class.php";
+require_once "Models/Model.class.php";
+
 class AgenceManager extends BDConnexion{
     private $agencelist;
 

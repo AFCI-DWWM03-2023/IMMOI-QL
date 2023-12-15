@@ -1,6 +1,6 @@
 <?php ob_start(); ?>
 
-<section>
+<section class="sectinscription">
 
     <label for="username">Nom d'utilisateur:</label>
     <input type="text" id="username">

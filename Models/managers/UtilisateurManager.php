@@ -1,5 +1,8 @@
 <?php
 
+require_once "Models/data/Utilisateur.class.php";
+require_once "Models/Model.class.php";
+
 class UtilisateurManager extends BDConnexion{
     private $userlist;
 

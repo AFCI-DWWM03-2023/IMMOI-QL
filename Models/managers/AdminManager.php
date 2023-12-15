@@ -1,5 +1,8 @@
 <?php
 
+require_once "Models/data/Admin.class.php";
+require_once "Models/Model.class.php";
+
 class AdminManager extends BDConnexion{
     private $adminlist;
 
