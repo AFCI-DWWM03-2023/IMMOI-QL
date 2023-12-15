@@ -123,8 +123,8 @@
                 <td><?= $DBbien[$i]->getId(); ?></td>
                 <td><?= $DBbien[$i]->getNom(); ?></td>
                 <td><?= $DBbien[$i]->getDescription(); ?></td>
-                <td><?= $DBbien[$i]->getPrixLoc(). "€/mois"; ?></td>
-                <td><?= $DBbien[$i]->getPrixVente(). "€"; ?></td>
+                <td><?= ($DBbien[$i]->getPrixLoc()) ? $DBbien[$i]->getPrixLoc(). "€/mois" : null; ?></td>
+                <td><?= ($DBbien[$i]->getPrixVente()) ? $DBbien[$i]->getPrixVente(). "€" : null; ?></td>
                 <td><?= $DBbien[$i]->getCategorie(); ?></td>
                 <td><?= $DBbien[$i]->getNbPieces(); ?></td>
                 <td><?= $DBbien[$i]->getNbEtages(); ?></td>
@@ -141,6 +141,7 @@
             <th>ID</th>
             <th>Nom</th>
             <th>ID bien</th>
+            <th>Photo de couverture</th>
         </tr>
         <?php
         for ($i = 0; $i < count($DBphoto); $i++) : ?>
@@ -148,6 +149,7 @@
                 <td><?= $DBphoto[$i]->getId(); ?></td>
                 <td><?= $DBphoto[$i]->getNom(); ?></td>
                 <td><?= $DBphoto[$i]->getBien(); ?></td>
+                <td><?= ($DBphoto[$i]->getCouverture()) ? "oui" : "non"; ?></td>
             </tr>
         <?php endfor; ?>
     </table>

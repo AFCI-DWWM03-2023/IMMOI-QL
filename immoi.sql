@@ -49,6 +49,7 @@ localite varchar(60) NOT NULL
 CREATE TABLE photo (
 idPhoto int(11) NOT NULL,
 nom varchar(128) NOT NULL,
+couverture boolean,
 idBien int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -155,13 +156,13 @@ INSERT INTO `transactions` (`idAgent`, `idBien`, `dateTransaction`, `montant`) V
 INSERT INTO `administrateur` (`username`, `password`) VALUES
 ('admin', 'root');
 
-INSERT INTO `photo` (`nom`, `idBien`) VALUES
-('appart.png', 1),
-('chambre.JPEG', 1),
-('exterieur.png', 1),
-('DCIM_2655592732035.jpg', 2),
-('DCIM_4776545491165.jpg', 2),
-('DCIM_2164435922925.jpg', 2),
-('DCIM_1647364794916.jpg', 2);
+INSERT INTO `photo` (`nom`, `idBien`, `couverture`) VALUES
+('appart.png', 1, false),
+('chambre.JPEG', 1, false),
+('exterieur.png', 1, true),
+('DCIM_2655592732035.jpg', 2, true),
+('DCIM_4776545491165.jpg', 2, false),
+('DCIM_2164435922925.jpg', 2, false),
+('DCIM_1647364794916.jpg', 2, false);
 
 COMMIT;

@@ -21,7 +21,7 @@ class PhotoManager extends BDConnexion{
         $req->closeCursor();
 
         foreach($listePhoto as $value){
-            $photo = new Photo($value['idPhoto'], $value['nom'], $value['idBien']);
+            $photo = new Photo($value['idPhoto'], $value['nom'], $value['idBien'], $value['couverture']);
             $this->ajoutPhoto($photo);
         }
     }
