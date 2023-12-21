@@ -30,7 +30,7 @@ class BDTestController{
         $this->utilisateurManager = new UtilisateurManager;     $this->utilisateurManager->chargementUserlist();
     }
 
-    public function afficherDBTest(){
+    public function afficherBDTest(){
         $DBadmin = $this->adminManager->getAdminlist();
         $DBadresse = $this->adresseManager->getAdresselist();
         $DBagence = $this->agenceManager->getAgencelist();

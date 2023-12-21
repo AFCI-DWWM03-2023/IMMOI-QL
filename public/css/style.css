@@ -20,7 +20,6 @@ nav {
   height: 64px;
   background-color: var(--dark-blue);
   display: flex;
-  justify-content: space-between;
   position: fixed;
   top: 0;
   z-index: 500;
@@ -41,11 +40,11 @@ nav {
   padding: 10px;
   font-weight: bold;
   font-size: 40px;
+  transition: all 400ms ease;
 }
 .navbtn:hover {
   background-color: var(--lighter-blue);
   cursor: pointer;
-  transition: 400ms ease;
 }
 .navbtn p {
   margin-left: 10px;
@@ -77,11 +76,12 @@ nav {
   display: flex;
   align-items: center;
 }
+.conbtn {
+  position: absolute;
+  right: 0;
+}
 .accbtn {
   margin-left: 12px;
-}
-.conbtn {
-  display: none;
 }
 input[type=checkbox] {
   display: none;
@@ -152,23 +152,23 @@ input[type=checkbox] {
   z-index: 499;
   transition: all 400ms ease;
 }
-input[type=checkbox]:checked ~ .hbmenu {
+#hamburger[type=checkbox]:checked ~ .hbmenu {
   transform: translateX(400px);
   border-radius: 0 24px 24px 0;
 }
-input[type=checkbox]:checked ~ .hbmenu .hbtop {
+#hamburger[type=checkbox]:checked ~ .hbmenu .hbtop {
   transform: translate(-2px, 26.5px) rotate(-135deg) scale(1.1, 1);
 }
-input[type=checkbox]:checked ~ .hbmenu .hbmid {
+#hamburger[type=checkbox]:checked ~ .hbmenu .hbmid {
   opacity: 0;
 }
-input[type=checkbox]:checked ~ .hbmenu .hbbot {
+#hamburger[type=checkbox]:checked ~ .hbmenu .hbbot {
   transform: translate(-2px, -26.5px) rotate(135deg) scale(1.1, 1);
 }
-input[type=checkbox]:checked ~ .menu {
+#hamburger[type=checkbox]:checked ~ .menu {
   transform: translateX(400px);
 }
-input[type=checkbox]:checked ~ .overlaymenu {
+#hamburger[type=checkbox]:checked ~ .overlaymenu {
   opacity: 50%;
 }
 footer {
@@ -190,6 +190,15 @@ footer .footerelem:nth-of-type(1) {
   font-size: 32px;
   font-weight: bold;
 }
+.content {
+  position: relative;
+  margin-top: 64px;
+  min-height: calc(100vh - 78px);
+  height: fit-content;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
 .sectoffres {
   position: relative;
   display: flex;
@@ -210,6 +219,9 @@ footer .footerelem:nth-of-type(1) {
 @media screen and (max-width: 1180px) {
   nav {
     height: 96px;
+  }
+  .fenetreconnect {
+    display: none;
   }
   .navbtn,
   .navonglet,
@@ -247,17 +259,17 @@ footer .footerelem:nth-of-type(1) {
     margin-right: 16px;
     height: 33px;
   }
-  input[type=checkbox]:checked ~ .hbmenu {
+  #hamburger[type=checkbox]:checked ~ .hbmenu {
     transform: translateX(280px);
     border-radius: 0 16px 16px 0;
   }
-  input[type=checkbox]:checked ~ .hbmenu .hbtop {
+  #hamburger[type=checkbox]:checked ~ .hbmenu .hbtop {
     transform: translate(0, 17.5px) rotate(-135deg) scale(1.1, 1);
   }
-  input[type=checkbox]:checked ~ .hbmenu .hbbot {
+  #hamburger[type=checkbox]:checked ~ .hbmenu .hbbot {
     transform: translate(0, -17.5px) rotate(135deg) scale(1.1, 1);
   }
-  input[type=checkbox]:checked ~ .menu {
+  #hamburger[type=checkbox]:checked ~ .menu {
     transform: translateX(280px);
   }
   footer .footerelem {

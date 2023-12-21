@@ -23,7 +23,6 @@ nav {
     height: 64px;
     background-color: var(--dark-blue);
     display: flex;
-    justify-content: space-between;
     position: fixed;
     top: 0;
     z-index: 500;
@@ -46,11 +45,11 @@ nav {
     padding: 10px;
     font-weight: bold;
     font-size: 40px;
+    transition: all 400ms ease;
 
     &:hover {
         background-color: var(--lighter-blue);
         cursor: pointer;
-        transition: 400ms ease;
     }
 
     p {
@@ -87,12 +86,13 @@ nav {
     align-items: center;
 }
 
-.accbtn {
-    margin-left: 12px;
+.conbtn {
+    position: absolute;
+    right: 0;
 }
 
-.conbtn {
-    display: none;
+.accbtn {
+    margin-left: 12px;
 }
 
 input[type=checkbox] {
@@ -179,7 +179,7 @@ input[type=checkbox] {
     transition: all 400ms ease;
 }
 
-input[type=checkbox]:checked {
+#hamburger[type=checkbox]:checked {
     ~.hbmenu {
         transform: translateX(400px);
         border-radius: 0 24px 24px 0;
@@ -228,6 +228,16 @@ footer {
     }
 }
 
+.content {
+    position: relative;
+    margin-top: 64px;
+    min-height: calc(100vh - 78px);
+    height: fit-content;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
 .sectoffres {
     position: relative;
     display: flex;
@@ -253,6 +263,10 @@ footer {
 
     nav {
         height: 96px;
+    }
+
+    .fenetreconnect {
+        display: none;
     }
 
     .navbtn, .navonglet, .connecte {
@@ -301,7 +315,7 @@ footer {
         }
     }
 
-    input[type=checkbox]:checked {
+    #hamburger[type=checkbox]:checked {
         ~.hbmenu {
             transform: translateX(280px);
             border-radius: 0 16px 16px 0;

@@ -7,9 +7,9 @@
             <input type="search" class="searchbar" id="search" placeholder="Ex : Blablaville, maison, jardin">
             <input type="submit" value="Lancer la recherche" class="submitsearch">
         </div>
-        <a href="region" class="search searchregion"><img src="img/france.png" alt="">Rechercher un bien par région</a>
+        <a href="region" class="search searchregion"><img src="public/img/france.png" alt="">Rechercher un bien par région</a>
     </div>
-    <img src="./img/header.jpg" alt="header"> <!-- Crédit : Binyamin Mellish -->
+    <img src="public/img/header.jpg" alt="header"> <!-- Crédit : Binyamin Mellish -->
     <div class="sect1image">
         <h1>IM'MOI</h1>
         <h2>C'est quand même mieux d'être chez soi</h2>
