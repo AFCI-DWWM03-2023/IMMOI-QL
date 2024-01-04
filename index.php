@@ -3,12 +3,12 @@
 session_start();
 define("URL", str_replace("index.php", "", (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[PHP_SELF]"));
 
-require_once "Controller/bdtestController.php";
-$bdtestController = new BDTestController;
 require_once "Controller/utilisateurController.php";
 $utilisateurController = new UtilisateurController;
 require_once "Controller/offresController.php";
 $offresController = new OffresController;
+require_once "Controller/agenceController.php";
+$agenceController = new AgenceController;
 
 try {
     if (empty($_GET['page'])) {
@@ -24,37 +24,30 @@ try {
                 else {
                     switch ($url[1]) {
                         case "utilisateurs":
-                            if (empty($url[2])) $utilisateurController->afficherUtilisateurs();
-                            else {
-                                switch ($url[2]) {
-                                    case "l":
-                                        $utilisateurController->afficherUtilisateur($url[3]);
-                                        break;
-                                    case "a":
-                                        //$utilisateurController->ajoutUtilisateur();
-                                        echo "ajout utilisateur";
-                                        break;
-                                    case "m":
-                                        $utilisateurController->modifierUtilisateur($url[3]);
-                                        break;
-                                    case "mv":
-                                        $utilisateurController->modifierUtilisateurValidation($url[3]);
-                                        break;
-                                    case "s" :
-                                        $utilisateurController->suppressionUtilisateur($url[3]);
-                                        break;
-                                }
+                            if (empty($url[2])) {
+                                $utilisateurController->afficherUtilisateurs();
+                            } else if ($url[2] === "s") {
+                                $utilisateurController->suppressionUtilisateur($url[3]);
                             }
                             break;
                     }
                 }
-                //$bdtestController->afficherBDTest();
                 break;
             case "inscription":
-                if (empty($url[1])) {
-                    $utilisateurController->ajoutUtilisateur();
+                if (empty($url[1]) || $url[1] === "retry") {
+                    if (!empty($url[1]) && $url[1] === "retry") $_POST['userExiste'] = true;
+                    $_POST['DBagence'] = $agenceController->getAgenceList();
+                    $utilisateurController->inscription();
                 } else if ($url[1] === "validation") {
-                    $utilisateurController->ajoutUtilisateurValidation();
+                    $utilisateurController->inscriptionValidation();
+                }
+                break;
+            case "connexion":
+                if (empty($url[1]) || $url[1] === "retry") {
+                    if (!empty($url[1]) && $url[1] === "retry") $_POST['connexionEchoue'] = true;
+                    $utilisateurController->connexion();
+                } else if ($url[1] === "validation") {
+                    $utilisateurController->connexionValidation();
                 }
                 break;
             case "region":

@@ -21,7 +21,7 @@ class TransactionManager extends BDConnexion{
         $req->closeCursor();
 
         foreach($listeTransaction as $value){
-            $transaction = new Transaction($value['idTransaction'], $value['idAgent'], $value['idBien'], $value['dateTransaction'], $value['montant']);
+            $transaction = new Transaction($value['idTransaction'], $value['montant'], $value['dateTransaction'], $value['acheteur'], $value['vendeur'], $value['agent'], $value['idBien']);
             $this->ajoutTransaction($transaction);
         }
     }

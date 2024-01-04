@@ -16,7 +16,7 @@
     </div>
 </section>
 <section class="sectmobile1">
-    <a href="region" class="mobilesearchregion"><img src="img/france.png" alt="">Rechercher un bien par région</a>
+    <a href="region" class="mobilesearchregion"><img src="public/img/france.png" alt="">Rechercher un bien par région</a>
 </section>
 
 <section class="sect2">

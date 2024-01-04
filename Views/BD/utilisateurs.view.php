@@ -13,7 +13,9 @@
                 <th>Téléphone</th>
                 <th>Email</th>
                 <th>ID adresse</th>
-                <th>Actions</th>
+                <th>Agent</th>
+                <th>Agence</th>
+                <th>Supprimer</th>
             </tr>
             <?php
             for ($i = 0; $i < count($DBuser); $i++) : ?>
@@ -26,12 +28,12 @@
                     <td><?= $DBuser[$i]->getTelephone(); ?></td>
                     <td><?= $DBuser[$i]->getEmail(); ?></td>
                     <td><?= $DBuser[$i]->getAdresse(); ?></td>
+                    <td><?= ($DBuser[$i]->getEstAgent()) ? "Oui" : "Non"; ?></td>
+                    <td><?= $DBuser[$i]->getAgence(); ?></td>
                     <td>
-                        <a href="<?= URL ?>bdtest/utilisateurs/m/<?= $DBuser[$i]->getId(); ?>"><button>Modifier</button></a>
                         <form method="POST" action="<?= URL ?>bdtest/utilisateurs/s/<?= $DBuser[$i]->getId(); ?>" onSubmit="return confirm('Voulez-vous vraiment supprimer cet utilisateur ?');">
-                            <button class="supprimer">Supprimer</button>
-                        </form>
-                    </td>
+                    <button class="supprimer">Supprimer</button>
+                </form></td>
                 </tr>
             <?php endfor; ?>
         </table>

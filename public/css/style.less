@@ -80,6 +80,8 @@ nav {
 }
 
 .connecte {
+    position: absolute;
+    right: 0;
     font-size: 28px;
     color: white;
     display: flex;
@@ -95,8 +97,16 @@ nav {
     margin-left: 12px;
 }
 
-input[type=checkbox] {
+input[type=checkbox]#hamburger {
     display: none;
+}
+
+#agence {
+    display: none;
+}
+
+#estAgent[type=checkbox]:checked ~ #agence {
+    display: inline;
 }
 
 .hbmenu {

@@ -1,7 +1,7 @@
 <?php
 
 class Utilisateur{
-    public function __construct(private $idUtilisateur, private $username, private $password, private $nom, private $prenom, private $telephone, private $email, private $idAdresse)
+    public function __construct(private $idUtilisateur, private $username, private $password, private $nom, private $prenom, private $telephone, private $email, private $idAdresse, private $estAgent, private $agence)
     {
     }
 
@@ -13,6 +13,8 @@ class Utilisateur{
     public function getTelephone()        {return $this->telephone;}
     public function getEmail()            {return $this->email;}
     public function getAdresse()          {return $this->idAdresse;}
+    public function getEstAgent()         {return $this->estAgent;}
+    public function getAgence()           {return $this->agence;}
 
     public function setId($idUtilisateur)          {$this->idUtilisateur = $idUtilisateur;}
     public function setUsername($username)         {$this->username = $username;}
@@ -22,5 +24,7 @@ class Utilisateur{
     public function setTelephone($telephone)       {$this->telephone = $telephone;}
     public function setEmail($email)               {$this->email = $email;}
     public function setAdresse($idAdresse)         {$this->idAdresse = $idAdresse;}
+    public function setEstAgent($estAgent)         {$this->estAgent = $estAgent;}
+    public function setAgence($agence)             {$this->agence = $agence;}
 
 }
