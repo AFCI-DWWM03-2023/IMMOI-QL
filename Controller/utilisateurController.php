@@ -9,6 +9,8 @@ class UtilisateurController{
         $this->utilisateurManager->chargementUserlist();
     }
 
+    public function getManager(){ return $this->utilisateurManager;}
+
     public function afficherUtilisateurs(){
         $DBuser = $this->utilisateurManager->getUserlist();
         require "Views/BD/utilisateurs.view.php";
@@ -17,6 +19,16 @@ class UtilisateurController{
     public function afficherUtilisateur($id){
         $user = $this->utilisateurManager->getUserById($id);
         require "Views/BD/afficherUtilisateur.view.php";
+    }
+
+    public function afficherProfil($id){
+        $user = $this->utilisateurManager->getUserById($id);
+        if (isset($user)) {
+            require "Views/BD/profil.view.php";
+        } else {
+            require "Views/BD/profilError.view.php";
+        }
+
     }
 
     public function inscription(){
@@ -40,12 +52,18 @@ class UtilisateurController{
     public function connexionValidation(){
         $res = $this->utilisateurManager->connexion($_POST['username'], $_POST['password']);
         if ($res) {
-            $_SESSION['username'] = $_POST['username'];
+            $_SESSION['user'] = $this->utilisateurManager->getUserByUsername($_POST['username'])->getId();
             $_SESSION['connecte'] = true;
             header('Location: '.URL."accueil");
         } else {
             header('Location: '.URL."connexion/retry");
         }
+    }
+
+    public function deconnexion(){
+        unset($_SESSION['user']);
+        unset($_SESSION['connecte']);
+        header('Location: '.URL."accueil");
     }
 
     public function suppressionUtilisateur($id){

@@ -85,6 +85,12 @@ nav {
 .accbtn {
   margin-left: 12px;
 }
+.dcbtn {
+  background-color: red;
+}
+.dcbtn:hover {
+  background-color: orangered;
+}
 input[type=checkbox]#hamburger {
   display: none;
 }

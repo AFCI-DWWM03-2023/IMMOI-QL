@@ -9,6 +9,9 @@ require_once "Controller/offresController.php";
 $offresController = new OffresController;
 require_once "Controller/agenceController.php";
 $agenceController = new AgenceController;
+if (isset($_SESSION["connecte"])) {
+    $username = $utilisateurController->getManager()->getUserById($_SESSION["user"])->getUsername();
+}
 
 try {
     if (empty($_GET['page'])) {
@@ -49,6 +52,13 @@ try {
                 } else if ($url[1] === "validation") {
                     $utilisateurController->connexionValidation();
                 }
+                break;
+            case "deconnexion":
+                $utilisateurController->deconnexion();
+                break;
+            case "profil":
+                if (empty($url[1])) $utilisateurController->afficherProfil($_SESSION['user']);
+                else $utilisateurController->afficherProfil($url[1]);
                 break;
             case "region":
                 require "Views/region.view.php";

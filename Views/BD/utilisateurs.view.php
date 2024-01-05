@@ -22,7 +22,7 @@
                 <tr>
                     <td><?= $DBuser[$i]->getId(); ?></td>
                     <td><?= $DBuser[$i]->getUsername(); ?></td>
-                    <td><?= $DBuser[$i]->getPassword(); ?></td>
+                    <td><?= substr_replace($DBuser[$i]->getPassword(), "<br>", 32, 0); ?></td>
                     <td><?= $DBuser[$i]->getNom(); ?></td>
                     <td><?= $DBuser[$i]->getPrenom(); ?></td>
                     <td><?= $DBuser[$i]->getTelephone(); ?></td>

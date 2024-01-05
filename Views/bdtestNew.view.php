@@ -1,7 +1,7 @@
 <?php ob_start(); ?>
 
 <section class="content">
-    <a href="bdtest/utilisateurs">Utilisateurs</a>
+    <a href="/bdtest/utilisateurs">Utilisateurs</a>
 </section>
 
 

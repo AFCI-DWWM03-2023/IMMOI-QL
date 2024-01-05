@@ -78,7 +78,7 @@ class UtilisateurManager extends BDConnexion{
         $res = false;
         $i = 0;
         while (!$res && $i<count($this->userlist)) {
-            if ($this->userlist[$i]->getUsername() == $username || $this->userlist[$i]->getEmail() == $email) $res = true;
+            if ($this->userlist[$i]->getUsername() == $username || $this->userlist[$i]->getUsername() == "admin" || $this->userlist[$i]->getEmail() == $email) $res = true;
             $i++;
         }
         return $res;
@@ -103,12 +103,11 @@ class UtilisateurManager extends BDConnexion{
         }
     }
 
-    // public function modifUtilisateurBD($id, $username, $password, $nom, $prenom, $telephone, $email, $idAdresse) {
-    //     $req = "UPDATE utilisateur SET username = :username, password = :password, nom = :nom, prenom = :prenom, telephone = :telephone, email = :email, idAdresse = :idAdresse WHERE idUtilisateur = :idUtilisateur";
+    // public function modifUtilisateurBD($id, $username, $nom, $prenom, $telephone, $email, $idAdresse) {
+    //     $req = "UPDATE utilisateur SET username = :username, nom = :nom, prenom = :prenom, telephone = :telephone, email = :email, idAdresse = :idAdresse WHERE idUtilisateur = :idUtilisateur";
     //     $stmt = $this->getBDD()->prepare($req);
     //     $stmt->bindValue(":idUtilisateur", $id, PDO::PARAM_INT);
     //     $stmt->bindValue(":username", $username, PDO::PARAM_STR);
-    //     $stmt->bindValue(":password", $password, PDO::PARAM_STR);
     //     $stmt->bindValue(":nom", $nom, PDO::PARAM_STR);
     //     $stmt->bindValue(":prenom", $prenom, PDO::PARAM_STR);
     //     $stmt->bindValue(":telephone", $telephone, PDO::PARAM_STR);
