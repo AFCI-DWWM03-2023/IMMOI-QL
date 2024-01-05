@@ -52,7 +52,18 @@ class UtilisateurController{
     public function connexionValidation(){
         $res = $this->utilisateurManager->connexion($_POST['username'], $_POST['password']);
         if ($res) {
-            $_SESSION['user'] = $this->utilisateurManager->getUserByUsername($_POST['username'])->getId();
+            $user = $this->utilisateurManager->getUserByUsername($_POST['username']);
+            $_SESSION['user'] = [ 
+                "id" => $user->getId(),
+                "username" => $user->getUsername(),
+                "nom" => $user->getNom(),
+                "prenom" => $user->getPrenom(),
+                "telephone" => $user->getTelephone(),
+                "email" => $user->getEmail(),
+                "adresse" => $user->getAdresse(),
+                "estAgent" => $user->getEstAgent(),
+                "agence" => $user->getAgence()
+            ];
             $_SESSION['connecte'] = true;
             header('Location: '.URL."accueil");
         } else {

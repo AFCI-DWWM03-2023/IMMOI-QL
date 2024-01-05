@@ -9,9 +9,6 @@ require_once "Controller/offresController.php";
 $offresController = new OffresController;
 require_once "Controller/agenceController.php";
 $agenceController = new AgenceController;
-if (isset($_SESSION["connecte"])) {
-    $username = $utilisateurController->getManager()->getUserById($_SESSION["user"])->getUsername();
-}
 
 try {
     if (empty($_GET['page'])) {
@@ -23,7 +20,7 @@ try {
                 require "Views/accueil.view.php";
                 break;
             case "bdtest":
-                if (empty($url[1])) require "Views/bdtestNew.view.php";
+                if (empty($url[1])) require "Views/bdtest.view.php";
                 else {
                     switch ($url[1]) {
                         case "utilisateurs":
@@ -57,7 +54,7 @@ try {
                 $utilisateurController->deconnexion();
                 break;
             case "profil":
-                if (empty($url[1])) $utilisateurController->afficherProfil($_SESSION['user']);
+                if (empty($url[1])) $utilisateurController->afficherProfil($_SESSION['user']['id']);
                 else $utilisateurController->afficherProfil($url[1]);
                 break;
             case "region":

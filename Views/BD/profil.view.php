@@ -1,8 +1,11 @@
-<?php ob_start(); ?>
+<?php ob_start(); 
+$monprofil = (isset($_SESSION["user"]) && $_SESSION["user"]["id"] == $user->getId()) ? true : false;
+$qualif = (null !== $user->getPrenom()) ? $user->getPrenom() : $user->getUsername();
+?>
 
 <section class="content">
+    <?= ($monprofil) ? "Mon profil" : "Profil de " . $qualif; ?>
     <?= $user->getId(); ?>
-    <?= $user->getUsername(); ?>
     <?= $user->getNom(); ?>
     <?= $user->getPrenom(); ?>
     <?= $user->getTelephone(); ?>
