@@ -117,9 +117,9 @@ ADD CONSTRAINT `FK_VENDEUR` FOREIGN KEY (`vendeur`) References `utilisateur` (`i
 ADD CONSTRAINT `FK_BIEN` FOREIGN KEY (`idBien`) References `bien` (`idBien`);
 
 INSERT INTO `utilisateur` (`username`, `password`, `nom`, `prenom`, `telephone`, `email`, `estAgent`, `agence`) VALUES
-('brunoracon', '7535Dazaetféé30', 'Racon', 'Bruno', NULL, 'bruno.racon@pos.sum', NULL, NULL),
-('princechazton', '7535Dazaetféé30', 'Chazton', 'Prince', NULL, 'chazton.prince@immoi.fr', true, 3),
-('mariabonbon', '5325Sdadefèé96', 'Bonbon', 'Maria', NULL, 'bonbon.maria@immoi.fr', true, 3);
+('brunoracon', '$2y$10$nHDGVHMlbZ0tqoXEvv2DmelVRTB14tutDot7SscoqhSDlhUYKjkry', 'Racon', 'Bruno', NULL, 'bruno.racon@pos.sum', NULL, NULL),
+('princechazton', '$2y$10$y9RTlxlEueOK0rqsrQe1be38.zObpBURchZRNqb1rHATCtXzFJ9cy', 'Chazton', 'Prince', NULL, 'chazton.prince@immoi.fr', true, 3),
+('mariabonbon', '$2y$10$tUAdmPhIxo9EaAfMOIJQmOlDDAPwnjBU/VVGq8dptL9Z2AhH7KOBC', 'Bonbon', 'Maria', NULL, 'bonbon.maria@immoi.fr', true, 3);
 
 INSERT INTO `adresse` (`nomVoie`, `zipcode`, `localite`) VALUES
 ('3 rue des Potiers', '59380', 'Bergues'),
