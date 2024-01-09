@@ -117,6 +117,7 @@ ADD CONSTRAINT `FK_VENDEUR` FOREIGN KEY (`vendeur`) References `utilisateur` (`i
 ADD CONSTRAINT `FK_BIEN` FOREIGN KEY (`idBien`) References `bien` (`idBien`);
 
 INSERT INTO `utilisateur` (`username`, `password`, `nom`, `prenom`, `telephone`, `email`, `estAgent`, `agence`) VALUES
+('brunoracon', '7535Dazaetféé30', 'Racon', 'Bruno', NULL, 'bruno.racon@pos.sum', NULL, NULL),
 ('princechazton', '7535Dazaetféé30', 'Chazton', 'Prince', NULL, 'chazton.prince@immoi.fr', true, 3),
 ('mariabonbon', '5325Sdadefèé96', 'Bonbon', 'Maria', NULL, 'bonbon.maria@immoi.fr', true, 3);
 
