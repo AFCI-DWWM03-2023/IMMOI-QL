@@ -49,6 +49,14 @@ nav {
 .navbtn p {
   margin-left: 10px;
 }
+.navbtn.puboffre {
+  font-weight: normal;
+  background-color: var(--lighter-blue);
+}
+.navbtn.puboffre:hover {
+  background-color: var(--light-blue);
+  cursor: pointer;
+}
 .navonglet {
   display: flex;
   position: relative;

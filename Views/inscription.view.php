@@ -1,5 +1,4 @@
 <?php ob_start(); 
-$DBagence = $_POST['DBagence'];
 if (isset($_POST['userExiste'])) $userExiste = $_POST['userExiste'];
 ?>
 

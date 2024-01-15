@@ -11,14 +11,8 @@ class UtilisateurController{
 
     public function getManager(){ return $this->utilisateurManager;}
 
-    public function afficherUtilisateurs(){
-        $DBuser = $this->utilisateurManager->getUserlist();
-        require "Views/BD/utilisateurs.view.php";
-    }
-
-    public function afficherUtilisateur($id){
-        $user = $this->utilisateurManager->getUserById($id);
-        require "Views/BD/afficherUtilisateur.view.php";
+    public function getUtilisateursList(){
+        return $this->utilisateurManager->getUserlist();
     }
 
     public function afficherProfil($id){
@@ -29,10 +23,6 @@ class UtilisateurController{
             require "Views/BD/profilError.view.php";
         }
 
-    }
-
-    public function inscription(){
-        require "Views/inscription.view.php";
     }
 
     public function inscriptionValidation(){

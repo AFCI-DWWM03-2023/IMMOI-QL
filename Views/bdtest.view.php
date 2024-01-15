@@ -2,6 +2,7 @@
 
 <section class="content">
     <a href="/bdtest/utilisateurs">Utilisateurs</a>
+    <a href="/bdtest/biens">Biens</a>
 </section>
 
 
