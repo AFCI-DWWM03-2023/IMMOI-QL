@@ -15,6 +15,17 @@ class UtilisateurController{
         return $this->utilisateurManager->getUserlist();
     }
 
+    public function getAgentsList(){
+        $list = $this->utilisateurManager->getUserlist();
+        foreach ($list as $key => $value) {
+            if ($value->getEstAgent()==NULL){
+                unset($list[$key]);
+            }
+        }
+        return $list;
+    }
+
+
     public function afficherProfil($id){
         $user = $this->utilisateurManager->getUserById($id);
         if (isset($user)) {

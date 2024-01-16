@@ -18,12 +18,13 @@ $DBadresse = $adresseController->getAdresseList();
 
 try {
     if (empty($_GET['page'])) {
-        require "Views/accueil.view.php";
+        header('Location: '.URL."accueil");
     } else {
         $url = explode("/", filter_var($_GET['page']), FILTER_SANITIZE_URL);
         switch ($url[0]) {
             case "accueil":
                 $agenceNombre = count($agenceController->getAgenceList());
+                $agentsNombre = count($utilisateurController->getAgentsList());
                 require "Views/accueil.view.php";
                 break;
             case "bdtest":
