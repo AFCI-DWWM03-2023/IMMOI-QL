@@ -43,7 +43,7 @@ class BienManager extends BDConnexion{
         $stmt->bindValue(":nom", $nom, PDO::PARAM_STR);
         $stmt->bindValue(":description", $description, PDO::PARAM_STR);
         $stmt->bindValue(":prixLocation", $prixLocation, PDO::PARAM_STR);
-        $stmt->bindValue(":prixLocation", $prixVente, PDO::PARAM_STR);
+        $stmt->bindValue(":prixVente", $prixVente, PDO::PARAM_STR);
         $stmt->bindValue(":categorie", $categorie, PDO::PARAM_STR);
         $stmt->bindValue(":nbPieces", $nbPieces, PDO::PARAM_INT);
         $stmt->bindValue(":nbEtages", $nbEtages, PDO::PARAM_INT);

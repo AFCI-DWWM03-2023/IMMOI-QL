@@ -19,7 +19,7 @@ class AdresseController{
     }
 
     public function addAdresse(){
-        
+        $this->adresseManager->ajoutAdresseBD($_POST['adresse'], $_POST['zipcode'], $_POST['localite']);
     }
 
 }

@@ -33,8 +33,8 @@
                     <td><?= $DBbien[$i]->getNbEtages() ?></td>
                     <td><?= $DBbien[$i]->getSurface() ?></td>
                     <td><?= $DBbien[$i]->getNumAppart() ?></td>
-                    <td><?= $DBuser[$DBbien[$i]->getUtilisateur()] ?></td>
-                    <td><?= $DBadresse[$DBbien[$i]->getAdresse()] ?></td>
+                    <td><?= $DBuser[$DBbien[$i]->getUtilisateur()-1]->getUsername() ?></td>
+                    <td><?= $DBadresse[$DBbien[$i]->getAdresse()-1]->getNomVoie() . " " . $DBadresse[$DBbien[$i]->getAdresse()-1]->getZipcode() . " " . $DBadresse[$DBbien[$i]->getAdresse()-1]->getLocalite()?></td>
                     <td>
                         <form method="POST" action="<?= URL ?>bdtest/biens/s/<?= $DBbien[$i]->getId(); ?>" onSubmit="return confirm('Voulez-vous vraiment supprimer cette annonce ?');">
                     <button class="supprimer">Supprimer</button>
