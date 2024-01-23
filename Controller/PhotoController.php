@@ -17,4 +17,9 @@ class PhotoController{
     public function getPhotoList(){
         return $this->photoManager->getPhotolist();
     }
+    
+    public function getPhotosByBien($id)
+    {
+        return $this->photoManager->getPhotosFromBien($id);
+    }
 }

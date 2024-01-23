@@ -15,10 +15,13 @@ $DBagence = $agenceController->getAgenceList();
 require_once "Controller/adresseController.php";
 $adresseController = new AdresseController;
 $DBadresse = $adresseController->getAdresseList();
+require_once "Controller/photoController.php";
+$photoController = new PhotoController;
+$DBphoto = $photoController->getPhotoList();
 
 try {
     if (empty($_GET['page'])) {
-        header('Location: '.URL."accueil");
+        header('Location: ' . URL . "accueil");
     } else {
         $url = explode("/", filter_var($_GET['page']), FILTER_SANITIZE_URL);
         switch ($url[0]) {
@@ -69,14 +72,21 @@ try {
                 break;
             case "profil":
                 if (empty($url[1])) $utilisateurController->afficherProfil($_SESSION['user']['id']);
-                else $utilisateurController->afficherProfil($url[1]);
+                else {
+                    if (empty($url[2])) $utilisateurController->afficherProfil($url[1]);
+                    else if ($url[2] == "offres") $bienController->afficherBiensByUser($url[1]);
+                }
+                break;
+            case "offre":
+                if (empty($url[1])) header('Location: ' . URL . "offres");
+                else $bienController->afficherBien($url[1]);
                 break;
             case "region":
                 require "Views/region.view.php";
                 break;
-                // case "offres":
-                //     $biensController->afficherBiens();
-                //     break;
+            case "offres":
+                require "Views/offres.view.php";
+                break;
             case "utilisateurs":
                 require "Views/BD/utilisateurs.view.php";
                 break;

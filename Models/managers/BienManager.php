@@ -25,6 +25,16 @@ class BienManager extends BDConnexion{
             $this->ajoutBien($bien);
         }
     }
+
+    public function getBiensFromUser($user){
+        $listeBien = [];
+        for ($i = 0; $i < count($this->bienlist); $i++) {
+            if ($this->bienlist[$i]->getUtilisateur() == $user) {
+                $listeBien[] = $this->bienlist[$i];
+            }
+        }
+        return $listeBien;
+    }
     
     public function getBienById($id)
     {
@@ -60,5 +70,21 @@ class BienManager extends BDConnexion{
             $this->ajoutBien($bien);
         }
     }
+
+    public function suppressionBienBD($id)
+    {
+        $req = "DELETE FROM bien WHERE idBien = :idBien";
+        $stmt = $this->getBDD()->prepare($req);
+        $stmt->bindValue(":idBien", $id, PDO::PARAM_INT);
+        $resultat = $stmt->execute();
+        $stmt->closeCursor();
+
+        if ($resultat > 0) {
+            $bien = $this->getBienById($id);
+            unset($bien);
+        }
+    }
+
+
 
 }

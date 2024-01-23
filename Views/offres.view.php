@@ -1,9 +1,18 @@
 <?php ob_start(); ?>
 
 <section class="sectoffres">
-    <?php for ($i = 0; $i < count($DBbien); $i++) : ?>
+    <?php for ($i = 0; $i < count($DBbien); $i++) : 
+        $listephotos = $photoController->getPhotosByBien($DBbien[$i]->getId());
+        $couverture = 0;
+        foreach ($listephotos as $photo) {
+            if ($photo->getCouverture()) {
+                $couverture = $photo->getId();
+            }
+        }
+        ?>
         <div class="offre <?= ($i % 2) ? "pair" : "impair";?>">
 
+            <?= ($couverture !=0) ? $listephotos[$couverture-1]->getNom() : "";?>
             <?= $DBbien[$i]->getNom(); ?>
             <?= ($DBbien[$i]->getPrixLoc()) ? $DBbien[$i]->getPrixLoc() . "€/mois" : null; ?>
             <?= ($DBbien[$i]->getPrixVente()) ? $DBbien[$i]->getPrixVente() . "€" : null; ?>

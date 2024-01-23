@@ -1,6 +1,9 @@
 <?php ob_start(); 
 $monprofil = (isset($_SESSION["user"]) && $_SESSION["user"]["id"] == $user->getId()) ? true : false;
 $qualif = (null !== $user->getPrenom()) ? $user->getPrenom() : $user->getUsername();
+require_once "Controller/agenceController.php";
+$agenceController = new AgenceController;
+$DBagence = $agenceController->getAgenceList();
 ?>
 
 <section class="content">

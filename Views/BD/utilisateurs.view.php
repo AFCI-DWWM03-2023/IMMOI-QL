@@ -1,4 +1,7 @@
-<?php ob_start(); ?>
+<?php ob_start();
+require_once "Controller/agenceController.php";
+$agenceController = new AgenceController;
+$DBagence = $agenceController->getAgenceList(); ?>
 
 <section class="content">
     <section class="testbdd">
@@ -29,7 +32,7 @@
                     <td><?= $DBuser[$i]->getEmail(); ?></td>
                     <td><?= $DBuser[$i]->getAdresse(); ?></td>
                     <td><?= ($DBuser[$i]->getEstAgent()) ? "Oui" : "Non"; ?></td>
-                    <td><?= $DBuser[$i]->getAgence(); ?></td>
+                    <td><?= (null !==$DBuser[$i]->getAgence()) ? "Agence " . $DBagence[$DBuser[$i]->getAgence()-1]->getNom() : ""; ?></td>
                     <td>
                         <form method="POST" action="<?= URL ?>bdtest/utilisateurs/s/<?= $DBuser[$i]->getId(); ?>" onSubmit="return confirm('Voulez-vous vraiment supprimer cet utilisateur ?');">
                     <button class="supprimer">Supprimer</button>

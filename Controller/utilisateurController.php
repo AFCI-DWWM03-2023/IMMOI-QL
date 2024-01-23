@@ -33,7 +33,6 @@ class UtilisateurController{
         } else {
             require "Views/BD/profilError.view.php";
         }
-
     }
 
     public function inscriptionValidation(){

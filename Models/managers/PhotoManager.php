@@ -25,5 +25,15 @@ class PhotoManager extends BDConnexion{
             $this->ajoutPhoto($photo);
         }
     }
+    
+    public function getPhotosFromBien($id){
+        $listePhotos = [];
+        for ($i = 0; $i < count($this->photolist); $i++) {
+            if ($this->photolist[$i]->getBien() == $id) {
+                $listePhotos[] = $this->photolist[$i];
+            }
+        }
+        return $listePhotos;
+    }
 
 }

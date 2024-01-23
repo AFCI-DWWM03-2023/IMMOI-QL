@@ -26,8 +26,25 @@ class BienController
         }
     }
 
+    public function afficherBiensByUser($id)
+    {
+        $listebien = $this->bienManager->getBiensFromUser($id);
+        if (count($listebien) !== 0) {
+            require "Views/BD/bienUser.view.php";
+        } else {
+            require "Views/BD/bienUserError.view.php";
+        }
+    }
+
+
     public function publierValidation()
     {
         $this->bienManager->ajoutBienBD($_POST['nom'], $_POST['desc'], ($_POST['venteloc'] == "vente") ? $_POST["prix"] : NULL, ($_POST['venteloc'] == "loc") ? $_POST["prix"] : NULL, $_POST["categorie"], $_POST["nbpieces"], $_POST["nbetages"], $_POST["surface"], $_POST["numappart"], $_SESSION['user']['id'], $_POST["idadresse"]);
+
+    }
+    
+    public function suppressionBien($id){
+        $this->bienManager->suppressionBienBD($id);
+        header('Location: '.URL."bdtest/biens");
     }
 }
