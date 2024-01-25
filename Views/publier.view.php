@@ -14,7 +14,7 @@
             <label for="loc">Location </label>
             <input type="radio" name="venteloc" value="loc" id="loc" required>
             <label for="prix">Prix </label>
-            <input type="number" name="prix" id="prix">
+            <input type="number" name="prix" id="prix" required>
             <label for="categorie" id="categorie">Type de bien</label>
             <select name="categorie" id="categorie">
                 <option value="maison">Maison</option>
@@ -35,13 +35,16 @@
             <input type="text" name="zipcode" id="zipcode" required>
             <label for="localite">Localité (ville, village, etc) : </label>
             <input type="text" name="localite" id="localite" required>
-
-
-            <input type="submit" value="Valider">
+            <label for="photocouv">Photo de couverture :</label>
+            <input type="file" id="photocouv" name="photocouv" accept=".jpg, .jpeg, .png, .gif">
+            <span style="color:red" id="filesizewarning" class="hide">La photo ne doit pas dépasser 2Mo</span>
+            <a id="removephoto" class="hide" onclick="removePhoto()" href="#">Supprimer l'image</a>
+            <input type="submit" value="Valider" id="submitform">
         </form>
     <?php
-    else : echo "Vous devez vous connecter pour acceder à cette page";
+    else : echo "Connectez-vous pour acceder à cette page";
     endif; ?>
+    <script src="scripts/publier.js"></script>
 
 </section>
 

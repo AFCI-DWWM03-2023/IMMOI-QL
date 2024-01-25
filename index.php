@@ -102,6 +102,7 @@ try {
                 } else if ($url[1] === "validation") {
                     $adresseController->addAdresse();
                     $bienController->publierValidation();
+                    $photoController->addPhoto(true);
                 }
                 break;
 

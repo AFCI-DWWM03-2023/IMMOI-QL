@@ -6,8 +6,8 @@ require_once "Models/Model.class.php";
 class PhotoManager extends BDConnexion{
     private $photolist;
 
-    public function ajoutPhoto($agence){
-        $this->photolist[] = $agence;
+    public function ajoutPhoto($photo){
+        $this->photolist[] = $photo;
     }
 
     public function getPhotolist(){
@@ -36,4 +36,22 @@ class PhotoManager extends BDConnexion{
         return $listePhotos;
     }
 
+    public function ajoutPhotoBD($nom, $couverture, $idBien)
+    {
+        $req = "INSERT INTO photo(nom, couverture, idBien) VALUES (:nom, :couverture, :idBien)";
+
+        $stmt = $this->getBDD()->prepare($req);
+        $stmt->bindValue(":nom", $nom, PDO::PARAM_STR);
+        $stmt->bindValue(":couverture", $couverture, PDO::PARAM_BOOL);
+        $stmt->bindValue(":idBien", $idBien, PDO::PARAM_INT);
+
+        $resultat = $stmt->execute();
+        $stmt->closeCursor();
+
+        if ($resultat > 0) {
+            $photo = new Photo($this->getBDD()->lastInsertId(), $nom, $couverture, $idBien);
+            $this->ajoutPhoto($photo);
+            $_POST['idphoto'] = $this->getBDD()->lastInsertId();
+        }
+    }
 }

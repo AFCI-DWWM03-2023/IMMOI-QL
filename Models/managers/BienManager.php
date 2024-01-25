@@ -68,6 +68,7 @@ class BienManager extends BDConnexion{
         if ($resultat > 0) {
             $bien = new Bien($this->getBDD()->lastInsertId(), $nom, $description, $prixLocation, $prixVente, $categorie, $nbPieces, $nbEtages, $surface, $numAppart, $idUtilisateur, $idAdresse);
             $this->ajoutBien($bien);
+            $_POST['idbien'] = $this->getBDD()->lastInsertId();
         }
     }
 
