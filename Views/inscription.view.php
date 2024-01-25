@@ -10,7 +10,9 @@ if (isset($_POST['userExiste'])) $userExiste = $_POST['userExiste'];
         <label for="email">Adresse mail:</label>
         <input type="email" name="email" id="email" required>
         <label for="password">Mot de passe:</label>
-        <input type="password" name="password" id="password" required>
+        <input type="password" name="password" id="password" required><span id="complexite"></span>
+        <label for="repeatpassword">Répéter le mot de passe:</label>
+        <input type="password" name="repeatpassword" id="repeatpassword" required><span id="repeatcorrect"></span>
         <label for="estAgent">Êtes-vous agent Im'moi?</label>
         <input type="checkbox" name="estAgent" id="estAgent">
         <label for="agence" id="agence">Agence</label>
@@ -21,11 +23,13 @@ if (isset($_POST['userExiste'])) $userExiste = $_POST['userExiste'];
         <?php endfor; ?>
         </select>
         
+        
 
         <input type="submit" value="Valider">
     </form>
     <?php if (isset($userExiste)) echo "Le nom d'utilisateur et/ou l'adresse mail existe déjà"; ?>
 
+    <script src="scripts/inscription.js"></script>
 </section>
 
 

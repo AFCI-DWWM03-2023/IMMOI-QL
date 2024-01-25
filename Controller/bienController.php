@@ -39,12 +39,18 @@ class BienController
 
     public function publierValidation()
     {
-        $this->bienManager->ajoutBienBD($_POST['nom'], $_POST['desc'], ($_POST['venteloc'] == "vente") ? $_POST["prix"] : NULL, ($_POST['venteloc'] == "loc") ? $_POST["prix"] : NULL, $_POST["categorie"], $_POST["nbpieces"], $_POST["nbetages"], $_POST["surface"], $_POST["numappart"], $_SESSION['user']['id'], $_POST["idadresse"]);
+        $this->bienManager->ajoutBienBD($_POST['nom'], $_POST['desc'], ($_POST['venteloc'] == "loc") ? $_POST["prix"] : NULL, ($_POST['venteloc'] == "vente") ? $_POST["prix"] : NULL, $_POST["categorie"], $_POST["nbpieces"], $_POST["nbetages"], $_POST["surface"], $_POST["numappart"], $_SESSION['user']['id'], $_POST["idadresse"]);
 
     }
     
     public function suppressionBien($id){
         $this->bienManager->suppressionBienBD($id);
         header('Location: '.URL."bdtest/biens");
+    }
+    
+    public function suppressionBienUser($id){
+        $utilisateur = $this->bienManager->getBienById($id)->getUtilisateur();
+        $this->bienManager->suppressionBienBD($id);
+        header('Location: '.URL."profil/".$utilisateur."/offres");
     }
 }

@@ -74,7 +74,13 @@ try {
                 if (empty($url[1])) $utilisateurController->afficherProfil($_SESSION['user']['id']);
                 else {
                     if (empty($url[2])) $utilisateurController->afficherProfil($url[1]);
-                    else if ($url[2] == "offres") $bienController->afficherBiensByUser($url[1]);
+                    else if ($url[2] == "offres") {
+                        if (empty($url[3])) {
+                            $bienController->afficherBiensByUser($url[1]);
+                        } else if ($url[3] === "s") {
+                            $bienController->suppressionBienUser($url[4]);
+                        }
+                    };
                 }
                 break;
             case "offre":

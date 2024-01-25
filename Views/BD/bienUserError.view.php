@@ -1,7 +1,7 @@
 <?php ob_start(); ?>
 
 <section class="content">
-    <h2>L'offre n'existe pas ou a été supprimée</h2>
+    <h2>Cet utilisateur n'a pas publié d'annonces</h2>
 </section>
 
 <?php

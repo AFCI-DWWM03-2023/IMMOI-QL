@@ -1,4 +1,4 @@
-<?php ob_start(); 
+<?php ob_start();
 $monprofil = (isset($_SESSION["user"]) && $_SESSION["user"]["id"] == $user->getId()) ? true : false;
 $qualif = (null !== $user->getPrenom()) ? $user->getPrenom() : $user->getUsername();
 require_once "Controller/agenceController.php";
@@ -14,8 +14,9 @@ $DBagence = $agenceController->getAgenceList();
     <?= $user->getTelephone(); ?>
     <?= $user->getEmail(); ?>
     <?= $user->getAdresse(); ?>
-    <?= $user->getEstAgent(); ?>
-    <?= $user->getAgence(); ?>
+    <?= ($user->getEstAgent()) ? "Agent Im'moi" : ""; ?>
+    <?= ($user->getEstAgent()) ? "Agence de " . $DBagence[$user->getAgence()-1]->getNom() : ""; ?>
+    <a href="/profil/<?=$user->getId()?>/offres"><?= ($monprofil) ? "Mes annonces" : "Voir les annonces publiées par " . $qualif; ?></a>
 </section>
 
 <?php
