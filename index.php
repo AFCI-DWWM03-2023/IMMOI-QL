@@ -28,6 +28,7 @@ try {
             case "accueil":
                 $agenceNombre = count($agenceController->getAgenceList());
                 $agentsNombre = count($utilisateurController->getAgentsList());
+                $caroussel = $photoController->getRandomPhotoCouverture();
                 require "Views/accueil.view.php";
                 break;
             case "bdtest":
@@ -73,8 +74,32 @@ try {
             case "profil":
                 if (empty($url[1])) $utilisateurController->afficherProfil($_SESSION['user']['id']);
                 else {
-                    if (empty($url[2])) $utilisateurController->afficherProfil($url[1]);
-                    else if ($url[2] == "offres") {
+                    if ($url[1] == "edit") {
+                        if (empty($url[2])) {
+                            if (isset($_SESSION['connecte'])) {
+                                $utilisateurController->modifierProfil();
+                            } else {
+                                require "Views/BD/modifprofil.view.php";
+                            }
+                        } else if ($url[2] == "v") {
+                            $emailInvalide = 0;
+                            if ($_POST['email'] != $_SESSION['user']['email']) {
+                                $emailInvalide = $utilisateurController->getManager()->verifUtilisateurExiste(null, $_POST['email']);
+                            }
+                            if ($emailInvalide) {
+                                $_POST["erreuremail"] = true;
+                                $utilisateurController->modifierProfil();
+                            } else {
+                                if (isset($_POST["adressemodif"]) & $_POST["adresse"] != "" & $_POST["zipcode"] != "" & $_POST["localite"] != "") {
+                                    $adresseController->addAdresse();
+                                }
+                                $utilisateurController->modifierValidation();
+                            }
+                        }
+                    }
+                    if (empty($url[2])) {
+                        $utilisateurController->afficherProfil($url[1]);
+                    } else if ($url[2] == "offres") {
                         if (empty($url[3])) {
                             $bienController->afficherBiensByUser($url[1]);
                         } else if ($url[3] === "s") {
@@ -102,6 +127,7 @@ try {
                 } else if ($url[1] === "validation") {
                     $adresseController->addAdresse();
                     $bienController->publierValidation();
+                    if (isset($_POST['photocouv']))
                     $photoController->addPhoto(true);
                 }
                 break;

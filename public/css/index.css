@@ -36,48 +36,29 @@
   align-items: center;
   justify-content: center;
 }
-.sect1 div.sect1search .search {
-  display: flex;
-  align-items: center;
-  width: auto;
-}
 .sect1 div.sect1search .searchgeneral {
-  height: 200px;
+  height: fit-content;
   width: 80%;
   border-radius: 25px;
   background-color: white;
   margin-bottom: 20px;
-  flex-direction: column;
-  justify-content: center;
-  padding: 0 20px;
+  padding: 20px;
+  font-size: 20px;
 }
-.sect1 div.sect1search .searchgeneral label {
+.sect1 div.sect1search .searchgeneral h3 {
   font-size: 36px;
   margin-bottom: 20px;
+  font-weight: normal;
 }
-.sect1 div.sect1search .searchgeneral .searchbar {
-  width: 100%;
-  border: none;
-  background-color: #eee;
-  padding: 5px 10px;
-  border-radius: 20px;
+.sect1 div.sect1search .searchgeneral select {
   font-size: 20px;
-  margin-bottom: 20px;
 }
-.sect1 div.sect1search .searchgeneral .submitsearch {
-  font-size: 24px;
-  background-color: var(--light-blue);
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 50px;
-  cursor: pointer;
-  transition: 400ms ease;
-}
-.sect1 div.sect1search .searchgeneral .submitsearch:hover {
-  background-color: var(--lighter-blue);
+.sect1 div.sect1search .searchgeneral span {
+  margin: 0 5px;
 }
 .sect1 div.sect1search .searchregion {
+  display: flex;
+  align-items: center;
   height: 108px;
   border-radius: 54px;
   background-color: var(--light-blue);
@@ -100,6 +81,27 @@
 .sect1 img {
   width: 50vw;
   object-fit: cover;
+}
+.submitsearch {
+  font-size: 24px;
+  background-color: var(--light-blue);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: 400ms ease;
+}
+.submitsearch:hover {
+  background-color: var(--lighter-blue);
+}
+.searchbar {
+  border: none;
+  background-color: #eee;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 20px;
+  margin-bottom: 20px;
 }
 .sectmobile1 {
   display: none;
@@ -161,6 +163,22 @@
 }
 .sect2 .s2container div p {
   font-size: 24px;
+}
+.sect3 {
+  background-color: var(--darker-blue);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.sect3 h2 {
+  color: white;
+  margin: 20px 0;
+  font-size: 48px;
+}
+.sect3 .caroussel img {
+  height: 400px;
+  width: 600px;
+  object-fit: cover;
 }
 @media screen and (max-width: 1180px) {
   .sect1 {

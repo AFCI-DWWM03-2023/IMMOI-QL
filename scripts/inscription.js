@@ -19,6 +19,9 @@ function verifSpecial(str){
     return regex.test(str)
 }
 
+let veriflongueur = 0;
+let verifrepeat = 0;
+
 function isValide(id, res){
     if (res) {
         document.getElementById(id).style.color = "green"
@@ -35,27 +38,34 @@ mdp.addEventListener('input', function(){
     let complexite = 0;
     complexite += verifUpper(str) + verifLower(str) + verifNumber(str) + verifSpecial(str)
     if (verifLength(str)) {
+        veriflongueur = 1;
         switch (complexite) {
             case 4:
-                document.querySelector("#complexite").innerHTML = "fort"
+                document.querySelector("#complexite").innerHTML = "Complexité forte"
                 document.querySelector("#complexite").style.cssText += ";text-decoration : underline 3px cyan"
                 break
             case 3:
-                document.querySelector("#complexite").innerHTML = "moyen"
+                document.querySelector("#complexite").innerHTML = "Complexité moyenne"
                 document.querySelector("#complexite").style.cssText += ";text-decoration : underline 3px lime"
                 break
             case 2:
-                document.querySelector("#complexite").innerHTML = "faible"
+                document.querySelector("#complexite").innerHTML = "Complexité faible"
                 document.querySelector("#complexite").style.cssText += ";text-decoration : underline 3px yellow"
                 break
             case 1:
-                document.querySelector("#complexite").innerHTML = "très faible"
+                document.querySelector("#complexite").innerHTML = "Complexité très faible"
                 document.querySelector("#complexite").style.cssText += ";text-decoration : underline 3px orange"
                 break
         }
     } else {
-        document.querySelector("#complexite").innerHTML = "insuffisant"
+        document.querySelector("#complexite").innerHTML = "Longueur insuffisante"
         document.querySelector("#complexite").style.cssText += ";text-decoration : underline 3px red"
+        veriflongueur = 0;
+    }
+    if (verifrepeat & veriflongueur) {
+        document.querySelector('#validerinsc').disabled = false;
+    } else {
+        document.querySelector('#validerinsc').disabled = true;
     }
     
 })
@@ -63,7 +73,14 @@ let repeatmdp = document.querySelector("#repeatpassword");
 repeatmdp.addEventListener('input', function(){
     if (repeatmdp.value == mdp.value | repeatmdp.value == "") {
         document.querySelector("#repeatcorrect").innerHTML = ""
+        verifrepeat = 1;
     } else {
-        document.querySelector("#repeatcorrect").innerHTML = "Les mots de passe ne sont pas identiques"
+        document.querySelector("#repeatcorrect").innerHTML = "(!)"
+        verifrepeat = 0;
+    }
+    if (verifrepeat & veriflongueur) {
+        document.querySelector('#validerinsc').disabled = false;
+    } else {
+        document.querySelector('#validerinsc').disabled = true;
     }
 })

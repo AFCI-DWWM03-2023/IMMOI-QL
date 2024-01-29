@@ -95,21 +95,49 @@ class UtilisateurManager extends BDConnexion
 
     public function connexion($username, $password)
     {
-        $req = "SELECT * FROM utilisateur WHERE username = :username";
+        if ($this->verifUtilisateurExiste($username, null)) {
+            $req = "SELECT * FROM utilisateur WHERE username = :username";
+            $stmt = $this->getBDD()->prepare($req);
+            $stmt->bindValue(":username", $username, PDO::PARAM_STR);
+            $resultat = $stmt->execute();
+            $stmt->closeCursor();
+
+            if ($resultat > 0) {
+                $passwordHash = $this->getUserByUsername($username)->getPassword();
+                if (password_verify($password, $passwordHash)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        }
+    }
+
+    public function modifierProfil($id, $nom, $prenom, $email, $telephone, $idadresse)
+    {
+        $req = "UPDATE utilisateur SET nom = :nom, prenom = :prenom, telephone = :telephone, email = :email, idAdresse = :idAdresse WHERE idUtilisateur = :idUtilisateur";
         $stmt = $this->getBDD()->prepare($req);
-        $stmt->bindValue(":username", $username, PDO::PARAM_STR);
+        $stmt->bindValue(":idUtilisateur", $id, PDO::PARAM_INT);
+        $stmt->bindValue(":nom", $nom, PDO::PARAM_STR);
+        $stmt->bindValue(":prenom", $prenom, PDO::PARAM_STR);
+        $stmt->bindValue(":telephone", $telephone, PDO::PARAM_STR);
+        $stmt->bindValue(":email", $email, PDO::PARAM_STR);
+        if (empty($idadresse)) {
+            $stmt->bindValue(":idAdresse", NULL, PDO::PARAM_INT);
+        } else {
+            $stmt->bindValue(":idAdresse", $idadresse, PDO::PARAM_INT);
+        }
         $resultat = $stmt->execute();
         $stmt->closeCursor();
 
         if ($resultat > 0) {
-            $passwordHash = $this->getUserByUsername($username)->getPassword();
-            if (password_verify($password, $passwordHash)) {
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-            return false;
+            $this->getUserById($id)->setNom($nom);
+            $this->getUserById($id)->setPrenom($prenom);
+            $this->getUserById($id)->setTelephone($telephone);
+            $this->getUserById($id)->setEmail($email);
+            $this->getUserById($id)->setAdresse($idadresse);
         }
     }
 

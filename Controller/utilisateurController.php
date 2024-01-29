@@ -34,6 +34,31 @@ class UtilisateurController{
             require "Views/BD/profilError.view.php";
         }
     }
+    
+    public function modifierProfil(){
+        $user = $this->utilisateurManager->getUserById($_SESSION['user']['id']);
+        if (isset($user)) {
+            require "Views/BD/modifprofil.view.php";
+        }
+    }
+
+    public function modifierValidation(){
+        $user = $this->utilisateurManager->getUserById($_SESSION['user']['id']);
+        if (!isset($_POST['idadresse'])) $_POST['idadresse'] = 0;
+        $this->utilisateurManager->modifierProfil($user->getId(), $_POST['nom'], $_POST['prenom'], $_POST['email'], $_POST['telephone'], $_POST['idadresse']);
+        $_SESSION['user'] = [ 
+            "id" => $user->getId(),
+            "username" => $user->getUsername(),
+            "nom" => $user->getNom(),
+            "prenom" => $user->getPrenom(),
+            "telephone" => $user->getTelephone(),
+            "email" => $user->getEmail(),
+            "adresse" => $user->getAdresse(),
+            "estAgent" => $user->getEstAgent(),
+            "agence" => $user->getAgence()
+        ];
+        header('Location: '.URL."profil");
+    }
 
     public function inscriptionValidation(){
         if ($this->utilisateurManager->verifUtilisateurExiste($_POST['username'], $_POST['email'])) {
@@ -41,7 +66,7 @@ class UtilisateurController{
         } else {
             $password = password_hash($_POST['password'],PASSWORD_DEFAULT);
             $this->utilisateurManager->ajoutUtilisateurBD($_POST['username'], $_POST['email'], $password, $_POST['estAgent'], ($_POST['estAgent']) ? $_POST['agence'] : NULL);
-            header('Location: '.URL."bdtest/utilisateurs");
+            header('Location: '.URL."profil");
         }
     }
 

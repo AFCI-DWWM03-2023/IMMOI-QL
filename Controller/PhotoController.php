@@ -17,6 +17,21 @@ class PhotoController{
     public function getPhotoList(){
         return $this->photoManager->getPhotolist();
     }
+
+    public function getPhotoCouvertureList(){
+        return $this->photoManager->getPhotoCouverturelist();
+    }
+
+    public function getRandomPhotoCouverture(){
+        $list = $this->photoManager->getPhotoCouverturelist();
+        shuffle($list);
+        if (count($list)>=3) {
+            return array_slice($list, 0, 3);
+        }
+        else {
+            return $list;
+        }
+    }
     
     public function getPhotosByBien($id)
     {

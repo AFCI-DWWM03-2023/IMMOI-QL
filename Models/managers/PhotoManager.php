@@ -14,6 +14,15 @@ class PhotoManager extends BDConnexion{
         return $this->photolist;
     }
 
+    public function getPhotoCouverturelist(){
+        $photocouverturelist = [];
+        foreach ($this->photolist as $value) {
+            if ($value->getCouverture())
+            $photocouverturelist[] = $value;
+        }
+        return $photocouverturelist;
+    }
+
     public function chargementPhotolist(){
         $req = $this->getBDD()->prepare('SELECT * FROM photo');
         $req->execute();
@@ -28,9 +37,11 @@ class PhotoManager extends BDConnexion{
     
     public function getPhotosFromBien($id){
         $listePhotos = [];
-        for ($i = 0; $i < count($this->photolist); $i++) {
-            if ($this->photolist[$i]->getBien() == $id) {
-                $listePhotos[] = $this->photolist[$i];
+        if (isset($this->photolist)) {
+            for ($i = 0; $i < count($this->photolist); $i++) {
+                if ($this->photolist[$i]->getBien() == $id) {
+                    $listePhotos[] = $this->photolist[$i];
+                }
             }
         }
         return $listePhotos;

@@ -1,4 +1,4 @@
-<?php ob_start(); ?>
+<?php ob_start();?>
 
 <section class="sectoffres">
     <?php for ($i = 0; $i < count($DBbien); $i++) : 
@@ -12,7 +12,7 @@
         ?>
         <div class="offre <?= ($i % 2) ? "pair" : "impair";?>">
 
-            <img src="public/img/<?= ($couverture !=0) ? "photos/".$DBphoto[$couverture-1]->getNom() : "default.jpg";?>" class="photocouverture" alt="">
+            <img src="public/img/<?= ($couverture !=0) ? "photos/".$DBphoto[0]->getNom() : "default.jpg";?>" class="photocouverture" alt="">
             <?= $DBbien[$i]->getNom(); ?>
             <?= ($DBbien[$i]->getPrixLoc()) ? $DBbien[$i]->getPrixLoc() . "€/mois" : null; ?>
             <?= ($DBbien[$i]->getPrixVente()) ? $DBbien[$i]->getPrixVente() . "€" : null; ?>

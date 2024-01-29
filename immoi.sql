@@ -124,7 +124,8 @@ INSERT INTO `utilisateur` (`username`, `password`, `nom`, `prenom`, `telephone`,
 INSERT INTO `adresse` (`nomVoie`, `zipcode`, `localite`) VALUES
 ('3 rue des Potiers', '59380', 'Bergues'),
 ('68 boulevard A. Demain', '14000', 'Caen'),
-("2 square de l'Héxagone", '59000', 'Lille');
+("2 square de l'Héxagone", '59000', 'Lille'),
+("123 rue Stique", '25040', 'Badevel');
 
 INSERT INTO `agence` (`nom`,`idAdresse`) VALUES
 ('des Flandres', 1),
@@ -133,5 +134,11 @@ INSERT INTO `agence` (`nom`,`idAdresse`) VALUES
 
 INSERT INTO `administrateur` (`username`, `password`) VALUES
 ('admin', 'root');
+
+INSERT INTO `bien` (`nom`, `description`, `prixVente`, `categorie`, `idUtilisateur`, `idAdresse`) VALUES
+('Grande Maison', 'Description', 200000, 'maison', 1, 4);
+
+INSERT INTO `photo` (`nom`, `couverture`, `idBien`) VALUES
+('32696_licensed-image', true, 1);
 
 COMMIT;
