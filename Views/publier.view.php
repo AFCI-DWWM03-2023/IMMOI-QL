@@ -6,7 +6,7 @@
     <?php if (isset($_SESSION['connecte'])) : ?>
         <form method="POST" action="<?= URL ?>publier/validation" enctype="multipart/form-data">
             <label for="nom">Nom de l'offre:</label>
-            <input type="text" name="nom" id="nom" required>
+            <input type="text" name="nom" id="nom" required maxlength="32">
             <label for="nom">Description:</label>
             <input type="text" name="desc" id="desc">
             <label for="vente">Vente </label>
@@ -26,15 +26,15 @@
             <label for="prix">Nombre d'étages </label>
             <input type="number" name="nbetages" id="nbetages"><br>
             <label for="surface">Surface (m²) </label>
-            <input type="number" name="surface" id="surface">
+            <input type="number" name="surface" id="surface" required>
             <label for="surface">Numero appartement </label>
             <input type="number" name="numappart" id="numappart">
             <label for="adresse">Adresse : </label>
             <input type="text" name="adresse" id="adresse" required>
             <label for="zipcode">Code postal </label>
-            <input type="text" name="zipcode" id="zipcode" required>
+            <input type="text" name="zipcode" id="zipcode" required maxlength="10">
             <label for="localite">Localité (ville, village, etc) : </label>
-            <input type="text" name="localite" id="localite" required>
+            <input type="text" name="localite" id="localite" required maxlength="45">
             <label for="photocouv">Photo de couverture :</label>
             <input type="file" id="photocouv" name="photocouv" accept=".jpg, .jpeg, .png, .gif">
             <span style="color:red" id="filesizewarning" class="hide">La photo ne doit pas dépasser 2Mo</span>

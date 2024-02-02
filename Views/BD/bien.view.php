@@ -8,6 +8,7 @@ $DBadresse = $adresseController->getAdresseList();
 require_once "Controller/photoController.php";
 $photoController = new PhotoController;
 $DBphoto = $photoController->getPhotoList();
+require "departement.php"
 ?>
 
 <section class="content">

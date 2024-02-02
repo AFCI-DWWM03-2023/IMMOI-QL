@@ -116,7 +116,9 @@ try {
                 require "Views/region.view.php";
                 break;
             case "offres":
-                require "Views/offres.view.php";
+                if (empty($url[1])) 
+                {require "Views/offres.view.php";}
+                else {$bienController->afficherBien($url[1]);}
                 break;
             case "utilisateurs":
                 require "Views/BD/utilisateurs.view.php";

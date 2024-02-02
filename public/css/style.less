@@ -300,12 +300,15 @@ footer {
     flex-direction: column;
     margin-top: 64px;
     width: 100%;
+    min-height: 100vh;
 }
 
 .offre {
-    width: 100%;
-    height: 300px;
     display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 400px;
+    padding: 50px;
 
     &.pair {
         background-color: var(--light-blue);
@@ -314,15 +317,75 @@ footer {
     &.impair {
         background-color: var(--main-blue);
     }
-}
 
-.photocouverture {
-    border: solid white 5px;
-    border-radius: 10px;
-    height: 200px;
-    width: 300px;
-    object-fit: cover;
-    margin: 50px;
+    .offrecontent {
+        display: flex;
+        position: relative;
+        max-width: 75vw;
+        width: 100vw;
+        color: white;
+
+        .photocouverture {
+            border: solid white 5px;
+            border-radius: 10px;
+            height: 300px;
+            width: 450px;
+            object-fit: cover;
+            margin-right: 40px;
+        }
+
+        .offreinfos {
+
+            width: 100%;
+
+            ul {
+                list-style: none;
+                li {
+                    margin: 0.5em 0;
+                    font-size: 24px;
+                    &:nth-of-type(1) {
+                        font-size: 28px;
+                        font-weight: bold;
+                    }
+                }
+            }
+
+            .nom {
+                font-size: 60px;
+            }
+
+            .decouvrir {
+                position: absolute;
+                display: block;
+                right: 0;
+                bottom: 0;
+                text-transform: uppercase;
+                text-decoration: none;
+                font-weight: bold;
+                font-size: 32px;
+                background-color: white;
+                height: fit-content;
+                padding: 10px 20px;
+                border-radius: 100px;
+                transition: color 300ms ease;
+
+                &.pair {
+                    color: var(--light-blue);
+                    &:hover {
+                        color: var(--main-blue);
+                    }
+                }
+
+                &.impair {
+                    color: var(--main-blue);
+                    &:hover {
+                        color: var(--light-blue);
+                    }
+                }
+            }
+        }
+    }
+
 }
 
 .hide {
@@ -385,7 +448,8 @@ footer {
         font-size: 16px;
     }
 
-    #repeatcorrect, #adresscorrect {
+    #repeatcorrect,
+    #adresscorrect {
         color: red;
     }
 
@@ -399,6 +463,7 @@ footer {
     width: 100%;
     max-width: 800px;
     font-size: 24px;
+
     h2 {
         text-align: center;
         font-size: 60px;

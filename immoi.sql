@@ -19,14 +19,14 @@ agence int(11)
 
 CREATE TABLE bien(
 idBien int(11) NOT NULL,
-nom varchar(60) NOT NULL,
+nom varchar(32) NOT NULL,
 description text,
 prixLocation float,
 prixVente float,
 categorie varchar(20),
 nbPieces int,
 nbEtages int,
-surface int,
+surface int NOT NULL,
 numAppart int,
 idUtilisateur int(11) NOT NULL,
 idAdresse int(11) NOT NULL
@@ -36,7 +36,7 @@ CREATE TABLE adresse (
 idAdresse int(11) NOT NULL,
 nomVoie text NOT NULL,
 zipcode varchar(10) NOT NULL,
-localite varchar(60) NOT NULL
+localite varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE photo (
@@ -135,8 +135,8 @@ INSERT INTO `agence` (`nom`,`idAdresse`) VALUES
 INSERT INTO `administrateur` (`username`, `password`) VALUES
 ('admin', 'root');
 
-INSERT INTO `bien` (`nom`, `description`, `prixVente`, `categorie`, `idUtilisateur`, `idAdresse`) VALUES
-('Grande Maison', 'Description', 200000, 'maison', 1, 4);
+INSERT INTO `bien` (`nom`, `description`, `prixVente`, `categorie`, `idUtilisateur`, `idAdresse`, `surface`, `nbPieces`) VALUES
+('Grande Maison', 'Description', 200000, 'maison', 1, 4, 150, 8);
 
 INSERT INTO `photo` (`nom`, `couverture`, `idBien`) VALUES
 ('32696_licensed-image', true, 1);
