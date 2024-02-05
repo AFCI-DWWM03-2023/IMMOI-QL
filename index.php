@@ -32,23 +32,27 @@ try {
                 require "Views/accueil.view.php";
                 break;
             case "bdtest":
-                if (empty($url[1])) require "Views/bdtest.view.php";
-                else {
-                    switch ($url[1]) {
-                        case "utilisateurs":
-                            if (empty($url[2])) {
-                                require "Views/BD/utilisateurs.view.php";
-                            } else if ($url[2] === "s") {
-                                $utilisateurController->suppressionUtilisateur($url[3]);
-                            }
-                            break;
-                        case "biens":
-                            if (empty($url[2])) {
-                                require "Views/BD/biens.view.php";
-                            } else if ($url[2] === "s") {
-                                $bienController->suppressionBien($url[3]);
-                            }
-                            break;
+                if (!isset($_SESSION["admin"])) {
+                    header('Location: ' . URL . "accueil");
+                } else {
+                    if (empty($url[1])) require "Views/bdtest.view.php";
+                    else {
+                        switch ($url[1]) {
+                            case "utilisateurs":
+                                if (empty($url[2])) {
+                                    require "Views/BD/utilisateurs.view.php";
+                                } else if ($url[2] === "s") {
+                                    $utilisateurController->suppressionUtilisateur($url[3]);
+                                }
+                                break;
+                            case "biens":
+                                if (empty($url[2])) {
+                                    require "Views/BD/biens.view.php";
+                                } else if ($url[2] === "s") {
+                                    $bienController->suppressionBien($url[3]);
+                                }
+                                break;
+                        }
                     }
                 }
                 break;
@@ -65,11 +69,21 @@ try {
                     if (!empty($url[1]) && $url[1] === "retry") $_POST['connexionEchoue'] = true;
                     $utilisateurController->connexion();
                 } else if ($url[1] === "validation") {
-                    $utilisateurController->connexionValidation();
+                    if ($_POST['username'] == "admin" && $_POST['password'] == "root") {
+                        $_SESSION["admin"] = true;
+                        header('Location: ' . URL . "accueil");
+                    } else {
+                        $utilisateurController->connexionValidation();
+                    }
                 }
                 break;
             case "deconnexion":
-                $utilisateurController->deconnexion();
+                if (isset($_SESSION["admin"])) {
+                    unset($_SESSION["admin"]);
+                    header('Location: ' . URL . "accueil");
+                } else {
+                    $utilisateurController->deconnexion();
+                }
                 break;
             case "profil":
                 if (empty($url[1])) $utilisateurController->afficherProfil($_SESSION['user']['id']);
@@ -96,16 +110,17 @@ try {
                                 $utilisateurController->modifierValidation();
                             }
                         }
-                    }
-                    if (empty($url[2])) {
-                        $utilisateurController->afficherProfil($url[1]);
-                    } else if ($url[2] == "offres") {
-                        if (empty($url[3])) {
-                            $bienController->afficherBiensByUser($url[1]);
-                        } else if ($url[3] === "s") {
-                            $bienController->suppressionBienUser($url[4]);
+                    } else {
+                        if (empty($url[2])) {
+                            $utilisateurController->afficherProfil($url[1]);
+                        } else if ($url[2] == "offres") {
+                            if (empty($url[3])) {
+                                $bienController->afficherBiensByUser($url[1]);
+                            } else if ($url[3] === "s") {
+                                $bienController->suppressionBienUser($url[4]);
+                            }
                         }
-                    };
+                    }
                 }
                 break;
             case "offre":
@@ -116,9 +131,11 @@ try {
                 require "Views/region.view.php";
                 break;
             case "offres":
-                if (empty($url[1])) 
-                {require "Views/offres.view.php";}
-                else {$bienController->afficherBien($url[1]);}
+                if (empty($url[1])) {
+                    require "Views/offres.view.php";
+                } else {
+                    $bienController->afficherBien($url[1]);
+                }
                 break;
             case "utilisateurs":
                 require "Views/BD/utilisateurs.view.php";
@@ -130,7 +147,7 @@ try {
                     $adresseController->addAdresse();
                     $bienController->publierValidation();
                     if (isset($_POST['photocouv']))
-                    $photoController->addPhoto(true);
+                        $photoController->addPhoto(true);
                 }
                 break;
 

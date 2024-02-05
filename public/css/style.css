@@ -165,15 +165,18 @@ input[type=checkbox]#hamburger {
   margin-right: 16px;
   height: 48px;
 }
+.margin-right {
+  margin-right: 10px;
+}
 .overlaymenu {
   display: none;
   height: 100%;
-  width: 100%;
+  width: 0;
   position: fixed;
   background-color: black;
-  opacity: 0%;
+  opacity: 50%;
   z-index: 499;
-  transition: all 400ms ease;
+  transition: width 400ms ease;
 }
 #hamburger[type=checkbox]:checked ~ .hbmenu {
   transform: translateX(400px);
@@ -192,7 +195,7 @@ input[type=checkbox]#hamburger {
   transform: translateX(400px);
 }
 #hamburger[type=checkbox]:checked ~ .overlaymenu {
-  opacity: 50%;
+  width: 100%;
 }
 footer {
   position: relative;
@@ -410,6 +413,20 @@ footer .footerelem img {
   .overlaymenu {
     display: flex;
   }
+  footer {
+    flex-wrap: wrap;
+  }
+  footer .footerelem {
+    width: 25%;
+    font-size: 16px;
+    margin: 10px 10px;
+  }
+  footer .footerelem h4 {
+    font-size: 24px;
+  }
+  footer .footerelem h5 {
+    font-size: 20px;
+  }
 }
 @media screen and (max-width: 520px) {
   nav {
@@ -451,5 +468,12 @@ footer .footerelem img {
   }
   #hamburger[type=checkbox]:checked ~ .menu {
     transform: translateX(280px);
+  }
+  footer .footerelem {
+    width: 45%;
+    margin: 10px 5px;
+  }
+  footer .footerelem h5 {
+    font-size: 18px;
   }
 }
