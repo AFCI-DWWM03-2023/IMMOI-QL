@@ -16,6 +16,11 @@ class BienController
         return $this->bienManager->getBienlist();
     }
 
+    public function afficherOffres(){
+        $listebiens = $this->bienManager->getBienlist();
+        require "Views/offres.view.php";
+    }
+
     public function afficherBien($id)
     {
         $bien = $this->bienManager->getBienById($id);
@@ -33,6 +38,16 @@ class BienController
             require "Views/BD/bienUser.view.php";
         } else {
             require "Views/BD/bienUserError.view.php";
+        }
+    }
+
+    public function rechercheBien($listeadresses) {
+        $listebiens = $this->bienManager->getBienRecherche($_POST["searchcategorie"], $listeadresses, $_POST["searchventeloc"], $_POST["searchprix"]);
+        $hasSearched = true;
+        if (count($listebiens) !== 0) {
+            require "Views/offres.view.php";
+        } else {
+            require "Views/offresError.view.php";
         }
     }
 

@@ -132,13 +132,17 @@ try {
                 break;
             case "offres":
                 if (empty($url[1])) {
-                    require "Views/offres.view.php";
+                    $bienController->afficherOffres();
                 } else {
                     $bienController->afficherBien($url[1]);
                 }
                 break;
             case "utilisateurs":
                 require "Views/BD/utilisateurs.view.php";
+                break;
+            case "recherche":
+                $listeadresses = $adresseController->getAdresseSearch();
+                $bienController->rechercheBien($listeadresses);
                 break;
             case "publier":
                 if (empty($url[1])) {
@@ -147,7 +151,7 @@ try {
                     $adresseController->addAdresse();
                     $bienController->publierValidation();
                     if (isset($_POST['photocouv']))
-                        $photoController->addPhoto(true);
+                        $photoController->addPhotoCouv();
                 }
                 break;
 

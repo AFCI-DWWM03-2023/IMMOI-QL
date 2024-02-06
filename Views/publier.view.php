@@ -23,11 +23,11 @@
             </select>
             <label for="nbpieces">Nombre de pièces </label>
             <input type="number" name="nbpieces" id="nbpieces">
-            <label for="prix">Nombre d'étages </label>
-            <input type="number" name="nbetages" id="nbetages"><br>
+            <label for="prix">Nombre d'étages</label>
+            <input type="number" name="nbetages" id="nbetages" required><br>
             <label for="surface">Surface (m²) </label>
             <input type="number" name="surface" id="surface" required>
-            <label for="surface">Numero appartement </label>
+            <label for="surface">Numéro appartement </label>
             <input type="number" name="numappart" id="numappart">
             <label for="adresse">Adresse : </label>
             <input type="text" name="adresse" id="adresse" required>

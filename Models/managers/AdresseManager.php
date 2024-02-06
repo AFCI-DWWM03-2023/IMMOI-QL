@@ -17,6 +17,16 @@ class AdresseManager extends BDConnexion
         return $this->adresselist;
     }
 
+    public function searchAdresseList($ville){
+        $listeAdresse = [];
+        foreach ($this->adresselist as $value) {
+            if (strtolower($value->getLocalite()) == strtolower($ville)) {
+                $listeAdresse[] = $value->getId();
+            }
+        }
+        return $listeAdresse;
+    }
+
     public function chargementAdresselist()
     {
         $req = $this->getBDD()->prepare('SELECT * FROM adresse');

@@ -185,6 +185,12 @@ input[type=checkbox]#hamburger {
                 }
             }
 
+            &.dc {
+                li {
+                    background-color: red;
+                }
+            }
+
             li {
                 padding: 24px 16px;
                 color: white;
@@ -344,9 +350,11 @@ footer {
 
             ul {
                 list-style: none;
+
                 li {
                     margin: 0.5em 0;
                     font-size: 24px;
+
                     &:nth-of-type(1) {
                         font-size: 28px;
                         font-weight: bold;
@@ -372,9 +380,11 @@ footer {
                 padding: 10px 20px;
                 border-radius: 100px;
                 transition: color 300ms ease;
+                border: none;
 
                 &.pair {
                     color: var(--light-blue);
+
                     &:hover {
                         color: var(--main-blue);
                     }
@@ -382,14 +392,143 @@ footer {
 
                 &.impair {
                     color: var(--main-blue);
+
                     &:hover {
                         color: var(--light-blue);
                     }
                 }
             }
+
+            .supprimer {
+                position: absolute;
+                display: flex;
+                justify-content: center;
+                right: 0;
+                top: 0;
+                width: 64px;
+                height: 64px;
+                background-color: red;
+                padding: 15px;
+                border-radius: 100px;
+                transition: background-color 300ms ease;
+                border: none;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: #FF5555;
+                }
+
+
+            }
         }
     }
 
+}
+
+.bienoverview {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--lightest-blue);
+
+    .gallery {
+        display: flex;
+        flex-direction: column;
+        background-color: var(--main-blue);
+        height: 700px;
+        width: 100%;
+
+        .displaycontainer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 75%;
+            width: 100%;
+
+            .displayedimage {
+                max-height: 90%;
+                max-width: 90%;
+                object-fit:contain;
+                background-color: var(--dark-blue);
+                border: solid 4px var(--dark-blue);
+                border-radius: 5px;
+            }
+        }
+
+        .imagelist {
+            height: 25%;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--dark-blue);
+
+            .thumbimage {
+                height: 80%;
+                margin: 0 10px;
+                cursor: pointer;
+                object-fit: cover;
+
+                &.active {
+                    border: solid #EEEEFF 4px;
+                    border-radius: 2px;
+                }
+            }
+        }
+    }
+    .details {
+        margin: 50px;
+        background-color: paleturquoise;
+        border-radius: 25px;
+        padding: 30px;
+        padding-top: 20px;
+        font-size: 24px;
+        h2 {
+            text-align: center;
+            font-size: 64px;
+        }
+        h3 {
+            text-align: center;
+            font-weight: normal;
+        }
+        h4 {
+            color: gray;
+            font-style: italic;
+            font-weight: normal;
+            text-align: center;
+        }
+        .infosbien {
+            margin-top: 20px;
+        }
+        p {
+            padding-top: 5px;
+        }
+    }
+}
+
+.nothingfound {
+    background-color: var(--main-blue);
+    height: 95vh;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    h1 {
+        font-size: 4em;
+        text-align: center;
+        margin: 0 20%;
+    }
+}
+
+.barrerecherche {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--lightest-blue);
+    h3 {
+        font-size: 28px;
+        text-align: center;
+    }
 }
 
 .hide {
@@ -505,21 +644,21 @@ footer {
     }
 
     footer {
-    
+
         flex-wrap: wrap;
 
         .footerelem {
             width: 25%;
             font-size: 16px;
             margin: 10px 10px;
-    
+
             h4 {
                 font-size: 24px;
             }
-    
+
             h5 {
                 font-size: 20px;
-            } 
+            }
         }
     }
 }
@@ -583,13 +722,14 @@ footer {
     }
 
     footer {
-    
+
         .footerelem {
             width: 45%;
             margin: 10px 5px;
+
             h5 {
                 font-size: 18px;
-            } 
+            }
         }
     }
 

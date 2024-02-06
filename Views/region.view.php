@@ -1,6 +1,8 @@
 <?php ob_start(); ?>
 
-<section>dadad</section>
+<section class="content">
+
+</section>
 
 <?php
 $content = ob_get_clean();

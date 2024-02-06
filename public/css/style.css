@@ -156,6 +156,9 @@ input[type=checkbox]#hamburger {
 .menu ul a:nth-of-type(4) li {
   background-color: var(--light-blue);
 }
+.menu ul a.dc li {
+  background-color: red;
+}
 .menu ul a li {
   padding: 24px 16px;
   color: white;
@@ -311,6 +314,7 @@ footer .footerelem img {
   padding: 10px 20px;
   border-radius: 100px;
   transition: color 300ms ease;
+  border: none;
 }
 .offre .offrecontent .offreinfos .decouvrir.pair {
   color: var(--light-blue);
@@ -323,6 +327,121 @@ footer .footerelem img {
 }
 .offre .offrecontent .offreinfos .decouvrir.impair:hover {
   color: var(--light-blue);
+}
+.offre .offrecontent .offreinfos .supprimer {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  right: 0;
+  top: 0;
+  width: 64px;
+  height: 64px;
+  background-color: red;
+  padding: 15px;
+  border-radius: 100px;
+  transition: background-color 300ms ease;
+  border: none;
+  cursor: pointer;
+}
+.offre .offrecontent .offreinfos .supprimer:hover {
+  background-color: #FF5555;
+}
+.bienoverview {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--lightest-blue);
+}
+.bienoverview .gallery {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--main-blue);
+  height: 700px;
+  width: 100%;
+}
+.bienoverview .gallery .displaycontainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 75%;
+  width: 100%;
+}
+.bienoverview .gallery .displaycontainer .displayedimage {
+  max-height: 90%;
+  max-width: 90%;
+  object-fit: contain;
+  background-color: var(--dark-blue);
+  border: solid 4px var(--dark-blue);
+  border-radius: 5px;
+}
+.bienoverview .gallery .imagelist {
+  height: 25%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--dark-blue);
+}
+.bienoverview .gallery .imagelist .thumbimage {
+  height: 80%;
+  margin: 0 10px;
+  cursor: pointer;
+  object-fit: cover;
+}
+.bienoverview .gallery .imagelist .thumbimage.active {
+  border: solid #EEEEFF 4px;
+  border-radius: 2px;
+}
+.bienoverview .details {
+  margin: 50px;
+  background-color: paleturquoise;
+  border-radius: 25px;
+  padding: 30px;
+  padding-top: 20px;
+  font-size: 24px;
+}
+.bienoverview .details h2 {
+  text-align: center;
+  font-size: 64px;
+}
+.bienoverview .details h3 {
+  text-align: center;
+  font-weight: normal;
+}
+.bienoverview .details h4 {
+  color: gray;
+  font-style: italic;
+  font-weight: normal;
+  text-align: center;
+}
+.bienoverview .details .infosbien {
+  margin-top: 20px;
+}
+.bienoverview .details p {
+  padding-top: 5px;
+}
+.nothingfound {
+  background-color: var(--main-blue);
+  height: 95vh;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.nothingfound h1 {
+  font-size: 4em;
+  text-align: center;
+  margin: 0 20%;
+}
+.barrerecherche {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--lightest-blue);
+}
+.barrerecherche h3 {
+  font-size: 28px;
+  text-align: center;
 }
 .hide {
   display: none;

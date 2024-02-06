@@ -18,6 +18,10 @@ class AdresseController{
         return $this->adresseManager->getAdresselist();
     }
 
+    public function getAdresseSearch(){
+        return $this->adresseManager->searchAdresseList($_POST["searchville"]);        
+    }
+
     public function addAdresse(){
         $this->adresseManager->ajoutAdresseBD($_POST['adresse'], $_POST['zipcode'], $_POST['localite']);
     }

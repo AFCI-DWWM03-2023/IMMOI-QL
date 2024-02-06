@@ -1,10 +1,7 @@
 caroussel
-recherche
 carte interactive
-page bien
 transactions
 page utilisateur
-page offres utilisateur
 modification bien
 ajouter photos bien
 responsive page offres

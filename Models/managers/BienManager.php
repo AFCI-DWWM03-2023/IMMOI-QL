@@ -26,6 +26,26 @@ class BienManager extends BDConnexion{
         }
     }
 
+    public function getBienRecherche($scategorie, $listeville, $sventeloc, $sprix){
+        $listeBien = [];
+        for ($i = 0; $i < count($this->bienlist); $i++) {
+            $cond4 = false;
+            foreach ($listeville as $adresse) {
+                if ($this->bienlist[$i]->getAdresse() == $adresse) $cond4 = true;
+            }
+            $categorie = $this->bienlist[$i]->getCategorie();
+            $venteloc = ($this->bienlist[$i]->getPrixVente() != 0) ? "vente" : "loc";
+            $prix = ($this->bienlist[$i]->getPrixVente() != 0) ? $this->bienlist[$i]->getPrixVente() : $this->bienlist[$i]->getPrixLoc();
+            $cond1 = ($scategorie == "all" || $scategorie == $categorie);
+            $cond2 = ($sventeloc == "venteloc" || $sventeloc == $venteloc);
+            $cond3 = ($sprix == "" || $sprix >= $prix);
+            if ($cond1 && $cond2 && $cond3 && $cond4) {
+                $listeBien[] = $this->bienlist[$i];
+            }
+        }
+        return $listeBien;
+    }
+
     public function getBiensFromUser($user){
         $listeBien = [];
         for ($i = 0; $i < count($this->bienlist); $i++) {

@@ -38,11 +38,19 @@ class PhotoController{
         return $this->photoManager->getPhotosFromBien($id);
     }
 
-    public function addPhoto($couv){
+    public function addPhotoCouv(){
         $file = $_FILES["photocouv"];
         $repertoire = "public/img/photos/";
         $nomImageAjoutee = $this->ajoutImage($file, $repertoire);
-        $this->photoManager->ajoutPhotoBD($nomImageAjoutee, $couv, $_POST['idbien']);
+        $this->photoManager->ajoutPhotoBD($nomImageAjoutee, 1, $_POST['idbien']);
+    }
+
+    public function addPhotoMult() {
+        foreach ($_FILES["photos"] as $file) {
+            $repertoire = "public/img/photos/";
+            $nomImageAjoutee = $this->ajoutImage($file, $repertoire);
+            $this->photoManager->ajoutPhotoBD($nomImageAjoutee, 0, $_POST['idbien']);
+        }
     }
     
     private function ajoutImage($file, $dir){
