@@ -27,6 +27,9 @@ $listephotos = $photoController->getPhotosByBien($bien->getId());
                 endif; ?>
             </div>
             <div class="imagelist">
+                <a href="/offres/<?= $bien->getId();?>/img" class="addimage">
+                    Gérer les images
+                </a>
                 <?php if (empty($listephotos)) : ?>
                     <img src="/public/img/default.jpg" alt="" class="thumbimage active">
                     <?php else :
@@ -39,7 +42,7 @@ $listephotos = $photoController->getPhotosByBien($bien->getId());
         </div>
         <div class="details">
             <h2><?= $bien->getNom(); ?></h2>
-            <h3>Publiée par <a href="/profil/<?=$bien->getUtilisateur()?>"><?= $DBuser[$bien->getUtilisateur() - 1]->getUsername(); ?></a></h3>
+            <h3>Publiée par <a href="/profil/<?= $bien->getUtilisateur() ?>"><?= $DBuser[$bien->getUtilisateur() - 1]->getUsername(); ?></a></h3>
             <h4><?= $bien->getDescription() ?></h4>
             <p class="infosbien">
             <p><?= ucwords($bien->getCategorie()) ?>

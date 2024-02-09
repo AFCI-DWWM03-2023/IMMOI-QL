@@ -385,12 +385,27 @@ footer .footerelem img {
 }
 .bienoverview .gallery .imagelist .thumbimage {
   height: 80%;
+  width: 10%;
   margin: 0 10px;
   cursor: pointer;
   object-fit: cover;
 }
 .bienoverview .gallery .imagelist .thumbimage.active {
   border: solid #EEEEFF 4px;
+  border-radius: 2px;
+}
+.bienoverview .gallery .imagelist .addimage {
+  height: 80%;
+  width: 10%;
+  margin: 0 10px;
+  cursor: pointer;
+  border: solid black 4px;
+  color: white;
+  font-size: 28px;
+  display: flex;
+  text-decoration: none;
+  align-items: center;
+  text-align: center;
   border-radius: 2px;
 }
 .bienoverview .details {
@@ -420,6 +435,18 @@ footer .footerelem img {
 }
 .bienoverview .details p {
   padding-top: 5px;
+}
+.gestionPhotos .object {
+  width: 100%;
+  height: 200px;
+  background-color: var(--light-blue);
+  padding: 10px 20%;
+  display: flex;
+  align-items: center;
+}
+.gestionPhotos .object .preview {
+  height: 90%;
+  object-fit: cover;
 }
 .nothingfound {
   background-color: var(--main-blue);

@@ -134,7 +134,19 @@ try {
                 if (empty($url[1])) {
                     $bienController->afficherOffres();
                 } else {
-                    $bienController->afficherBien($url[1]);
+                    if (empty($url[2])) {
+                        $bienController->afficherBien($url[1]);
+                    } else if ($url[2] == "img") {
+                        if (empty($url[3])) {
+                            $photoController->gererPhotos($url[1]);
+                        } else if ($url[3] == "v") {
+                            $photoController->addPhoto($url[1]);
+                        } else if ($url[3] == "s") {
+                            $photoController->deletePhoto($url[4]);
+                         }else if ($url[3] == "c") {
+                            $photoController->changePhotoCouv($url[1], $url[4]);
+                        }
+                    }
                 }
                 break;
             case "utilisateurs":

@@ -45,6 +45,14 @@ class PhotoController{
         $this->photoManager->ajoutPhotoBD($nomImageAjoutee, 1, $_POST['idbien']);
     }
 
+    public function addPhoto($bien){
+        $file = $_FILES["nouvimage"];
+        $repertoire = "public/img/photos/";
+        $nomImageAjoutee = $this->ajoutImage($file, $repertoire);
+        $this->photoManager->ajoutPhotoBD($nomImageAjoutee, (sizeof($this->getPhotosByBien($bien)) == 0), $bien);
+        header('Location: '.URL."offres/".$bien."/img");
+    }
+
     public function addPhotoMult() {
         foreach ($_FILES["photos"] as $file) {
             $repertoire = "public/img/photos/";
@@ -67,5 +75,35 @@ class PhotoController{
         if(!move_uploaded_file($file['tmp_name'], $target_file))
             throw new Exception("l'ajout de l'image n'a pas fonctionné");
         else return ($random."_".$file['name']);
+    }
+
+    public function deletePhoto($id) {
+        $photo = $this->photoManager->getPhotoById($id);
+        $bien = $photo->getBien();
+        $listebien = $this->photoManager->getPhotosFromBien($bien);
+        foreach ($listebien as $value) {
+            if (!$value->getCouverture()) {
+                $nouvCouverture = $value;
+            }
+        }
+        $this->photoManager->suppressionPhotoBD($id);
+        unlink("public/img/photos/".$photo->getNom());
+        
+        if (null !== $nouvCouverture) {
+            $this->photoManager->modifierCouvertureBD($nouvCouverture->getId(), 1);
+        }
+        header('Location: '.URL."offres/".$bien."/img");
+    }
+
+    public function changePhotoCouv($bien, $id) {
+        $couverture = $this->photoManager->getCouvertureFromBien($bien);
+        $this->photoManager->modifierCouvertureBD($couverture->getId(), 0);
+        $this->photoManager->modifierCouvertureBD($id, 1);
+        header('Location: '.URL."offres/".$bien."/img");
+    }
+
+    public function gererPhotos($bien) {
+        $listePhotos = $this->photoManager->getPhotosFromBien($bien);
+        require "Views/gererImages.view.php";
     }
 }

@@ -16,14 +16,14 @@ require "departement.php" ?>
         $couverture = 0;
         foreach ($listephotos as $photo) {
             if ($photo->getCouverture()) {
-                $couverture = $photo->getId();
+                $couverture = $photo;
             }
         }
     ?>
         <div class="offre <?= ($i % 2) ? "pair" : "impair"; ?>">
             <div class="offrecontent">
 
-                <a href="/offres/<?= $listebiens[$i]->getId() ?>"><img src="/public/img/<?= ($couverture != 0) ? "photos/" . $DBphoto[0]->getNom() : "default.jpg"; ?>" class="photocouverture" alt=""></a>
+                <a href="/offres/<?= $listebiens[$i]->getId() ?>"><img src="/public/img/<?= ($couverture !== 0) ? "photos/" . $couverture->getNom() : "default.jpg"; ?>" class="photocouverture" alt=""></a>
                 <div class="offreinfos">
                     <h3 class="nom">
                         <img src="public/img/icones/<?= $listebiens[$i]->getCategorie(); ?>.svg" alt="">
