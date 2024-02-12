@@ -92,6 +92,38 @@ class BienManager extends BDConnexion{
         }
     }
 
+    public function modifierBienBD($id, $nom, $description, $prixLocation, $prixVente, $categorie, $nbPieces, $nbEtages, $surface, $numAppart, $idAdresse)
+    {
+        $req = "UPDATE bien SET nom = :nom, description = :description, prixLocation = :prixLocation, prixVente = :prixVente, categorie = :categorie, nbPieces = :nbPieces, nbEtages = :nbEtages, surface = :surface, numAppart = :numAppart, idAdresse = :idAdresse WHERE idBien = :idBien";
+        $stmt = $this->getBDD()->prepare($req);
+        $stmt->bindValue(":idBien", $id, PDO::PARAM_INT);
+        $stmt->bindValue(":nom", $nom, PDO::PARAM_STR);
+        $stmt->bindValue(":description", $description, PDO::PARAM_STR);
+        $stmt->bindValue(":prixLocation", $prixLocation, PDO::PARAM_STR);
+        $stmt->bindValue(":prixVente", $prixVente, PDO::PARAM_STR);
+        $stmt->bindValue(":categorie", $categorie, PDO::PARAM_STR);
+        $stmt->bindValue(":nbPieces", $nbPieces, PDO::PARAM_INT);
+        $stmt->bindValue(":nbEtages", $nbEtages, PDO::PARAM_INT);
+        $stmt->bindValue(":surface", $surface, PDO::PARAM_INT);
+        $stmt->bindValue(":numAppart", $numAppart, PDO::PARAM_INT);
+        $stmt->bindValue(":idAdresse", $idAdresse, PDO::PARAM_INT);
+        $resultat = $stmt->execute();
+        $stmt->closeCursor();
+
+        if ($resultat > 0) {
+            $this->getBienById($id)->setNom($nom);
+            $this->getBienById($id)->setDescription($description);
+            $this->getBienById($id)->setPrixLoc($prixLocation);
+            $this->getBienById($id)->setPrixVente($prixVente);
+            $this->getBienById($id)->setCategorie($categorie);
+            $this->getBienById($id)->setNbPieces($nbPieces);
+            $this->getBienById($id)->setNbEtages($nbEtages);
+            $this->getBienById($id)->setSurface($surface);
+            $this->getBienById($id)->setNumAppart($numAppart);
+            $this->getBienById($id)->setAdresse($idAdresse);
+        }
+    }
+
     public function suppressionBienBD($id)
     {
         $req = "DELETE FROM bien WHERE idBien = :idBien";

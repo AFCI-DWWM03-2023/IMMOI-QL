@@ -1,24 +1,31 @@
 <?php
 
-class UtilisateurController{
+class UtilisateurController
+{
     private $utilisateurManager;
 
-    public function __construct() {
+    public function __construct()
+    {
         require_once "Models/managers/UtilisateurManager.php";
         $this->utilisateurManager = new UtilisateurManager;
         $this->utilisateurManager->chargementUserlist();
     }
 
-    public function getManager(){ return $this->utilisateurManager;}
+    public function getManager()
+    {
+        return $this->utilisateurManager;
+    }
 
-    public function getUtilisateursList(){
+    public function getUtilisateursList()
+    {
         return $this->utilisateurManager->getUserlist();
     }
 
-    public function getAgentsList(){
+    public function getAgentsList()
+    {
         $list = $this->utilisateurManager->getUserlist();
         foreach ($list as $key => $value) {
-            if ($value->getEstAgent()==NULL){
+            if ($value->getEstAgent() == NULL) {
                 unset($list[$key]);
             }
         }
@@ -26,7 +33,8 @@ class UtilisateurController{
     }
 
 
-    public function afficherProfil($id){
+    public function afficherProfil($id)
+    {
         $user = $this->utilisateurManager->getUserById($id);
         if (isset($user)) {
             require "Views/BD/profil.view.php";
@@ -34,19 +42,21 @@ class UtilisateurController{
             require "Views/BD/profilError.view.php";
         }
     }
-    
-    public function modifierProfil(){
+
+    public function modifierProfil()
+    {
         $user = $this->utilisateurManager->getUserById($_SESSION['user']['id']);
         if (isset($user)) {
             require "Views/BD/modifprofil.view.php";
         }
     }
 
-    public function modifierValidation(){
+    public function modifierValidation()
+    {
         $user = $this->utilisateurManager->getUserById($_SESSION['user']['id']);
         if (!isset($_POST['idadresse'])) $_POST['idadresse'] = 0;
         $this->utilisateurManager->modifierProfil($user->getId(), $_POST['nom'], $_POST['prenom'], $_POST['email'], $_POST['telephone'], $_POST['idadresse']);
-        $_SESSION['user'] = [ 
+        $_SESSION['user'] = [
             "id" => $user->getId(),
             "username" => $user->getUsername(),
             "nom" => $user->getNom(),
@@ -57,28 +67,36 @@ class UtilisateurController{
             "estAgent" => $user->getEstAgent(),
             "agence" => $user->getAgence()
         ];
-        header('Location: '.URL."profil");
+        header('Location: ' . URL . "profil");
     }
 
-    public function inscriptionValidation(){
-        if ($this->utilisateurManager->verifUtilisateurExiste($_POST['username'], $_POST['email'])) {
-            header('Location: '.URL."inscription/retry");
+    public function inscriptionValidation()
+    {
+        if (isset($_POST["verifinscription"])) {
+            if ($this->utilisateurManager->verifUtilisateurExiste($_POST['username'], $_POST['email'])) {
+                header('Location: ' . URL . "inscription/retry");
+            } else {
+                $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+                $this->utilisateurManager->ajoutUtilisateurBD($_POST['username'], $_POST['email'], $password, $_POST['estAgent'], ($_POST['estAgent']) ? $_POST['agence'] : NULL);
+                $this->connexionValidation();
+                header('Location: ' . URL . "profil");
+            }
         } else {
-            $password = password_hash($_POST['password'],PASSWORD_DEFAULT);
-            $this->utilisateurManager->ajoutUtilisateurBD($_POST['username'], $_POST['email'], $password, $_POST['estAgent'], ($_POST['estAgent']) ? $_POST['agence'] : NULL);
-            header('Location: '.URL."profil");
+            header('Location: '.URL."inscription/retry");
         }
     }
 
-    public function connexion(){
+    public function connexion()
+    {
         require "Views/connexion.view.php";
     }
 
-    public function connexionValidation(){
+    public function connexionValidation()
+    {
         $res = $this->utilisateurManager->connexion($_POST['username'], $_POST['password']);
         if ($res) {
             $user = $this->utilisateurManager->getUserByUsername($_POST['username']);
-            $_SESSION['user'] = [ 
+            $_SESSION['user'] = [
                 "id" => $user->getId(),
                 "username" => $user->getUsername(),
                 "nom" => $user->getNom(),
@@ -90,21 +108,23 @@ class UtilisateurController{
                 "agence" => $user->getAgence()
             ];
             $_SESSION['connecte'] = true;
-            header('Location: '.URL."accueil");
+            header('Location: ' . URL . "accueil");
         } else {
-            header('Location: '.URL."connexion/retry");
+            header('Location: ' . URL . "connexion/retry");
         }
     }
 
-    public function deconnexion(){
+    public function deconnexion()
+    {
         unset($_SESSION['user']);
         unset($_SESSION['connecte']);
-        header('Location: '.URL."accueil");
+        header('Location: ' . URL . "accueil");
     }
 
-    public function suppressionUtilisateur($id){
+    public function suppressionUtilisateur($id)
+    {
         $this->utilisateurManager->suppressionUtilisateurBD($id);
-        header('Location: '.URL."bdtest/utilisateurs");
+        header('Location: ' . URL . "bdtest/utilisateurs");
     }
 
     // public function modifierUtilisateur($id){

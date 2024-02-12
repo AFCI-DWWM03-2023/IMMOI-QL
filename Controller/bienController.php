@@ -43,7 +43,6 @@ class BienController
 
     public function rechercheBien($listeadresses) {
         $listebiens = $this->bienManager->getBienRecherche($_POST["searchcategorie"], $listeadresses, $_POST["searchventeloc"], $_POST["searchprix"]);
-        $hasSearched = true;
         if (count($listebiens) !== 0) {
             require "Views/offres.view.php";
         } else {
@@ -51,11 +50,23 @@ class BienController
         }
     }
 
+    public function modificationBien($id)
+    {
+        $bien = $this->bienManager->getBienById($id);
+        require "Views/modifBien.view.php";
+    }
+    
+    public function modifierValidation($id)
+    {
+        if (!isset($_POST['idadresse'])) $_POST['idadresse'] = $this->bienManager->getBienById($id)->getAdresse();
+        $this->bienManager->modifierBienBD($id, $_POST['nom'], $_POST['desc'], ($_POST['venteloc'] == "loc") ? $_POST["prix"] : NULL, ($_POST['venteloc'] == "vente") ? $_POST["prix"] : NULL, $_POST["categorie"], $_POST["nbpieces"], $_POST["nbetages"], $_POST["surface"], $_POST["numappart"], $_POST["idadresse"]);
+        header('Location: ' . URL . "offres/" . $id);
+    }
 
     public function publierValidation()
     {
         $this->bienManager->ajoutBienBD($_POST['nom'], $_POST['desc'], ($_POST['venteloc'] == "loc") ? $_POST["prix"] : NULL, ($_POST['venteloc'] == "vente") ? $_POST["prix"] : NULL, $_POST["categorie"], $_POST["nbpieces"], $_POST["nbetages"], $_POST["surface"], $_POST["numappart"], $_SESSION['user']['id'], $_POST["idadresse"]);
-
+        header('Location: ' . URL . "offres/" . $_POST['idbien']);
     }
     
     public function suppressionBien($id){

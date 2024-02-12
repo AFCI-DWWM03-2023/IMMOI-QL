@@ -12,11 +12,13 @@ if (isset($_POST['userExiste'])) $userExiste = $_POST['userExiste'];
             <input type="text" name="username" id="username" required class="searchbar"><br>
             <label for="email">Adresse mail</label>
             <input type="email" name="email" id="email" required class="searchbar"><br>
-            <label for="password">Mot de passe</label><span class="mdpconseil" title="8 caractères minimum. Pour une sécurité maximale, le mot de passe doit inclure une lettre miniscule, une lettre majuscule, un chiffre et un caractère spécial (&, @, #, etc)"> (?) </span><span id="complexite"></span><br>
+            <label for="password">Mot de passe</label><span class="conseil" title="8 caractères minimum. Pour une sécurité maximale, le mot de passe doit inclure une lettre miniscule, une lettre majuscule, un chiffre et un caractère spécial (&, @, #, etc)"> (?) </span><span id="complexite"></span><br>
             <input type="password" name="password" id="password" required class="searchbar"><br>
             <label for="repeatpassword">Répéter le mot de passe </label><span id="repeatcorrect" title="Les mots de passe doivent être identiques"></span><br>
             <input type="password" name="repeatpassword" id="repeatpassword" required class="searchbar"><br>
+            <input type="hidden" name="verifinscription" value="true">
             <label for="estAgent">Êtes-vous agent Im'moi?</label>
+            
             <input type="checkbox" name="estAgent" id="estAgent">
             <select name="agence" id="agence">
                 <?php
@@ -28,7 +30,6 @@ if (isset($_POST['userExiste'])) $userExiste = $_POST['userExiste'];
 
             <input type="submit" value="S'inscrire" class="submitsearch" id="validerinsc" disabled>
         </form>
-        <?php if (isset($userExiste)) echo "Le nom d'utilisateur et/ou l'adresse mail existe déjà"; ?>
     </div>
 
 </section>

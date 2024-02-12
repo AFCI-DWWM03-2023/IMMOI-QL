@@ -175,10 +175,36 @@
   margin: 20px 0;
   font-size: 48px;
 }
-.sect3 .caroussel img {
+.sect3 .caroussel {
+  height: fit-content;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  margin-bottom: 20px;
+  border: 3px solid white;
+  border-radius: 5px;
   height: 400px;
   width: 600px;
+}
+.sect3 .caroussel a {
+  position: relative;
+  min-width: 100%;
+  transition: all 0.5s ease;
+}
+.sect3 .caroussel a img {
+  height: 100%;
+  width: 100%;
   object-fit: cover;
+  position: absolute;
+}
+.sect3 .caroussel a p {
+  background-color: #000000C0;
+  bottom: 0;
+  width: 100%;
+  font-size: 28px;
+  padding: 5px;
+  color: white;
+  position: absolute;
 }
 @media screen and (max-width: 1180px) {
   .sect1 {
@@ -213,6 +239,13 @@
     width: 80%;
     margin-bottom: 40px;
   }
+  .sect3 h2 {
+    font-size: 48px;
+  }
+  .sect3 .caroussel {
+    height: 300px;
+    width: 450px;
+  }
 }
 @media screen and (max-width: 520px) {
   .sect1 {
@@ -237,6 +270,10 @@
   .sect2 .s2container > div {
     width: 100%;
   }
+  .sect3 .caroussel {
+    height: 240px;
+    width: 360px;
+  }
 }
 @media screen and (max-width: 400px) {
   .sect1 {
@@ -254,5 +291,8 @@
   .sectmobile1 .mobilesearchregion img {
     height: 80px;
     width: 80px;
+  }
+  .sect3 h2 {
+    font-size: 40px;
   }
 }

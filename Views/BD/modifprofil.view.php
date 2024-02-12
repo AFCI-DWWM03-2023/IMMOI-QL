@@ -23,6 +23,7 @@ $DBadresse = $adresseController->getAdresseList();
             <input type="text" name="zipcode" id="zipcode" class="searchbar" placeholder="Code postal" value="<?=($_SESSION['user']['adresse'] != 0) ? $DBadresse[$_SESSION['user']['adresse']-1]->getZipcode() : "" ;?>"><br>
             <input type="text" name="localite" id="localite" class="searchbar" placeholder="Localité" value="<?=($_SESSION['user']['adresse'] != 0) ? $DBadresse[$_SESSION['user']['adresse']-1]->getLocalite() : "" ;?>"><br>
             <input type="checkbox" name="adressemodif" id="adressemodif" hidden><br>
+            <input type="hidden" name="verifmodifprofil" value="true">
 
             <input type="submit" value="Valider les modifications" class="submitsearch" id="validerinsc">
         </form>

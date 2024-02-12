@@ -39,6 +39,7 @@
             <input type="file" id="photocouv" name="photocouv" accept=".jpg, .jpeg, .png, .gif">
             <span style="color:red" id="filesizewarning" class="hide">La photo ne doit pas dépasser 2Mo</span>
             <a id="removephoto" class="hide" onclick="removePhoto()" href="#">Supprimer l'image</a>
+            <input type="hidden" name="verifpublier" value="true">
             <input type="submit" value="Valider" id="submitform">
         </form>
     <?php

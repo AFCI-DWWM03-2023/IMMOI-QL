@@ -19,6 +19,7 @@
                 <option value="location">Location seulement</option>
             </select>
             <input type="number" class="searchbar" id="searchprix" name="searchprix" placeholder="Budget maximum">
+            <input type="hidden" name="verifsearch" value="true">
             <input type="submit" value="Lancer la recherche" class="submitsearch">
         </form>
         <a href="region" class="search searchregion"><img src="public/img/france.png" alt="">Rechercher un bien par région</a>
@@ -31,6 +32,18 @@
 </section>
 <section class="sectmobile1">
     <a href="region" class="mobilesearchregion"><img src="public/img/france.png" alt="">Rechercher un bien par région</a>
+</section>
+
+<section class="sect3 contentcenter">
+    <h2>Selection d'offres</h2>
+    <div class="caroussel">
+        <?php foreach ($caroussel as $value) : ?>
+            <a href="offres/<?=$value->getBien();?>" class="carousselitem">
+                <img src="public/img/photos/<?= $value->getNom(); ?>" alt="">
+                <p><?=$DBbien[$value->getBien()-1]->getNom();?></p>
+            </a>
+        <?php endforeach; ?>
+    </div>
 </section>
 
 <section class="sect2">
@@ -64,19 +77,8 @@
     <!-- banniere -->
 
 </section>
+<script src="scripts/caroussel.js"></script>
 
-<section class="sect3 contentcenter">
-    <h2>Selection d'offres</h2>
-    <div class="caroussel">
-        <?php foreach ($caroussel as $value) : ?>
-            <div class="carousselitem">
-                <a href="#">
-                    <img src="public/img/photos/<?= $value->getNom(); ?>" alt="">
-                </a>
-            </div>
-        <?php endforeach; ?>
-    </div>
-</section>
 
 <?php
 $content = ob_get_clean();

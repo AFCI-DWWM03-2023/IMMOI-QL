@@ -13,7 +13,7 @@ $searchresults = [
 ?>
 
 <div class="content">
-<?php if (isset($hasSearched)) : ?>
+<?php if (isset($_POST["verifsearch"])) : ?>
     <div class="barrerecherche">
         <h3>Vous avez recherché <?=$searchresults[$_POST["searchcategorie"]]?> <?=$searchresults[$_POST["searchventeloc"]]?> <?=($_POST["searchville"] != "") ? "à " . ucfirst($_POST["searchville"]) : "" ?> <?=($_POST["searchprix"] != "") ? "avec un budget maximal de " . $_POST["searchprix"] . "€" : "sans limite de budget" ?><?= ($_POST["searchprix"] != "" && $_POST["searchventeloc"] == "location") ? " par mois" : "" ?>.</h3>
     </div>

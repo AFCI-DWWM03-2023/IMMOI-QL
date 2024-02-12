@@ -25,8 +25,8 @@ class PhotoController{
     public function getRandomPhotoCouverture(){
         $list = $this->photoManager->getPhotoCouverturelist();
         shuffle($list);
-        if (count($list)>=3) {
-            return array_slice($list, 0, 3);
+        if (count($list)>=5) {
+            return array_slice($list, 0, 5);
         }
         else {
             return $list;
@@ -82,14 +82,14 @@ class PhotoController{
         $bien = $photo->getBien();
         $listebien = $this->photoManager->getPhotosFromBien($bien);
         foreach ($listebien as $value) {
-            if (!$value->getCouverture()) {
+            if (!isset($nouvCouverture) && !$value->getCouverture()) {
                 $nouvCouverture = $value;
             }
         }
         $this->photoManager->suppressionPhotoBD($id);
         unlink("public/img/photos/".$photo->getNom());
         
-        if (null !== $nouvCouverture) {
+        if ($photo->getCouverture() & null !== $nouvCouverture) {
             $this->photoManager->modifierCouvertureBD($nouvCouverture->getId(), 1);
         }
         header('Location: '.URL."offres/".$bien."/img");

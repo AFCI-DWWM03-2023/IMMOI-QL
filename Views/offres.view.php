@@ -8,7 +8,7 @@ $DBphoto = $photoController->getPhotoList();
 require "departement.php" ?>
 
 <section class="sectoffres">
-    <?php if (isset($hasSearched)) : ?>
+    <?php if (isset($_POST["verifsearch"])) : ?>
         <h2>Recherche</h2>
     <?php endif; ?>
     <?php for ($i = 0; $i < count($listebiens); $i++) :
@@ -38,7 +38,7 @@ require "departement.php" ?>
                             <?= $DBadresse[$listebiens[$i]->getAdresse() - 1]->getLocalite(); ?></li>
                         <li><?= get_region_departement($DBadresse[$listebiens[$i]->getAdresse() - 1]->getZipcode())['region']; ?></li>
                     </ul>
-                    <a href="/offres/<?= $listebiens[$i]->getId() ?>" class="decouvrir <?= ($i % 2) ? "pair" : "impair"; ?>">Découvrir ></a>
+                    <a href="/offres/<?= $listebiens[$i]->getId() ?>" class="decouvrir <?= ($i % 2) ? "pair" : "impair"; ?>"><span class="decouvrirtext">Découvrir</span> ></a>
                 </div>
             </div>
         </div>

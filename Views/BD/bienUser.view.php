@@ -27,7 +27,7 @@ require "departement.php"
         <div class="offre <?= ($i % 2) ? "pair" : "impair"; ?>">
             <div class="offrecontent">
 
-                <a href="/offres/<?= $bien->getId() ?>"><img src="/public/img/<?= ($couverture != 0) ? "photos/" . $DBphoto[0]->getNom() : "default.jpg"; ?>" class="photocouverture" alt=""></a>
+                <a href="/offres/<?= $bien->getId() ?>"><img src="/public/img/<?= ($couverture != 0) ? "photos/" . $DBphoto[$bien->getId()-1]->getNom() : "default.jpg"; ?>" class="photocouverture" alt=""></a>
                 <div class="offreinfos">
                     <h3 class="nom">
                         <img src="/public/img/icones/<?= $bien->getCategorie(); ?>.svg" alt="">
@@ -42,7 +42,7 @@ require "departement.php"
                             <?= $DBadresse[$bien->getAdresse() - 1]->getLocalite(); ?></li>
                         <li><?= get_region_departement($DBadresse[$bien->getAdresse() - 1]->getZipcode())['region']; ?></li>
                     </ul>
-                    <a href="/offres/<?= $bien->getId() ?>" class="decouvrir <?= ($i % 2) ? "pair" : "impair"; ?>">Détails ></a>
+                    <a href="/offres/<?= $bien->getId() ?>" class="decouvrir <?= ($i % 2) ? "pair" : "impair"; ?>"><span class="decouvrirtext">Détails</span> ></a>
                     <?php if ($monprofil) : ?>
                         <form method="POST" action="<?= URL ?>profil/<?= $url[1] ?>/offres/s/<?= $bien->getId(); ?>" onSubmit="return confirm('Voulez-vous vraiment supprimer cette annonce ?');">
                             <button class="supprimer"><img src="/public/img/icones/trash.svg" alt=""></button>

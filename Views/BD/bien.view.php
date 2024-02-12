@@ -27,9 +27,11 @@ $listephotos = $photoController->getPhotosByBien($bien->getId());
                 endif; ?>
             </div>
             <div class="imagelist">
-                <a href="/offres/<?= $bien->getId();?>/img" class="addimage">
-                    Gérer les images
-                </a>
+                <?php if (isset($_SESSION["user"]["id"]) && $_SESSION["user"]["id"] == $bien->getUtilisateur()) : ?>
+                    <a href="/offres/<?= $bien->getId(); ?>/img" class="gererimage">
+                        Gérer les images
+                    </a>
+                <?php endif; ?>
                 <?php if (empty($listephotos)) : ?>
                     <img src="/public/img/default.jpg" alt="" class="thumbimage active">
                     <?php else :
@@ -53,9 +55,12 @@ $listephotos = $photoController->getPhotosByBien($bien->getId());
             <p><?= ($bien->getCategorie() == "appartement") ? "Appartement n°" . $bien->getNumAppart() . " - " : null ?>
                 <?= $DBadresse[$bien->getAdresse() - 1]->getNomVoie() ?></p>
             <p><?= $DBadresse[$bien->getAdresse() - 1]->getZipcode() . " " . $DBadresse[$bien->getAdresse() - 1]->getLocalite(); ?></p>
-            <p><?= get_region_departement($DBadresse[$bien->getAdresse() - 1]->getZipcode())['departement'] . " (" . get_region_departement($DBadresse[$bien->getAdresse() - 1]->getZipcode())['region'] . ")"; ?></p>
+            <p><?= get_region_departement($DBadresse[$bien->getAdresse() - 1]->getZipcode())['departement'] . " (" . get_region_departement($DBadresse[$bien->getAdresse() - 1]->getZipcode())['region'] . ")"; ?> <span title="Detecté automatiquement à partir du code postal entré par l'auteur de cette annonce." class="conseil">(?)</span></p>
             </p>
 
+            <?php if (isset($_SESSION["user"]["id"]) && $_SESSION["user"]["id"] == $bien->getUtilisateur()) : ?>
+                <a href="<?= $bien->getId(); ?>/modif">Modifier les informations</a>
+            <?php endif; ?>
         </div>
     </div>
 </section>

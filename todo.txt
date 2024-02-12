@@ -1,8 +1,5 @@
-caroussel
 carte interactive
 transactions
 page utilisateur
-modification bien
-responsive page offres
 page publier
 page gerer photos

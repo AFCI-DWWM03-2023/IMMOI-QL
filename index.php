@@ -86,8 +86,13 @@ try {
                 }
                 break;
             case "profil":
-                if (empty($url[1])) $utilisateurController->afficherProfil($_SESSION['user']['id']);
-                else {
+                if (empty($url[1])) {
+                    if (isset($_SESSION['user'])) {
+                        $utilisateurController->afficherProfil($_SESSION['user']['id']);
+                    } else {
+                        header('Location: ' . URL . "connexion");
+                    }
+                } else {
                     if ($url[1] == "edit") {
                         if (empty($url[2])) {
                             if (isset($_SESSION['connecte'])) {
@@ -96,18 +101,22 @@ try {
                                 require "Views/BD/modifprofil.view.php";
                             }
                         } else if ($url[2] == "v") {
-                            $emailInvalide = 0;
-                            if ($_POST['email'] != $_SESSION['user']['email']) {
-                                $emailInvalide = $utilisateurController->getManager()->verifUtilisateurExiste(null, $_POST['email']);
-                            }
-                            if ($emailInvalide) {
-                                $_POST["erreuremail"] = true;
-                                $utilisateurController->modifierProfil();
-                            } else {
-                                if (isset($_POST["adressemodif"]) & $_POST["adresse"] != "" & $_POST["zipcode"] != "" & $_POST["localite"] != "") {
-                                    $adresseController->addAdresse();
+                            if (isset($_POST['verifmodifprofil'])) {
+                                $emailInvalide = 0;
+                                if ($_POST['email'] != $_SESSION['user']['email']) {
+                                    $emailInvalide = $utilisateurController->getManager()->verifUtilisateurExiste(null, $_POST['email']);
                                 }
-                                $utilisateurController->modifierValidation();
+                                if ($emailInvalide) {
+                                    $_POST["erreuremail"] = true;
+                                    $utilisateurController->modifierProfil();
+                                } else {
+                                    if (isset($_POST["adressemodif"]) & $_POST["adresse"] != "" & $_POST["zipcode"] != "" & $_POST["localite"] != "") {
+                                        $adresseController->addAdresse();
+                                    }
+                                    $utilisateurController->modifierValidation();
+                                }
+                            } else {
+                                header('Location: ' . URL . "profil/edit");
                             }
                         }
                     } else {
@@ -137,14 +146,35 @@ try {
                     if (empty($url[2])) {
                         $bienController->afficherBien($url[1]);
                     } else if ($url[2] == "img") {
-                        if (empty($url[3])) {
-                            $photoController->gererPhotos($url[1]);
-                        } else if ($url[3] == "v") {
-                            $photoController->addPhoto($url[1]);
-                        } else if ($url[3] == "s") {
-                            $photoController->deletePhoto($url[4]);
-                         }else if ($url[3] == "c") {
-                            $photoController->changePhotoCouv($url[1], $url[4]);
+                        if (isset($_SESSION["user"]["id"]) && $_SESSION["user"]["id"] == $DBbien[$url[1] - 1]->getUtilisateur()) {
+                            if (empty($url[3])) {
+                                $photoController->gererPhotos($url[1]);
+                            } else if ($url[3] == "v") {
+                                $photoController->addPhoto($url[1]);
+                            } else if ($url[3] == "s") {
+                                $photoController->deletePhoto($url[4]);
+                            } else if ($url[3] == "c") {
+                                $photoController->changePhotoCouv($url[1], $url[4]);
+                            }
+                        } else {
+                            require "Views/permissionError.view.php";
+                        }
+                    } else if ($url[2] == "modif") {
+                        if (isset($_SESSION["user"]["id"]) && $_SESSION["user"]["id"] == $DBbien[$url[1] - 1]->getUtilisateur()) {
+                            if (empty($url[3])) {
+                                $bienController->modificationBien($url[1]);
+                            } else if ($url[3] == "validation") {
+                                if (isset($_POST['verifmodifbien'])) {
+                                    if (isset($_POST["adressemodif"])) {
+                                        $adresseController->addAdresse();
+                                    }
+                                    $bienController->modifierValidation($url[1]);
+                                } else {
+                                    header('Location: ' . URL . "offres/" . $url[1]);
+                                }
+                            }
+                        } else {
+                            require "Views/permissionError.view.php";
                         }
                     }
                 }
@@ -153,17 +183,24 @@ try {
                 require "Views/BD/utilisateurs.view.php";
                 break;
             case "recherche":
-                $listeadresses = $adresseController->getAdresseSearch();
-                $bienController->rechercheBien($listeadresses);
+                if (isset($_POST['verifsearch'])) {
+                    $listeadresses = $adresseController->getAdresseSearch();
+                    $bienController->rechercheBien($listeadresses);
+                } else {
+                    header('Location: ' . URL . "offres");
+                }
                 break;
             case "publier":
                 if (empty($url[1])) {
                     require "Views/publier.view.php";
                 } else if ($url[1] === "validation") {
-                    $adresseController->addAdresse();
-                    $bienController->publierValidation();
-                    if (isset($_POST['photocouv']))
-                        $photoController->addPhotoCouv();
+                    if (isset($_POST['verifpublier'])) {
+                        $adresseController->addAdresse();
+                        $bienController->publierValidation();
+                        if (isset($_POST['photocouv'])) $photoController->addPhotoCouv();
+                    } else {
+                        header('Location: ' . URL . "accueil");
+                    }
                 }
                 break;
 
