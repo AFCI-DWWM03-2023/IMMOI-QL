@@ -20,7 +20,7 @@ class AdresseManager extends BDConnexion
     public function searchAdresseList($ville){
         $listeAdresse = [];
         foreach ($this->adresselist as $value) {
-            if (strtolower($value->getLocalite()) == strtolower($ville)) {
+            if ($ville == "" || strtolower($value->getLocalite()) == strtolower($ville)) {
                 $listeAdresse[] = $value->getId();
             }
         }

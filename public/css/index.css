@@ -91,6 +91,7 @@
   border-radius: 50px;
   cursor: pointer;
   transition: 400ms ease;
+  text-decoration: none;
 }
 .submitsearch:hover {
   background-color: var(--lighter-blue);
@@ -177,6 +178,7 @@
 }
 .sect3 .caroussel {
   height: fit-content;
+  position: relative;
   display: flex;
   flex-wrap: nowrap;
   overflow: hidden;
@@ -185,6 +187,26 @@
   border-radius: 5px;
   height: 400px;
   width: 600px;
+}
+.sect3 .caroussel #carousselaleft,
+.sect3 .caroussel #carousselaright {
+  height: 100%;
+  width: 20px;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-color: white;
+  z-index: 5;
+  user-select: none;
+  font-size: 20px;
+}
+.sect3 .caroussel #carousselaleft {
+  left: 0;
+}
+.sect3 .caroussel #carousselaright {
+  right: 0;
 }
 .sect3 .caroussel a {
   position: relative;
@@ -200,9 +222,9 @@
 .sect3 .caroussel a p {
   background-color: #000000C0;
   bottom: 0;
-  width: 100%;
+  width: calc(100%);
   font-size: 28px;
-  padding: 5px;
+  padding: 5px 25px;
   color: white;
   position: absolute;
 }
@@ -245,6 +267,9 @@
   .sect3 .caroussel {
     height: 300px;
     width: 450px;
+  }
+  .sect3 .caroussel a p {
+    font-size: 20px;
   }
 }
 @media screen and (max-width: 520px) {

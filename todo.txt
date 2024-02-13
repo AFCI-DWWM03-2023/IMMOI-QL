@@ -1,5 +1,2 @@
 carte interactive
 transactions
-page utilisateur
-page publier
-page gerer photos

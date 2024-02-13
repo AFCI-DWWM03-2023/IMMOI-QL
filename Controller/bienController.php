@@ -43,7 +43,7 @@ class BienController
 
     public function rechercheBien($listeadresses) {
         $listebiens = $this->bienManager->getBienRecherche($_POST["searchcategorie"], $listeadresses, $_POST["searchventeloc"], $_POST["searchprix"]);
-        if (count($listebiens) !== 0) {
+        if (count($listebiens) != 0) {
             require "Views/offres.view.php";
         } else {
             require "Views/offresError.view.php";

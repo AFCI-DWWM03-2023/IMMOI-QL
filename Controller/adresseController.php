@@ -19,7 +19,7 @@ class AdresseController{
     }
 
     public function getAdresseSearch(){
-        return $this->adresseManager->searchAdresseList($_POST["searchville"]);        
+        return $this->adresseManager->searchAdresseList($_POST["searchville"]);
     }
 
     public function addAdresse(){

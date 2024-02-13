@@ -17,3 +17,18 @@ function removePhoto() {
     document.querySelector('#filesizewarning').classList.add("hide");
     document.querySelector('#submitform').disabled = false;
 }
+
+const typeBien = document.querySelector('#categorie')
+typeBien.addEventListener('change', function() {
+    const type = typeBien.value;
+    if (type == "appart") {
+        document.querySelector("#checkappart").classList.remove("hide");
+    } else {
+        document.querySelector("#checkappart").classList.add("hide");
+        document.querySelector("#numappart").value = null;
+    }
+    if (type == "terrain") {
+        document.querySelector("#nbetages").value = "0";
+        document.querySelector("#nbpieces").value = "0";
+    }
+})

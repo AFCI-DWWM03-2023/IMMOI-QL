@@ -8,19 +8,21 @@ $searchresults = [
     "venteloc" => "en vente ou location",
     "vente" => "en vente",
     "location" => "en location"
-    ]
+]
 
 ?>
 
 <div class="content">
-<?php if (isset($_POST["verifsearch"])) : ?>
-    <div class="barrerecherche">
-        <h3>Vous avez recherché <?=$searchresults[$_POST["searchcategorie"]]?> <?=$searchresults[$_POST["searchventeloc"]]?> <?=($_POST["searchville"] != "") ? "à " . ucfirst($_POST["searchville"]) : "" ?> <?=($_POST["searchprix"] != "") ? "avec un budget maximal de " . $_POST["searchprix"] . "€" : "sans limite de budget" ?><?= ($_POST["searchprix"] != "" && $_POST["searchventeloc"] == "location") ? " par mois" : "" ?>.</h3>
+    <?php if (isset($_POST["verifsearch"])) : ?>
+        <div class="barrerecherche">
+            <h3>Vous avez recherché <?= $searchresults[$_POST["searchcategorie"]] ?> <?= $searchresults[$_POST["searchventeloc"]] ?> <?= ($_POST["searchville"] != "") ? "à " . ucfirst($_POST["searchville"]) : "" ?> <?= ($_POST["searchprix"] != "") ? "avec un budget maximal de " . $_POST["searchprix"] . "€" : "sans limite de budget" ?><?= ($_POST["searchprix"] != "" && $_POST["searchventeloc"] == "location") ? " par mois" : "" ?>.</h3>
+        </div>
+    <?php endif; ?>
+    <div class="nothingfound">
+        <div class="color">
+            <h1>Désolé, nous n'avons pas pu trouver d'offres correspondant à vos critères.</h1>
+        </div>
     </div>
-<?php endif; ?>
-<div class="nothingfound">
-    <h1>Désolé, nous n'avons pas pu trouver d'offres correspondant à vos critères.</h1>
-</div>
 </div>
 
 

@@ -5,11 +5,22 @@ $DBadresse = $adresseController->getAdresseList();
 require_once "Controller/photoController.php";
 $photoController = new PhotoController;
 $DBphoto = $photoController->getPhotoList();
-require "departement.php" ?>
+require "departement.php";
+$searchresults = [
+    "all" => "toutes les annonces",
+    "maison" => "les maisons",
+    "appart" => "les appartements",
+    "terrain" => "les terrains",
+    "venteloc" => "en vente ou location",
+    "vente" => "en vente",
+    "location" => "en location"
+    ]?>
 
 <section class="sectoffres">
     <?php if (isset($_POST["verifsearch"])) : ?>
-        <h2>Recherche</h2>
+        <div class="barrerecherche">
+            <h3>Vous avez recherché <?= $searchresults[$_POST["searchcategorie"]] ?> <?= $searchresults[$_POST["searchventeloc"]] ?> <?= ($_POST["searchville"] != "") ? "à " . ucfirst($_POST["searchville"]) : "" ?> <?= ($_POST["searchprix"] != "") ? "avec un budget maximal de " . $_POST["searchprix"] . "€" : "sans limite de budget" ?><?= ($_POST["searchprix"] != "" && $_POST["searchventeloc"] == "location") ? " par mois" : "" ?>.</h3>
+        </div>
     <?php endif; ?>
     <?php for ($i = 0; $i < count($listebiens); $i++) :
         $listephotos = $photoController->getPhotosByBien($listebiens[$i]->getId());

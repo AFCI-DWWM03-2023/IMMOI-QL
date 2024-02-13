@@ -27,11 +27,6 @@ $listephotos = $photoController->getPhotosByBien($bien->getId());
                 endif; ?>
             </div>
             <div class="imagelist">
-                <?php if (isset($_SESSION["user"]["id"]) && $_SESSION["user"]["id"] == $bien->getUtilisateur()) : ?>
-                    <a href="/offres/<?= $bien->getId(); ?>/img" class="gererimage">
-                        Gérer les images
-                    </a>
-                <?php endif; ?>
                 <?php if (empty($listephotos)) : ?>
                     <img src="/public/img/default.jpg" alt="" class="thumbimage active">
                     <?php else :
@@ -40,6 +35,11 @@ $listephotos = $photoController->getPhotosByBien($bien->getId());
 
                 <?php endforeach;
                 endif; ?>
+                <?php if (isset($_SESSION["user"]["id"]) && $_SESSION["user"]["id"] == $bien->getUtilisateur()) : ?>
+                    <a href="/offres/<?= $bien->getId(); ?>/img">
+                        <div class="gererimage">Gérer les images</div>
+                    </a>
+                <?php endif; ?>
             </div>
         </div>
         <div class="details">

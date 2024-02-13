@@ -1,20 +1,38 @@
-const carouselItems = document.querySelectorAll(".carousselitem"); 
-let i = 1;
+const carouselItems = document.querySelectorAll(".carousselitem");
+let pos = 0;
+
+function updatePosition(array, pos) {
+  for (item of array) {
+    item.style.transform = `translateX(-${pos * 100}%)`
+  }
+}
 
 setInterval(() => {
-// Accessing All the carousel Items
- Array.from(carouselItems).forEach((item,index) => {
-
-   if(i < carouselItems.length){
-    item.style.transform = `translateX(-${i*100}%)`
-   }
-  })
-
-
-  if(i < carouselItems.length-1){
-    i++;
+  if (pos < carouselItems.length - 1) {
+    pos++;
   }
-  else{
-    i=0;
+  else {
+    pos = 0;
   }
-},5000)
+  updatePosition(carouselItems, pos)
+}, 5000)
+
+document.querySelector("#carousselaright").addEventListener('click', function () {
+  if (pos < carouselItems.length - 1) {
+    pos++;
+  }
+  else {
+    pos = 0;
+  }
+  updatePosition(carouselItems, pos)
+
+})
+document.querySelector("#carousselaleft").addEventListener('click', function () {
+  if (pos > 0) {
+    pos--;
+  }
+  else {
+    pos = carouselItems.length - 1;
+  }
+  updatePosition(carouselItems, pos)
+})

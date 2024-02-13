@@ -113,6 +113,7 @@
     border-radius: 50px;
     cursor: pointer;
     transition: 400ms ease;
+    text-decoration: none;
 
     &:hover {
         background-color: var(--lighter-blue);
@@ -213,6 +214,7 @@
 
     .caroussel {
         height: fit-content;
+        position: relative;
         display: flex;
         flex-wrap: nowrap;
         overflow: hidden;
@@ -221,6 +223,29 @@
         border-radius: 5px;
         height: 400px;
         width: 600px;
+
+        #carousselaleft,
+        #carousselaright {
+            height: 100%;
+            width: 20px;
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            background-color: white;
+            z-index: 5;
+            user-select: none;
+            font-size: 20px;
+        }
+
+        #carousselaleft {
+            left: 0;
+        }
+
+        #carousselaright {
+            right: 0;
+        }
 
         a {
             position: relative;
@@ -233,12 +258,13 @@
                 object-fit: cover;
                 position: absolute;
             }
+
             p {
                 background-color: #000000C0;
                 bottom: 0;
-                width: 100%;
+                width: calc(100%);
                 font-size: 28px;
-                padding: 5px;
+                padding: 5px 25px;
                 color: white;
                 position: absolute;
             }
@@ -294,15 +320,22 @@
 
         }
     }
+
     .sect3 {
-    
+
         h2 {
             font-size: 48px;
         }
-    
+
         .caroussel {
             height: 300px;
             width: 450px;
+            a {
+                p {
+                    font-size: 20px;
+                }
+    
+            }
         }
     }
 }
@@ -345,9 +378,9 @@
 
         }
     }
-    
+
     .sect3 {
-    
+
         .caroussel {
             height: 240px;
             width: 360px;
@@ -381,8 +414,9 @@
             }
         }
     }
+
     .sect3 {
-        
+
         h2 {
             font-size: 40px;
         }
