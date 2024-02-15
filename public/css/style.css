@@ -527,6 +527,12 @@ footer .footerelem img {
 .inscon .searchbar.w30 {
   width: 30%;
 }
+.inscon .searchbar.w45 {
+  width: 45%;
+}
+.inscon .searchbar.w50 {
+  width: 50%;
+}
 .inscon .searchbar.w60 {
   width: 60%;
 }

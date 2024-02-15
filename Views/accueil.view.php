@@ -4,23 +4,25 @@ require "departement.php"; ?>
 <section class="sect1">
     <div class="sect1search">
         <form method="POST" action="<?= URL ?>recherche" enctype="multipart/form-data" class="search searchgeneral">
-            <h3>Vous recherchez...</h3>
-            <select name="searchcategorie" id="searchcategorie">
-                <option value="all">Tous types</option>
-                <option value="maison">Une maison</option>
-                <option value="appart">Un appartement</option>
-                <option value="terrain">Un terrain</option>
-            </select>
-            <span> à </span>
-            <input type="text" class="searchbar" id="searchville" name="searchville" placeholder="Ville">
-            <span> en </span>
-            <select name="searchventeloc" id="searchventeloc">
-                <option value="venteloc">Vente et location</option>
-                <option value="vente">Vente seulement</option>
-                <option value="location">Location seulement</option>
-            </select>
-            <input type="number" class="searchbar" id="searchprix" name="searchprix" placeholder="Budget maximum">
-            <input type="hidden" name="verifsearch" value="true">
+            <h3>Lancer une recherche</h3>
+            <div>
+                <input type="text" class="searchbar" id="searchville" name="searchville" placeholder="Ville">
+                <input type="number" class="searchbar" id="searchprix" name="searchprix" placeholder="Budget maximum">
+            </div>
+            <div>
+                <select name="searchventeloc" id="searchventeloc" class="searchbar w50">
+                    <option value="venteloc">Vente et location</option>
+                    <option value="vente">Vente seulement</option>
+                    <option value="location">Location seulement</option>
+                </select>
+                <select name="searchcategorie" id="searchcategorie" class="searchbar w50">
+                    <option value="all">Tous types</option>
+                    <option value="maison">Une maison</option>
+                    <option value="appart">Un appartement</option>
+                    <option value="terrain">Un terrain</option>
+                </select>
+            </div>
+            <input type="hidden" name="verifsearch" value="true"><br>
             <input type="submit" value="Lancer la recherche" class="submitsearch">
         </form>
         <a href="region" class="search searchregion"><img src="public/img/france.png" alt="">Rechercher un bien par région</a>
@@ -31,6 +33,32 @@ require "departement.php"; ?>
         <h2>C'est quand même mieux d'être chez soi</h2>
     </div>
 </section>
+
+<section class="sectmobile2">
+    <form method="POST" action="<?= URL ?>recherche" enctype="multipart/form-data" class="searchmobile">
+        <h3>Lancer une recherche</h3>
+        <div>
+            <input type="text" class="searchbar" id="searchville" name="searchville" placeholder="Ville">
+            <input type="number" class="searchbar" id="searchprix" name="searchprix" placeholder="Budget max">
+        </div>
+        <div>
+            <select name="searchventeloc" id="searchventeloc" class="searchbar w50">
+                <option value="venteloc">Vente et location</option>
+                <option value="vente">Vente seulement</option>
+                <option value="location">Location seulement</option>
+            </select>
+            <select name="searchcategorie" id="searchcategorie" class="searchbar w50">
+                <option value="all">Tous types</option>
+                <option value="maison">Une maison</option>
+                <option value="appart">Un appartement</option>
+                <option value="terrain">Un terrain</option>
+            </select>
+        </div>
+        <input type="hidden" name="verifsearch" value="true">
+        <input type="submit" value="Lancer la recherche" class="submitsearch">
+    </form>
+</section>
+
 <section class="sectmobile1">
     <a href="region" class="mobilesearchregion"><img src="public/img/france.png" alt="">Rechercher un bien par région</a>
 </section>
@@ -38,21 +66,22 @@ require "departement.php"; ?>
 <section class="sect3 contentcenter">
     <h2>Selection d'offres</h2>
     <div class="caroussel">
-        <div id="carousselaleft"><</div>
-        <?php foreach ($caroussel as $value) :
-            $bienCaroussel = $bienController->getManager()->getBienById($value->getBien());
-            $adresseCaroussel = $adresseController->getManager()->getAdresseById($bienCaroussel->getId())?>
-            <a href="offres/<?=$value->getBien();?>" class="carousselitem">
-                <img src="public/img/photos/<?= $value->getNom(); ?>" alt="">
-                <p><?=$bienCaroussel->getNom();?><br>
-                <?=$adresseCaroussel->getLocalite();?> (<?=get_region_departement($adresseCaroussel->getZipcode())["region"];?>)<br>
-                <?=($bienCaroussel->getPrixLoc() > 0) ? $bienCaroussel->getPrixLoc() . "€/mois" :  $bienCaroussel->getPrixVente() . "€"; ?>
-            </p>
-            </a>
-        <?php endforeach; ?>
-        
-        <div id="carousselaright">></div>
-    </div>
+        <div id="carousselaleft">
+            <</div>
+                <?php foreach ($caroussel as $value) :
+                    $bienCaroussel = $bienController->getManager()->getBienById($value->getBien());
+                    $adresseCaroussel = $adresseController->getManager()->getAdresseById($bienCaroussel->getId()) ?>
+                    <a href="offres/<?= $value->getBien(); ?>" class="carousselitem">
+                        <img src="public/img/photos/<?= $value->getNom(); ?>" alt="">
+                        <p><?= $bienCaroussel->getNom(); ?><br>
+                            <?= $adresseCaroussel->getLocalite(); ?> (<?= get_region_departement($adresseCaroussel->getZipcode())["region"]; ?>)<br>
+                            <?= ($bienCaroussel->getPrixLoc() > 0) ? $bienCaroussel->getPrixLoc() . "€/mois" :  $bienCaroussel->getPrixVente() . "€"; ?>
+                        </p>
+                    </a>
+                <?php endforeach; ?>
+
+                <div id="carousselaright">></div>
+        </div>
 </section>
 
 <section class="sect2">

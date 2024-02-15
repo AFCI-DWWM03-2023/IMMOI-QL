@@ -6,10 +6,10 @@
   position: relative;
   margin-top: 64px;
 }
-.sect1 div {
+.sect1 > div {
   width: 50vw;
 }
-.sect1 div.sect1image {
+.sect1 > div.sect1image {
   position: absolute;
   background: linear-gradient(to left, #FFFFFF00, var(--main-blue));
   right: 0;
@@ -21,42 +21,52 @@
   color: white;
   padding-right: 50px;
 }
-.sect1 div.sect1image h1 {
+.sect1 > div.sect1image h1 {
   font-size: 160px;
 }
-.sect1 div.sect1image h2 {
+.sect1 > div.sect1image h2 {
   font-size: 28px;
   font-weight: 400;
   white-space: nowrap;
   text-align: end;
 }
-.sect1 div.sect1search {
+.sect1 > div.sect1search {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
-.sect1 div.sect1search .searchgeneral {
+.sect1 > div.sect1search .searchgeneral {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   height: fit-content;
   width: 80%;
   border-radius: 25px;
   background-color: white;
   margin-bottom: 20px;
   padding: 20px;
-  font-size: 20px;
+  font-size: 18px;
 }
-.sect1 div.sect1search .searchgeneral h3 {
+.sect1 > div.sect1search .searchgeneral h3 {
   font-size: 36px;
   margin-bottom: 20px;
   font-weight: normal;
 }
-.sect1 div.sect1search .searchgeneral select {
-  font-size: 20px;
+.sect1 > div.sect1search .searchgeneral div {
+  width: 100%;
 }
-.sect1 div.sect1search .searchgeneral span {
+.sect1 > div.sect1search .searchgeneral div > * {
+  width: 48%;
+}
+.sect1 > div.sect1search .searchgeneral select {
+  font-size: 18px;
+}
+.sect1 > div.sect1search .searchgeneral span {
   margin: 0 5px;
 }
-.sect1 div.sect1search .searchregion {
+.sect1 > div.sect1search .searchregion {
   display: flex;
   align-items: center;
   height: 108px;
@@ -70,10 +80,10 @@
   cursor: pointer;
   transition: 400ms ease;
 }
-.sect1 div.sect1search .searchregion:hover {
+.sect1 > div.sect1search .searchregion:hover {
   background-color: var(--lighter-blue);
 }
-.sect1 div.sect1search .searchregion img {
+.sect1 > div.sect1search .searchregion img {
   height: 60px;
   width: 60px;
   margin: 0 20px 0 0;
@@ -123,6 +133,34 @@
   height: 100px;
   width: 100px;
   margin: 0 20px 0 0;
+}
+.sectmobile2 {
+  display: none;
+  background-color: var(--light-blue);
+}
+.sectmobile2 .searchmobile {
+  width: 100%;
+}
+.sectmobile2 .searchmobile h3 {
+  text-align: center;
+  color: white;
+  font-size: 36px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+.sectmobile2 .searchmobile div {
+  display: flex;
+  justify-content: space-around;
+}
+.sectmobile2 .searchmobile div > * {
+  width: 48%;
+}
+.sectmobile2 .searchmobile .submitsearch {
+  display: block;
+  margin: auto;
+  margin-bottom: 10px;
+  background-color: white;
+  color: var(--dark-blue);
 }
 .sect2 {
   position: relative;
@@ -247,6 +285,9 @@
     width: 100%;
   }
   .sectmobile1 {
+    display: flex;
+  }
+  .sectmobile2 {
     display: flex;
   }
   .sect2 h2 {

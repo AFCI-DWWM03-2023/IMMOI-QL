@@ -6,7 +6,7 @@
     position: relative;
     margin-top: 64px;
 
-    div {
+    >div {
         width: 50vw;
 
         &.sect1image {
@@ -43,13 +43,17 @@
             .search {
 
                 &general {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
                     height: fit-content;
                     width: 80%;
                     border-radius: 25px;
                     background-color: white;
                     margin-bottom: 20px;
                     padding: 20px;
-                    font-size: 20px;
+                    font-size: 18px;
 
                     h3 {
                         font-size: 36px;
@@ -57,8 +61,16 @@
                         font-weight: normal;
                     }
 
+                    div {
+                        width: 100%;
+
+                        >* {
+                            width: 48%;
+                        }
+                    }
+
                     select {
-                        font-size: 20px;
+                        font-size: 18px;
                     }
 
                     span {
@@ -149,6 +161,39 @@
             width: 100px;
             margin: 0 20px 0 0;
         }
+    }
+}
+
+.sectmobile2 {
+    display: none;
+    background-color: var(--light-blue);
+
+    .searchmobile {
+        width: 100%;
+
+        h3 {
+            text-align: center;
+            color: white;
+            font-size: 36px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        div {
+            display: flex;
+            justify-content: space-around;
+            > * {
+                width: 48%;
+            }
+        }
+        .submitsearch {
+            display: block;
+            margin: auto;
+            margin-bottom: 10px;
+            background-color: white;
+            color: var(--dark-blue);
+        }
+
     }
 }
 
@@ -302,6 +347,10 @@
         display: flex;
     }
 
+    .sectmobile2 {
+        display: flex;
+    }
+
     .sect2 {
         h2 {
             font-size: 56px;
@@ -330,11 +379,12 @@
         .caroussel {
             height: 300px;
             width: 450px;
+
             a {
                 p {
                     font-size: 20px;
                 }
-    
+
             }
         }
     }
