@@ -4,7 +4,7 @@ require_once "Models/data/Agence.class.php";
 require_once "Models/Model.class.php";
 
 class AgenceManager extends BDConnexion{
-    private $agencelist;
+    private $agencelist = [];
 
     public function ajoutAgence($agence){
         $this->agencelist[] = $agence;
@@ -12,6 +12,15 @@ class AgenceManager extends BDConnexion{
 
     public function getAgencelist(){
         return $this->agencelist;
+    }
+
+    public function getAgenceById($id)
+    {
+        for ($i = 0; $i < count($this->agencelist); $i++) {
+            if ($this->agencelist[$i]->getId() == $id) {
+                return $this->agencelist[$i];
+            }
+        }
     }
 
     public function chargementAgencelist(){

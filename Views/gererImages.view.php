@@ -1,10 +1,9 @@
 <?php ob_start();
 require_once "Controller/bienController.php";
-$bienController = new BienController;
-$DBbien = $bienController->getBienList(); ?>
+$bienController = new BienController; ?>
 
 <section class="content contentcenter">
-    <?php if ($DBbien[$bien - 1]->getUtilisateur() == $_SESSION["user"]["id"]) : ?>
+    <?php if ($bienController->getManager()->getBienById($bien)->getUtilisateur() == $_SESSION["user"]["id"]) : ?>
 
         <div class="ajoutphoto">
             <form method="POST" action="<?= URL ?>offres/<?= $bien; ?>/img/v" enctype="multipart/form-data">

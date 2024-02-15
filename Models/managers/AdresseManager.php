@@ -5,7 +5,7 @@ require_once "Models/Model.class.php";
 
 class AdresseManager extends BDConnexion
 {
-    private $adresselist;
+    private $adresselist = [];
 
     public function ajoutAdresse($adresse)
     {
@@ -15,6 +15,15 @@ class AdresseManager extends BDConnexion
     public function getAdresselist()
     {
         return $this->adresselist;
+    }
+
+    public function getAdresseById($id)
+    {
+        for ($i = 0; $i < count($this->adresselist); $i++) {
+            if ($this->adresselist[$i]->getId() == $id) {
+                return $this->adresselist[$i];
+            }
+        }
     }
 
     public function searchAdresseList($ville){

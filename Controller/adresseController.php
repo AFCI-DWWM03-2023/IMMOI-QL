@@ -9,6 +9,13 @@ class AdresseController{
         $this->adresseManager->chargementAdresselist();
     }
 
+    public function getManager()
+    {
+        return $this->adresseManager;
+    }
+
+    
+
     public function afficherAdresses(){
         $DBagence = $this->adresseManager->getAdresselist();
         require "Views/BD/adresses.view.php";

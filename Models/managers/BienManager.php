@@ -4,7 +4,7 @@ require_once "Models/data/Bien.class.php";
 require_once "Models/Model.class.php";
 
 class BienManager extends BDConnexion{
-    private $bienlist;
+    private $bienlist = [];
 
     public function ajoutBien($bien){
         $this->bienlist[] = $bien;

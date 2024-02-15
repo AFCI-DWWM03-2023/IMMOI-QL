@@ -3,10 +3,9 @@ $monprofil = (isset($_SESSION["user"]) && $_SESSION["user"]["id"] == $user->getI
 $qualif = ("" !== $user->getPrenom()) ? $user->getPrenom() : $user->getUsername();
 require_once "Controller/agenceController.php";
 $agenceController = new AgenceController;
-$DBagence = $agenceController->getAgenceList();
 require_once "Controller/adresseController.php";
 $adresseController = new AdresseController;
-$DBadresse = $adresseController->getAdresseList();
+$adresseUser = $adresseController->getManager()->getAdresseById($user->getId())
 ?>
 
 <section class="content contentcenter">
@@ -16,12 +15,13 @@ $DBadresse = $adresseController->getAdresseList();
         <p><?= ($user->getNom() != "") ? "Nom de famille : ".$user->getNom() : ""?></p>
         <p><?= ($user->getPrenom() != "") ? "Prénom : ".$user->getPrenom() : ""?></p>
         <p><?= ($user->getTelephone() != "") ? "Numéro de téléphone : ".$user->getTelephone() : ""?></p>
-        <p><?= ($user->getAdresse() != 0) ? "Adresse : ".$DBadresse[$user->getAdresse()-1]->getNomVoie()." ".$DBadresse[$user->getAdresse()-1]->getZipcode()." ".$DBadresse[$user->getAdresse()-1]->getLocalite() : ""?></p>
+        <p><?= ($user->getAdresse() != 0) ? "Adresse : ".$adresseUser->getNomVoie()." ".$adresseUser->getZipcode()." ".$adresseUser->getLocalite() : ""?></p>
         <p><?= ($user->getEmail() != "") ? "Adresse mail : ".$user->getEmail() : ""?></p>
         <?= ($user->getEstAgent()) ? "Agent Im'moi" : ""; ?>
-        <?= ($user->getEstAgent()) ? "Agence de " . $DBagence[$user->getAgence() - 1]->getNom() : ""; ?>
+        <?= ($user->getEstAgent()) ? "Agence de " . $agenceController->getManager()->getAgenceById($user->getAgence())->getNom() : ""; ?>
         <p><a href="/profil/edit"><?= ($monprofil) ? "Modifier mon profil" : ""?></a></p>
         <p><a href="/profil/<?= $user->getId() ?>/offres"><?= ($monprofil) ? "Mes annonces" : "Voir les annonces publiées par " . $qualif; ?></a></p>
+        <p><a href="/profil/transactions"><?= ($monprofil && $_SESSION["user"]["estAgent"]) ? "Mes transactions" : ""?></a></p>
     </div>
 </section>
 

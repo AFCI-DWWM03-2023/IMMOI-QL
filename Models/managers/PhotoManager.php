@@ -4,7 +4,7 @@ require_once "Models/data/Photo.class.php";
 require_once "Models/Model.class.php";
 
 class PhotoManager extends BDConnexion{
-    private $photolist;
+    private $photolist = [];
 
     public function ajoutPhoto($photo){
         $this->photolist[] = $photo;

@@ -11,6 +11,11 @@ class BienController
         $this->bienManager->chargementBienlist();
     }
 
+    public function getManager()
+    {
+        return $this->bienManager;
+    }
+
     public function getBienList()
     {
         return $this->bienManager->getBienlist();
@@ -66,7 +71,6 @@ class BienController
     public function publierValidation()
     {
         $this->bienManager->ajoutBienBD($_POST['nom'], $_POST['desc'], ($_POST['venteloc'] == "loc") ? $_POST["prix"] : NULL, ($_POST['venteloc'] == "vente") ? $_POST["prix"] : NULL, $_POST["categorie"], $_POST["nbpieces"], $_POST["nbetages"], $_POST["surface"], $_POST["numappart"], $_SESSION['user']['id'], $_POST["idadresse"]);
-        header('Location: ' . URL . "offres/" . $_POST['idbien']);
     }
     
     public function suppressionBien($id){

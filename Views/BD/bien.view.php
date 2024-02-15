@@ -1,15 +1,13 @@
 <?php ob_start();
 require_once "Controller/utilisateurController.php";
 $utilisateurController = new UtilisateurController;
-$DBuser = $utilisateurController->getUtilisateursList();
 require_once "Controller/adresseController.php";
 $adresseController = new AdresseController;
-$DBadresse = $adresseController->getAdresseList();
 require_once "Controller/photoController.php";
 $photoController = new PhotoController;
-$DBphoto = $photoController->getPhotoList();
 require "departement.php";
 $listephotos = $photoController->getPhotosByBien($bien->getId());
+$adresseBien = $adresseController->getManager()->getAdresseById($bien->getId());
 ?>
 
 <section class="content">
@@ -44,7 +42,7 @@ $listephotos = $photoController->getPhotosByBien($bien->getId());
         </div>
         <div class="details">
             <h2><?= $bien->getNom(); ?></h2>
-            <h3>Publiée par <a href="/profil/<?= $bien->getUtilisateur() ?>"><?= $DBuser[$bien->getUtilisateur() - 1]->getUsername(); ?></a></h3>
+            <h3>Publiée par <a href="/profil/<?= $bien->getUtilisateur() ?>"><?= $utilisateurController->getManager()->getUserById($bien->getUtilisateur())->getUsername(); ?></a></h3>
             <h4><?= $bien->getDescription() ?></h4>
             <p class="infosbien">
             <p><?= ucwords($bien->getCategorie()) ?>
@@ -53,9 +51,9 @@ $listephotos = $photoController->getPhotosByBien($bien->getId());
             <p><?= $bien->getNbPieces() . " pièces - " . $bien->getSurface() . "m²" ?>
                 <?= ($bien->getNbEtages() != 0) ? "(" . $bien->getNbEtages() . " étages)" : null; ?></p>
             <p><?= ($bien->getCategorie() == "appartement") ? "Appartement n°" . $bien->getNumAppart() . " - " : null ?>
-                <?= $DBadresse[$bien->getAdresse() - 1]->getNomVoie() ?></p>
-            <p><?= $DBadresse[$bien->getAdresse() - 1]->getZipcode() . " " . $DBadresse[$bien->getAdresse() - 1]->getLocalite(); ?></p>
-            <p><?= get_region_departement($DBadresse[$bien->getAdresse() - 1]->getZipcode())['departement'] . " (" . get_region_departement($DBadresse[$bien->getAdresse() - 1]->getZipcode())['region'] . ")"; ?> <span title="Detecté automatiquement à partir du code postal entré par l'auteur de cette annonce." class="conseil">(?)</span></p>
+                <?= $adresseBien->getNomVoie() ?></p>
+            <p><?= $adresseBien->getZipcode() . " " . $adresseBien->getLocalite(); ?></p>
+            <p><?= get_region_departement($adresseBien->getZipcode())['departement'] . " (" . get_region_departement($adresseBien->getZipcode())['region'] . ")"; ?> <span title="Detecté automatiquement à partir du code postal entré par l'auteur de cette annonce." class="conseil">(?)</span></p>
             </p>
 
             <?php if (isset($_SESSION["user"]["id"]) && $_SESSION["user"]["id"] == $bien->getUtilisateur()) : ?>

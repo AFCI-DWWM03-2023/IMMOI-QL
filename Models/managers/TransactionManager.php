@@ -4,7 +4,7 @@ require_once "Models/data/Transaction.class.php";
 require_once "Models/Model.class.php";
 
 class TransactionManager extends BDConnexion{
-    private $transactionlist;
+    private $transactionlist = [];
 
     public function ajoutTransaction($transaction){
         $this->transactionlist[] = $transaction;
@@ -24,6 +24,16 @@ class TransactionManager extends BDConnexion{
             $transaction = new Transaction($value['idTransaction'], $value['montant'], $value['dateTransaction'], $value['acheteur'], $value['vendeur'], $value['agent'], $value['idBien']);
             $this->ajoutTransaction($transaction);
         }
+    }
+    
+    public function getTransactionsFromUser($user){
+        $listeTransaction = [];
+        for ($i = 0; $i < count($this->transactionlist); $i++) {
+            if ($this->transactionlist[$i]->getAgent() == $user) {
+                $listeTransaction[] = $this->transactionlist[$i];
+            }
+        }
+        return $listeTransaction;
     }
 
 }

@@ -18,6 +18,9 @@ $DBadresse = $adresseController->getAdresseList();
 require_once "Controller/photoController.php";
 $photoController = new PhotoController;
 $DBphoto = $photoController->getPhotoList();
+require_once "Controller/transactionController.php";
+$transactionController = new TransactionController;
+$DBtransaction = $transactionController->getTransactionList();
 
 try {
     if (empty($_GET['page'])) {
@@ -119,6 +122,8 @@ try {
                                 header('Location: ' . URL . "profil/edit");
                             }
                         }
+                    } else if ($url[1] == "transactions") {
+                        $transactionController->afficherTransactions($_SESSION["user"]["id"]);
                     } else {
                         if (empty($url[2])) {
                             $utilisateurController->afficherProfil($url[1]);
@@ -146,7 +151,7 @@ try {
                     if (empty($url[2])) {
                         $bienController->afficherBien($url[1]);
                     } else if ($url[2] == "img") {
-                        if (isset($_SESSION["user"]["id"]) && $_SESSION["user"]["id"] == $DBbien[$url[1] - 1]->getUtilisateur()) {
+                        if (isset($_SESSION["user"]["id"]) && $_SESSION["user"]["id"] == $bienController->getManager()->getBienById($url[1])->getUtilisateur()) {
                             if (empty($url[3])) {
                                 $photoController->gererPhotos($url[1]);
                             } else if ($url[3] == "v") {
@@ -160,7 +165,7 @@ try {
                             require "Views/permissionError.view.php";
                         }
                     } else if ($url[2] == "modif") {
-                        if (isset($_SESSION["user"]["id"]) && $_SESSION["user"]["id"] == $DBbien[$url[1] - 1]->getUtilisateur()) {
+                        if (isset($_SESSION["user"]["id"]) && $_SESSION["user"]["id"] == $bienController->getManager()->getBienById($url[1])->getUtilisateur()) {
                             if (empty($url[3])) {
                                 $bienController->modificationBien($url[1]);
                             } else if ($url[3] == "validation") {
@@ -197,7 +202,8 @@ try {
                     if (isset($_POST['verifpublier'])) {
                         $adresseController->addAdresse();
                         $bienController->publierValidation();
-                        if (isset($_POST['photocouv'])) $photoController->addPhotoCouv();
+                        if (isset($_FILES['photocouv'])) {$photoController->addPhotoCouv();}
+                        header('Location: ' . URL . "offres/" . $_POST['idbien']);
                     } else {
                         header('Location: ' . URL . "accueil");
                     }

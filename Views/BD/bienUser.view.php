@@ -3,10 +3,8 @@ $url = explode("/", filter_var($_GET['page']), FILTER_SANITIZE_URL);
 $monprofil = (isset($_SESSION["user"]) && $_SESSION["user"]["id"] == $url[1]) ? true : false;
 require_once "Controller/adresseController.php";
 $adresseController = new AdresseController;
-$DBadresse = $adresseController->getAdresseList();
 require_once "Controller/photoController.php";
 $photoController = new PhotoController;
-$DBphoto = $photoController->getPhotoList();
 $i = 1;
 require "departement.php"
 ?>
@@ -20,14 +18,14 @@ require "departement.php"
         $couverture = 0;
         foreach ($listephotos as $photo) {
             if ($photo->getCouverture()) {
-                $couverture = $photo->getId();
+                $couverture = $photo;
             }
         }
     ?>
         <div class="offre <?= ($i % 2) ? "pair" : "impair"; ?>">
             <div class="offrecontent">
 
-                <a href="/offres/<?= $bien->getId() ?>"><img src="/public/img/<?= ($couverture != 0) ? "photos/" . $DBphoto[$bien->getId()-1]->getNom() : "default.jpg"; ?>" class="photocouverture" alt=""></a>
+                <a href="/offres/<?= $bien->getId() ?>"><img src="/public/img/<?= ($couverture !== 0) ? "photos/" . $couverture->getNom() : "default.jpg"; ?>" class="photocouverture" alt=""></a>
                 <div class="offreinfos">
                     <h3 class="nom">
                         <img src="/public/img/icones/<?= $bien->getCategorie(); ?>.svg" alt="">
@@ -36,11 +34,11 @@ require "departement.php"
                     <ul>
                         <li><?= ($bien->getPrixLoc()) ? "En location : " . $bien->getPrixLoc() . "€/mois" : null; ?>
                             <?= ($bien->getPrixVente()) ? "En vente : " . $bien->getPrixVente() . "€" : null; ?></li>
-                        <li><?= ($bien->getCategorie() != "terrain") ? $bien->getNbPieces() . " pièces - " : ""; ?>
+                        <li><?= ($bien->getCategorie() != "terrain") ? $bien->getNbPieces() . " pièce" . (($bien->getNbPieces()!=1) ? "s" : "") . " - " : ""; ?>
                             <?= $bien->getSurface() . "m²"; ?></li>
-                        <li><?= $DBadresse[$bien->getAdresse() - 1]->getZipcode(); ?>
-                            <?= $DBadresse[$bien->getAdresse() - 1]->getLocalite(); ?></li>
-                        <li><?= get_region_departement($DBadresse[$bien->getAdresse() - 1]->getZipcode())['region']; ?></li>
+                        <li><?= $adresseController->getManager()->getAdresseById($bien->getAdresse())->getZipcode(); ?>
+                            <?= $adresseController->getManager()->getAdresseById($bien->getAdresse())->getLocalite(); ?></li>
+                        <li><?= get_region_departement($adresseController->getManager()->getAdresseById($bien->getAdresse())->getZipcode())['region']; ?></li>
                     </ul>
                     <a href="/offres/<?= $bien->getId() ?>" class="decouvrir <?= ($i % 2) ? "pair" : "impair"; ?>"><span class="decouvrirtext">Détails</span> ></a>
                     <?php if ($monprofil) : ?>

@@ -39,12 +39,14 @@ require "departement.php"; ?>
     <h2>Selection d'offres</h2>
     <div class="caroussel">
         <div id="carousselaleft"><</div>
-        <?php foreach ($caroussel as $value) : ?>
+        <?php foreach ($caroussel as $value) :
+            $bienCaroussel = $bienController->getManager()->getBienById($value->getBien());
+            $adresseCaroussel = $adresseController->getManager()->getAdresseById($bienCaroussel->getId())?>
             <a href="offres/<?=$value->getBien();?>" class="carousselitem">
                 <img src="public/img/photos/<?= $value->getNom(); ?>" alt="">
-                <p><?=$DBbien[$value->getBien()-1]->getNom();?><br>
-                <?=$DBadresse[$DBbien[$value->getBien()-1]->getAdresse()-1]->getLocalite();?> (<?=get_region_departement($DBadresse[$DBbien[$value->getBien()-1]->getAdresse()-1]->getZipcode())["region"];?>)<br>
-                <?=($DBbien[$value->getBien()-1]->getPrixLoc() > 0) ? $DBbien[$value->getBien()-1]->getPrixLoc() . "€/mois" :  $DBbien[$value->getBien()-1]->getPrixVente() . "€"; ?>
+                <p><?=$bienCaroussel->getNom();?><br>
+                <?=$adresseCaroussel->getLocalite();?> (<?=get_region_departement($adresseCaroussel->getZipcode())["region"];?>)<br>
+                <?=($bienCaroussel->getPrixLoc() > 0) ? $bienCaroussel->getPrixLoc() . "€/mois" :  $bienCaroussel->getPrixVente() . "€"; ?>
             </p>
             </a>
         <?php endforeach; ?>

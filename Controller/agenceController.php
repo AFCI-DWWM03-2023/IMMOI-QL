@@ -9,6 +9,11 @@ class AgenceController{
         $this->agenceManager->chargementAgencelist();
     }
 
+    public function getManager()
+    {
+        return $this->agenceManager;
+    }
+
     public function afficherAgences(){
         $DBagence = $this->agenceManager->getAgencelist();
         require "Views/BD/agences.view.php";
