@@ -42,6 +42,7 @@ $adresseBien = $adresseController->getManager()->getAdresseById($bien->getAdress
                 <input type="text" name="zipcode" id="zipcode" maxlength="10" value="<?= $adresseBien->getZipcode() ?>" class="searchbar w30">
                 <input type="text" name="localite" id="localite" maxlength="45" value="<?= $adresseBien->getLocalite() ?>" class="searchbar w68">
                 <input type="checkbox" name="adressemodif" id="adressemodif" hidden><br>
+                <input type="hidden" name="oldadresse" value="<?=$adresseBien->getId()?>">
                 <input type="hidden" name="verifmodifbien" value="true">
                 <input type="submit" value="Valider" id="validerinsc" class="submitsearch">
             </form>

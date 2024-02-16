@@ -20,6 +20,7 @@
         <input type="hidden" name="dptselect">
         <input type="submit" value="Lancer la recherche" class="submitsearch" disabled="true" title="Veuillez selectionner un département">
     </form>
+    <!-- Crédits carte : https://www.kortic.com/carte-de-france-vectorielle-interactive-et-accessible.html -->
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1080" fill="#41484F" role="img" id="france">
         <defs>
             <style type="text/css">

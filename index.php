@@ -114,6 +114,7 @@ try {
                                     $utilisateurController->modifierProfil();
                                 } else {
                                     if (isset($_POST["adressemodif"]) & $_POST["adresse"] != "" & $_POST["zipcode"] != "" & $_POST["localite"] != "") {
+                                        $adresseController->removeOldAdresse();
                                         $adresseController->addAdresse();
                                     }
                                     $utilisateurController->modifierValidation();
@@ -131,6 +132,8 @@ try {
                             if (empty($url[3])) {
                                 $bienController->afficherBiensByUser($url[1]);
                             } else if ($url[3] === "s") {
+                                $addresseBien = $bienController->getManager()->getBienById($url[4])->getAdresse();
+                                $adresseController->suppressionAdresse($addresseBien);
                                 $bienController->suppressionBienUser($url[4]);
                             }
                         }
@@ -171,6 +174,7 @@ try {
                             } else if ($url[3] == "validation") {
                                 if (isset($_POST['verifmodifbien'])) {
                                     if (isset($_POST["adressemodif"])) {
+                                        $adresseController->removeOldAdresse();
                                         $adresseController->addAdresse();
                                     }
                                     $bienController->modifierValidation($url[1]);

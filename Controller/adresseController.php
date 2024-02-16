@@ -36,4 +36,12 @@ class AdresseController{
         $this->adresseManager->ajoutAdresseBD($_POST['adresse'], $_POST['zipcode'], $_POST['localite']);
     }
 
+    public function removeOldAdresse(){
+        $this->adresseManager->suppressionAdresseBD($_POST["oldadresse"]);
+    }
+    
+    public function suppressionAdresse($id){
+        $this->adresseManager->suppressionAdresseBD($id);
+    }
+
 }

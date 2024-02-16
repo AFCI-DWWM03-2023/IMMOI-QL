@@ -82,4 +82,18 @@ class AdresseManager extends BDConnexion
             $_POST['idadresse'] = $this->getBDD()->lastInsertId();
         }
     }
+
+    public function suppressionAdresseBD($id)
+    {
+        $req = "DELETE FROM adresse WHERE idAdresse = :idAdresse";
+        $stmt = $this->getBDD()->prepare($req);
+        $stmt->bindValue(":idAdresse", $id, PDO::PARAM_INT);
+        $resultat = $stmt->execute();
+        $stmt->closeCursor();
+
+        if ($resultat > 0) {
+            $adresse = $this->getAdresseById($id);
+            unset($adresse);
+        }
+    }
 }
