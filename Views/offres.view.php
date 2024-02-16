@@ -62,5 +62,5 @@ $searchresults = [
 
 <?php
 $content = ob_get_clean();
-$titre = "Dernières offres";
+$titre = (isset($_POST["verifsearch"]) || isset($_POST["verifsearchdpt"])) ? "Résultats de recherche" : "Dernières offres";
 require "template.php";

@@ -55,5 +55,5 @@ $adresseBien = $adresseController->getManager()->getAdresseById($bien->getAdress
 
 <?php
 $content = ob_get_clean();
-$titre = "Publier un bien";
+$titre = "Modification d'un bien";
 require "template.php";

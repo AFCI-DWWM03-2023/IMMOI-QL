@@ -29,5 +29,5 @@
 
 <?php
 $content = ob_get_clean();
-$titre = "Mes Transactions";
+$titre = "Mes transactions";
 require "Views/template.php";

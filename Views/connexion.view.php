@@ -21,5 +21,5 @@ if (isset($_POST['connexionEchoue'])) $connexionEchoue = $_POST['connexionEchoue
 
 <?php
 $content = ob_get_clean();
-$titre = "Inscription";
+$titre = "Connexion";
 require "template.php";

@@ -1,6 +1,6 @@
 <?php ob_start();
 $monprofil = (isset($_SESSION["user"]) && $_SESSION["user"]["id"] == $user->getId()) ? true : false;
-$qualif = ("" !== $user->getPrenom()) ? $user->getPrenom() : $user->getUsername();
+$qualif = (null !== $user->getPrenom()) ? $user->getPrenom() : $user->getUsername();
 require_once "Controller/agenceController.php";
 $agenceController = new AgenceController;
 require_once "Controller/adresseController.php";
@@ -27,5 +27,5 @@ $adresseUser = $adresseController->getManager()->getAdresseById($user->getId())
 
 <?php
 $content = ob_get_clean();
-$titre = "Profil";
+$titre = ($monprofil) ? "Mon profil" : "Profil de " . $qualif;
 require "Views/template.php";

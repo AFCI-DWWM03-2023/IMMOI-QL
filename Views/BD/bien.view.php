@@ -66,5 +66,5 @@ $adresseBien = $adresseController->getManager()->getAdresseById($bien->getAdress
 
 <?php
 $content = ob_get_clean();
-$titre = "Bien";
+$titre = $bien->getNom();
 require "Views/template.php";

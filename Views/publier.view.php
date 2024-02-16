@@ -55,5 +55,5 @@
 
 <?php
 $content = ob_get_clean();
-$titre = "Publier un bien";
+$titre = "Publier une offre";
 require "template.php";
