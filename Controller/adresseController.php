@@ -28,6 +28,9 @@ class AdresseController{
     public function getAdresseSearch(){
         return $this->adresseManager->searchAdresseList($_POST["searchville"]);
     }
+    public function getAdresseSearchDpt(){
+        return $this->adresseManager->searchAdresseDptList($_POST["dptselect"]);
+    }
 
     public function addAdresse(){
         $this->adresseManager->ajoutAdresseBD($_POST['adresse'], $_POST['zipcode'], $_POST['localite']);

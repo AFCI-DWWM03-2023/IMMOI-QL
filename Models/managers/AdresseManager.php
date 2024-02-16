@@ -36,6 +36,21 @@ class AdresseManager extends BDConnexion
         return $listeAdresse;
     }
 
+    public function searchAdresseDptList($dpt){
+        $listeAdresse = [];
+        foreach ($this->adresselist as $value) {
+            if (strlen($dpt) == 3) {
+                $zipnumber = substr($value->getId(), 0, 3);
+            } else {
+                $zipnumber = substr($value->getId(), 0, 2);
+            }
+            if ($zipnumber == $dpt) {
+                $listeAdresse[] = $value->getId();
+            }
+        }
+        return $listeAdresse;
+    }
+
     public function chargementAdresselist()
     {
         $req = $this->getBDD()->prepare('SELECT * FROM adresse');

@@ -25,7 +25,7 @@ require "departement.php"; ?>
             <input type="hidden" name="verifsearch" value="true"><br>
             <input type="submit" value="Lancer la recherche" class="submitsearch">
         </form>
-        <a href="region" class="search searchregion"><img src="public/img/france.png" alt="">Rechercher un bien par région</a>
+        <a href="region" class="search searchregion"><img src="public/img/france.png" alt="">Rechercher un bien par département</a>
     </div>
     <img src="public/img/header.jpg" alt="header"> <!-- Crédit : Binyamin Mellish -->
     <div class="sect1image">
@@ -60,7 +60,7 @@ require "departement.php"; ?>
 </section>
 
 <section class="sectmobile1">
-    <a href="region" class="mobilesearchregion"><img src="public/img/france.png" alt="">Rechercher un bien par région</a>
+    <a href="region" class="mobilesearchregion"><img src="public/img/france.png" alt="">Rechercher un bien par département</a>
 </section>
 
 <section class="sect3 contentcenter">

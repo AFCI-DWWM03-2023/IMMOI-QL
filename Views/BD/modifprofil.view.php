@@ -1,7 +1,7 @@
 <?php ob_start();
 require_once "Controller/adresseController.php";
 $adresseController = new AdresseController;
-$DBadresse = $adresseController->getAdresseList();
+if ($_SESSION['user']['adresse'] != 0) $adresseUser = $adresseController->getManager()->getAdresseById($_SESSION['user']['adresse']);
 ?>
 
 <section class="content contentcenter">
@@ -19,9 +19,9 @@ $DBadresse = $adresseController->getAdresseList();
             <label for="telephone">Numéro de téléphone</label>
             <input type="text" name="telephone" id="telephone" class="searchbar" value="<?=$_SESSION['user']['telephone']?>"><br>
             <label for="adresse">Adresse </label><span id="adresscorrect" title="L'adresse doit être complète ou entièrement vide"></span>
-            <input type="text" name="adresse" id="adresse" class="searchbar" placeholder="Nom de voie" value="<?=($_SESSION['user']['adresse'] != 0) ? $DBadresse[$_SESSION['user']['adresse']-1]->getNomVoie() : "" ;?>"><br>
-            <input type="text" name="zipcode" id="zipcode" class="searchbar" placeholder="Code postal" value="<?=($_SESSION['user']['adresse'] != 0) ? $DBadresse[$_SESSION['user']['adresse']-1]->getZipcode() : "" ;?>"><br>
-            <input type="text" name="localite" id="localite" class="searchbar" placeholder="Localité" value="<?=($_SESSION['user']['adresse'] != 0) ? $DBadresse[$_SESSION['user']['adresse']-1]->getLocalite() : "" ;?>"><br>
+            <input type="text" name="adresse" id="adresse" class="searchbar" placeholder="Nom de voie" value="<?=($_SESSION['user']['adresse'] != 0) ? $adresseUser->getNomVoie() : "" ;?>"><br>
+            <input type="text" name="zipcode" id="zipcode" class="searchbar" placeholder="Code postal" value="<?=($_SESSION['user']['adresse'] != 0) ? $adresseUser->getZipcode() : "" ;?>"><br>
+            <input type="text" name="localite" id="localite" class="searchbar" placeholder="Localité" value="<?=($_SESSION['user']['adresse'] != 0) ? $adresseUser->getLocalite() : "" ;?>"><br>
             <input type="checkbox" name="adressemodif" id="adressemodif" hidden><br>
             <input type="hidden" name="verifmodifprofil" value="true">
 

@@ -108,6 +108,11 @@
 .submitsearch:hover {
   background-color: var(--lighter-blue);
 }
+.submitsearch:disabled {
+  background-color: #AAA;
+  color: #CCC;
+  cursor: default;
+}
 .searchbar {
   border: none;
   background-color: #eee;

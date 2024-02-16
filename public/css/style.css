@@ -545,11 +545,6 @@ footer .footerelem img {
   margin-top: 10px;
   text-decoration: none;
 }
-.inscon .submitsearch:disabled {
-  background-color: #AAA;
-  color: #CCC;
-  cursor: default;
-}
 .inscon .sinscrire {
   display: block;
   margin-left: auto;
@@ -587,6 +582,15 @@ footer .footerelem img {
   text-align: center;
   font-size: 60px;
   margin: -10px 0 30px;
+}
+.rechercheparregion h2 {
+  font-size: 80px;
+  margin: 40px 0;
+  text-align: center;
+}
+.rechercheparregion #france {
+  max-width: 800px;
+  width: 100%;
 }
 @media screen and (max-width: 1180px) {
   nav {
@@ -660,6 +664,9 @@ footer .footerelem img {
   }
   .offre .offrecontent .offreinfos .supprimer img {
     height: 32px;
+  }
+  .rechercheparregion h2 {
+    font-size: 50px;
   }
 }
 @media screen and (max-width: 800px) {
@@ -798,6 +805,9 @@ footer .footerelem img {
   }
   .bienoverview .details h2 {
     text-align: center;
+    font-size: 36px;
+  }
+  .rechercheparregion h2 {
     font-size: 36px;
   }
 }

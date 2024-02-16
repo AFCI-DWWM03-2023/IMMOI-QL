@@ -191,7 +191,11 @@ try {
                 if (isset($_POST['verifsearch'])) {
                     $listeadresses = $adresseController->getAdresseSearch();
                     $bienController->rechercheBien($listeadresses);
-                } else {
+                } if (isset($_POST['verifsearchdpt'])) {
+                    $listeadresses = $adresseController->getAdresseSearchDpt();
+                    $bienController->rechercheBien($listeadresses);
+                }
+                else {
                     header('Location: ' . URL . "offres");
                 }
                 break;

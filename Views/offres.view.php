@@ -1,10 +1,8 @@
 <?php ob_start();
 require_once "Controller/adresseController.php";
 $adresseController = new AdresseController;
-$DBadresse = $adresseController->getAdresseList();
 require_once "Controller/photoController.php";
 $photoController = new PhotoController;
-$DBphoto = $photoController->getPhotoList();
 require "departement.php";
 $searchresults = [
     "all" => "toutes les annonces",
@@ -14,12 +12,17 @@ $searchresults = [
     "venteloc" => "en vente ou location",
     "vente" => "en vente",
     "location" => "en location"
-    ]?>
+] ?>
 
 <section class="sectoffres">
     <?php if (isset($_POST["verifsearch"])) : ?>
         <div class="barrerecherche">
             <h3>Vous avez recherché <?= $searchresults[$_POST["searchcategorie"]] ?> <?= $searchresults[$_POST["searchventeloc"]] ?> <?= ($_POST["searchville"] != "") ? "à " . ucfirst($_POST["searchville"]) : "" ?> <?= ($_POST["searchprix"] != "") ? "avec un budget maximal de " . $_POST["searchprix"] . "€" : "sans limite de budget" ?><?= ($_POST["searchprix"] != "" && $_POST["searchventeloc"] == "location") ? " par mois" : "" ?>.</h3>
+        </div>
+    <?php endif; ?>
+    <?php if (isset($_POST["verifsearchdpt"])) : ?>
+        <div class="barrerecherche">
+            <h3>Vous avez recherché <?= $searchresults[$_POST["searchcategorie"]] ?> <?= $searchresults[$_POST["searchventeloc"]] ?> dans le département <?= get_region_departement($_POST["dptselect"])["departement"] ?> <?= ($_POST["searchprix"] != "") ? "avec un budget maximal de " . $_POST["searchprix"] . "€" : "sans limite de budget" ?><?= ($_POST["searchprix"] != "" && $_POST["searchventeloc"] == "location") ? " par mois" : "" ?>.</h3>
         </div>
     <?php endif; ?>
     <?php for ($i = 0; $i < count($listebiens); $i++) :
@@ -43,11 +46,11 @@ $searchresults = [
                     <ul>
                         <li><?= ($listebiens[$i]->getPrixLoc()) ? "En location : " . $listebiens[$i]->getPrixLoc() . "€/mois" : null; ?>
                             <?= ($listebiens[$i]->getPrixVente()) ? "En vente : " . $listebiens[$i]->getPrixVente() . "€" : null; ?></li>
-                        <li><?= ($listebiens[$i]->getCategorie() != "terrain") ? $listebiens[$i]->getNbPieces() . " pièce" . (($listebiens[$i]->getNbPieces()!=1) ? "s" : "") . " - " : ""; ?>
+                        <li><?= ($listebiens[$i]->getCategorie() != "terrain") ? $listebiens[$i]->getNbPieces() . " pièce" . (($listebiens[$i]->getNbPieces() != 1) ? "s" : "") . " - " : ""; ?>
                             <?= $listebiens[$i]->getSurface() . "m²"; ?></li>
                         <li><?= $adresseController->getManager()->getAdresseById($listebiens[$i]->getAdresse())->getZipcode(); ?>
                             <?= $adresseController->getManager()->getAdresseById($listebiens[$i]->getAdresse())->getLocalite(); ?></li>
-                        <li><?= get_region_departement($adresseController->getManager()->getAdresseById($listebiens[$i]->getAdresse())->getZipcode())['region']; ?></li>
+                        <li><?= get_region_departement($adresseController->getManager()->getAdresseById($listebiens[$i]->getAdresse())->getZipcode())['departement'] . " (" .get_region_departement($adresseController->getManager()->getAdresseById($listebiens[$i]->getAdresse())->getZipcode())['region'] . ")" ?></li>
                     </ul>
                     <a href="/offres/<?= $listebiens[$i]->getId() ?>" class="decouvrir <?= ($i % 2) ? "pair" : "impair"; ?>"><span class="decouvrirtext">Découvrir</span> ></a>
                 </div>
