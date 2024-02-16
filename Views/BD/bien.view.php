@@ -7,7 +7,7 @@ require_once "Controller/photoController.php";
 $photoController = new PhotoController;
 require "departement.php";
 $listephotos = $photoController->getPhotosByBien($bien->getId());
-$adresseBien = $adresseController->getManager()->getAdresseById($bien->getId());
+$adresseBien = $adresseController->getManager()->getAdresseById($bien->getAdresse());
 ?>
 
 <section class="content">
