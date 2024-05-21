@@ -1,7 +1,7 @@
 <?php ob_start();
 require_once "Controller/adresseController.php";
 $adresseController = new AdresseController;
-if ($_SESSION['user']['adresse'] != 0) $adresseUser = $adresseController->getManager()->getAdresseById($_SESSION['user']['adresse']);
+if ($_SESSION['user']['adresse'] !== 0) $adresseUser = $adresseController->getManager()->getAdresseById($_SESSION['user']['adresse']);
 ?>
 
 <section class="content contentcenter">
@@ -23,7 +23,7 @@ if ($_SESSION['user']['adresse'] != 0) $adresseUser = $adresseController->getMan
                 <input type="text" name="zipcode" id="zipcode" class="searchbar" placeholder="Code postal" value="<?= ($_SESSION['user']['adresse'] != 0) ? $adresseUser->getZipcode() : ""; ?>"><br>
                 <input type="text" name="localite" id="localite" class="searchbar" placeholder="Localité" value="<?= ($_SESSION['user']['adresse'] != 0) ? $adresseUser->getLocalite() : ""; ?>"><br>
                 <input type="checkbox" name="adressemodif" id="adressemodif" hidden><br>
-                <input type="hidden" name="oldadresse" value="<?= $adresseUser->getId() ?>">
+                <input type="hidden" name="oldadresse" value="<?= ($_SESSION['user']['adresse'] != 0) ? $adresseUser->getId() : "" ?>">
                 <input type="hidden" name="verifmodifprofil" value="true">
 
                 <input type="submit" value="Valider les modifications" class="submitsearch" id="validerinsc">
