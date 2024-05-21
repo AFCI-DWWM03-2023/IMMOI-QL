@@ -118,7 +118,7 @@
   background-color: #eee;
   padding: 5px 10px;
   border-radius: 20px;
-  font-size: 20px;
+  font-size: 16px;
   margin-bottom: 20px;
 }
 .sectmobile1 {
@@ -183,7 +183,7 @@
   margin: 36px auto;
   display: flex;
   justify-content: space-around;
-  width: 70%;
+  width: 80%;
 }
 .sect2 .s2container div {
   background-color: var(--lightest-blue);
@@ -329,7 +329,7 @@
     font-size: 108px;
   }
   .sect1 div.sect1image h2 {
-    font-size: 24px;
+    font-size: 22px;
   }
   .sectmobile1 .mobilesearchregion {
     font-size: 30px;

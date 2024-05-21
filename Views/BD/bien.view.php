@@ -7,7 +7,7 @@ require_once "Controller/photoController.php";
 $photoController = new PhotoController;
 require "departement.php";
 $listephotos = $photoController->getPhotosByBien($bien->getId());
-$adresseBien = $adresseController->getManager()->getAdresseById($bien->getAdresse());
+$adresseBien = $adresseController->getAdresseById($bien->getAdresse());
 ?>
 
 <section class="content">
@@ -42,7 +42,7 @@ $adresseBien = $adresseController->getManager()->getAdresseById($bien->getAdress
         </div>
         <div class="details">
             <h2><?= $bien->getNom(); ?></h2>
-            <h3>Publiée par <a href="/profil/<?= $bien->getUtilisateur() ?>"><?= $utilisateurController->getManager()->getUserById($bien->getUtilisateur())->getUsername(); ?></a></h3>
+            <h3>Publiée par <a href="/profil/<?= $bien->getUtilisateur() ?>"><?= $utilisateurController->getUserById($bien->getUtilisateur())->getUsername(); ?></a></h3>
             <h4><?= $bien->getDescription() ?></h4>
             <p class="infosbien">
             <p><?= ucwords($bien->getCategorie()) ?>

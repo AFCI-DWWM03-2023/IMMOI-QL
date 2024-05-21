@@ -48,9 +48,9 @@ $searchresults = [
                             <?= ($listebiens[$i]->getPrixVente()) ? "En vente : " . $listebiens[$i]->getPrixVente() . "€" : null; ?></li>
                         <li><?= ($listebiens[$i]->getCategorie() != "terrain") ? $listebiens[$i]->getNbPieces() . " pièce" . (($listebiens[$i]->getNbPieces() != 1) ? "s" : "") . " - " : ""; ?>
                             <?= $listebiens[$i]->getSurface() . "m²"; ?></li>
-                        <li><?= $adresseController->getManager()->getAdresseById($listebiens[$i]->getAdresse())->getZipcode(); ?>
-                            <?= $adresseController->getManager()->getAdresseById($listebiens[$i]->getAdresse())->getLocalite(); ?></li>
-                        <li><?= get_region_departement($adresseController->getManager()->getAdresseById($listebiens[$i]->getAdresse())->getZipcode())['departement'] . " (" .get_region_departement($adresseController->getManager()->getAdresseById($listebiens[$i]->getAdresse())->getZipcode())['region'] . ")" ?></li>
+                        <li><?= $adresseController->getAdresseById($listebiens[$i]->getAdresse())->getZipcode(); ?>
+                            <?= $adresseController->getAdresseById($listebiens[$i]->getAdresse())->getLocalite(); ?></li>
+                        <li><?= get_region_departement($adresseController->getAdresseById($listebiens[$i]->getAdresse())->getZipcode())['departement'] . " (" .get_region_departement($adresseController->getAdresseById($listebiens[$i]->getAdresse())->getZipcode())['region'] . ")" ?></li>
                     </ul>
                     <a href="/offres/<?= $listebiens[$i]->getId() ?>" class="decouvrir <?= ($i % 2) ? "pair" : "impair"; ?>"><span class="decouvrirtext">Découvrir</span> ></a>
                 </div>

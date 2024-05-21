@@ -11,11 +11,6 @@ class UtilisateurController
         $this->utilisateurManager->chargementUserlist();
     }
 
-    public function getManager()
-    {
-        return $this->utilisateurManager;
-    }
-
     public function getUtilisateursList()
     {
         return $this->utilisateurManager->getUserlist();
@@ -125,6 +120,16 @@ class UtilisateurController
     {
         $this->utilisateurManager->suppressionUtilisateurBD($id);
         header('Location: ' . URL . "bdtest/utilisateurs");
+    }
+
+    public function verifUtilisateurExiste($username, $email) 
+    {
+        return $this->utilisateurManager->verifUtilisateurExiste($username, $email);
+    }
+
+    public function getUserById($id)
+    {
+        return $this->utilisateurManager->getUserById($id);
     }
 
     // public function modifierUtilisateur($id){

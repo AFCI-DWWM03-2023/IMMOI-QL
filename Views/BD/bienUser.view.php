@@ -2,7 +2,7 @@
 $url = explode("/", filter_var($_GET['page']), FILTER_SANITIZE_URL);
 require_once "Controller/utilisateurController.php";
 $utilisateurController = new UtilisateurController;
-$username = $utilisateurController->getManager()->getUserById($url[1])->getUsername();
+$username = $utilisateurController->getUserById($url[1])->getUsername();
 $monprofil = (isset($_SESSION["user"]) && $_SESSION["user"]["id"] == $url[1]) ? true : false;
 require_once "Controller/adresseController.php";
 $adresseController = new AdresseController;
@@ -39,9 +39,9 @@ require "departement.php"
                             <?= ($bien->getPrixVente()) ? "En vente : " . $bien->getPrixVente() . "€" : null; ?></li>
                         <li><?= ($bien->getCategorie() != "terrain") ? $bien->getNbPieces() . " pièce" . (($bien->getNbPieces()!=1) ? "s" : "") . " - " : ""; ?>
                             <?= $bien->getSurface() . "m²"; ?></li>
-                        <li><?= $adresseController->getManager()->getAdresseById($bien->getAdresse())->getZipcode(); ?>
-                            <?= $adresseController->getManager()->getAdresseById($bien->getAdresse())->getLocalite(); ?></li>
-                            <li><?= get_region_departement($adresseController->getManager()->getAdresseById($bien->getAdresse())->getZipcode())['departement'] . " (" .get_region_departement($adresseController->getManager()->getAdresseById($bien->getAdresse())->getZipcode())['region'] . ")" ?></li>
+                        <li><?= $adresseController->getAdresseById($bien->getAdresse())->getZipcode(); ?>
+                            <?= $adresseController->getAdresseById($bien->getAdresse())->getLocalite(); ?></li>
+                            <li><?= get_region_departement($adresseController->getAdresseById($bien->getAdresse())->getZipcode())['departement'] . " (" .get_region_departement($adresseController->getAdresseById($bien->getAdresse())->getZipcode())['region'] . ")" ?></li>
                     </ul>
                     <a href="/offres/<?= $bien->getId() ?>" class="decouvrir <?= ($i % 2) ? "pair" : "impair"; ?>"><span class="decouvrirtext">Détails</span> ></a>
                     <?php if ($monprofil) : ?>

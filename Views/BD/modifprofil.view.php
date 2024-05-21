@@ -1,7 +1,7 @@
 <?php ob_start();
 require_once "Controller/adresseController.php";
 $adresseController = new AdresseController;
-if ($_SESSION['user']['adresse'] !== 0) $adresseUser = $adresseController->getManager()->getAdresseById($_SESSION['user']['adresse']);
+if ($_SESSION['user']['adresse'] !== 0) $adresseUser = $adresseController->getAdresseById($_SESSION['user']['adresse']);
 ?>
 
 <section class="content contentcenter">

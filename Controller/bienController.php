@@ -11,11 +11,6 @@ class BienController
         $this->bienManager->chargementBienlist();
     }
 
-    public function getManager()
-    {
-        return $this->bienManager;
-    }
-
     public function getBienList()
     {
         return $this->bienManager->getBienlist();
@@ -82,5 +77,9 @@ class BienController
         $utilisateur = $this->bienManager->getBienById($id)->getUtilisateur();
         $this->bienManager->suppressionBienBD($id);
         header('Location: '.URL."profil/".$utilisateur."/offres");
+    }
+
+    public function getBienById($id){
+        return $this->bienManager->getBienById($id);
     }
 }

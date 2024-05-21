@@ -1,7 +1,7 @@
 <?php ob_start();
 require_once "Controller/adresseController.php";
 $adresseController = new AdresseController;
-$adresseBien = $adresseController->getManager()->getAdresseById($bien->getAdresse());
+$adresseBien = $adresseController->getAdresseById($bien->getAdresse());
 ?>
 
 <section class="content contentcenter">

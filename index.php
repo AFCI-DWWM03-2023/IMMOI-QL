@@ -107,7 +107,7 @@ try {
                             if (isset($_POST['verifmodifprofil'])) {
                                 $emailInvalide = 0;
                                 if ($_POST['email'] != $_SESSION['user']['email']) {
-                                    $emailInvalide = $utilisateurController->getManager()->verifUtilisateurExiste(null, $_POST['email']);
+                                    $emailInvalide = $utilisateurController->verifUtilisateurExiste(null, $_POST['email']);
                                 }
                                 if ($emailInvalide) {
                                     $_POST["erreuremail"] = true;
@@ -132,7 +132,7 @@ try {
                             if (empty($url[3])) {
                                 $bienController->afficherBiensByUser($url[1]);
                             } else if ($url[3] === "s") {
-                                $addresseBien = $bienController->getManager()->getBienById($url[4])->getAdresse();
+                                $addresseBien = $bienController->getBienById($url[4])->getAdresse();
                                 $adresseController->suppressionAdresse($addresseBien);
                                 $bienController->suppressionBienUser($url[4]);
                             }
@@ -154,7 +154,7 @@ try {
                     if (empty($url[2])) {
                         $bienController->afficherBien($url[1]);
                     } else if ($url[2] == "img") {
-                        if (isset($_SESSION["user"]["id"]) && $_SESSION["user"]["id"] == $bienController->getManager()->getBienById($url[1])->getUtilisateur()) {
+                        if (isset($_SESSION["user"]["id"]) && $_SESSION["user"]["id"] == $bienController->getBienById($url[1])->getUtilisateur()) {
                             if (empty($url[3])) {
                                 $photoController->gererPhotos($url[1]);
                             } else if ($url[3] == "v") {
@@ -168,7 +168,7 @@ try {
                             require "Views/permissionError.view.php";
                         }
                     } else if ($url[2] == "modif") {
-                        if (isset($_SESSION["user"]["id"]) && $_SESSION["user"]["id"] == $bienController->getManager()->getBienById($url[1])->getUtilisateur()) {
+                        if (isset($_SESSION["user"]["id"]) && $_SESSION["user"]["id"] == $bienController->getBienById($url[1])->getUtilisateur()) {
                             if (empty($url[3])) {
                                 $bienController->modificationBien($url[1]);
                             } else if ($url[3] == "validation") {

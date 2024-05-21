@@ -31,7 +31,7 @@ $agenceController = new AgenceController; ?>
                     <td><?= $DBuser[$i]->getEmail(); ?></td>
                     <td><?= $DBuser[$i]->getAdresse(); ?></td>
                     <td><?= ($DBuser[$i]->getEstAgent()) ? "Oui" : "Non"; ?></td>
-                    <td><?= (null !==$DBuser[$i]->getAgence()) ? "Agence " . $agenceController->getManager()->getAgenceById($DBuser[$i]->getAgence())->getNom() : ""; ?></td>
+                    <td><?= (null !==$DBuser[$i]->getAgence()) ? "Agence " . $agenceController->getAgenceById($DBuser[$i]->getAgence())->getNom() : ""; ?></td>
                     <td>
                         <form method="POST" action="<?= URL ?>bdtest/utilisateurs/s/<?= $DBuser[$i]->getId(); ?>" onSubmit="return confirm('Voulez-vous vraiment supprimer cet utilisateur ?');">
                     <button class="supprimer">Supprimer</button>

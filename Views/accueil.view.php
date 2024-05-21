@@ -39,7 +39,7 @@ require "departement.php"; ?>
         <h3>Lancer une recherche</h3>
         <div>
             <input type="text" class="searchbar" id="searchville" name="searchville" placeholder="Ville">
-            <input type="number" class="searchbar" id="searchprix" name="searchprix" placeholder="Budget max">
+            <input type="number" class="searchbar" id="searchprix" name="searchprix" placeholder="Budget max" min="0">
         </div>
         <div>
             <select name="searchventeloc" id="searchventeloc" class="searchbar w50">
@@ -69,8 +69,8 @@ require "departement.php"; ?>
         <div id="carousselaleft">
             <</div>
                 <?php foreach ($caroussel as $value) :
-                    $bienCaroussel = $bienController->getManager()->getBienById($value->getBien());
-                    $adresseCaroussel = $adresseController->getManager()->getAdresseById($bienCaroussel->getAdresse()) ?>
+                    $bienCaroussel = $bienController->getBienById($value->getBien());
+                    $adresseCaroussel = $adresseController->getAdresseById($bienCaroussel->getAdresse()) ?>
                     <a href="offres/<?= $value->getBien(); ?>" class="carousselitem">
                         <img src="public/img/photos/<?= $value->getNom(); ?>" alt="">
                         <p><?= $bienCaroussel->getNom(); ?><br>
