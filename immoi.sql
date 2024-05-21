@@ -7,6 +7,12 @@
 -- Version du serveur : 8.2.0
 -- Version de PHP : 8.2.13
 
+DROP DATABASE IF EXISTS immoi;
+
+CREATE DATABASE IF NOT EXISTS immoi;
+
+USE immoi;
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";

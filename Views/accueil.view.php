@@ -70,7 +70,7 @@ require "departement.php"; ?>
             <</div>
                 <?php foreach ($caroussel as $value) :
                     $bienCaroussel = $bienController->getManager()->getBienById($value->getBien());
-                    $adresseCaroussel = $adresseController->getManager()->getAdresseById($bienCaroussel->getId()) ?>
+                    $adresseCaroussel = $adresseController->getManager()->getAdresseById($bienCaroussel->getAdresse()) ?>
                     <a href="offres/<?= $value->getBien(); ?>" class="carousselitem">
                         <img src="public/img/photos/<?= $value->getNom(); ?>" alt="">
                         <p><?= $bienCaroussel->getNom(); ?><br>
