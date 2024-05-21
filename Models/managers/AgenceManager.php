@@ -10,19 +10,6 @@ class AgenceManager extends BDConnexion{
         $this->agencelist[] = $agence;
     }
 
-    public function getAgencelist(){
-        return $this->agencelist;
-    }
-
-    public function getAgenceById($id)
-    {
-        for ($i = 0; $i < count($this->agencelist); $i++) {
-            if ($this->agencelist[$i]->getId() == $id) {
-                return $this->agencelist[$i];
-            }
-        }
-    }
-
     public function chargementAgencelist(){
         $req = $this->getBDD()->prepare('SELECT * FROM agence');
         $req->execute();
@@ -35,4 +22,16 @@ class AgenceManager extends BDConnexion{
         }
     }
 
+    public function getAgencelist(){
+        return $this->agencelist;
+    }
+
+    public function getAgenceById($id)
+    {
+        for ($i = 0; $i < count($this->agencelist); $i++) {
+            if ($this->agencelist[$i]->getId() == $id) {
+                return $this->agencelist[$i];
+            }
+        }
+    }
 }

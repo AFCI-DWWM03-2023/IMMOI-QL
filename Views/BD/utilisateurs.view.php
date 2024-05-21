@@ -1,6 +1,4 @@
-<?php ob_start();
-require_once "Controller/agenceController.php";
-$agenceController = new AgenceController; ?>
+<?php ob_start();?>
 
 <section class="content">
     <section class="testbdd">
@@ -9,7 +7,6 @@ $agenceController = new AgenceController; ?>
             <tr>
                 <th>ID</th>
                 <th>Username</th>
-                <th>Password</th>
                 <th>Nom</th>
                 <th>Prénom</th>
                 <th>Téléphone</th>
@@ -24,7 +21,6 @@ $agenceController = new AgenceController; ?>
                 <tr>
                     <td><?= $DBuser[$i]->getId(); ?></td>
                     <td><?= $DBuser[$i]->getUsername(); ?></td>
-                    <td><?= substr_replace($DBuser[$i]->getPassword(), "<br>", 32, 0); ?></td>
                     <td><?= $DBuser[$i]->getNom(); ?></td>
                     <td><?= $DBuser[$i]->getPrenom(); ?></td>
                     <td><?= $DBuser[$i]->getTelephone(); ?></td>
