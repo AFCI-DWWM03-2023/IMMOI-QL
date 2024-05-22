@@ -210,7 +210,6 @@ try {
                     if (isset($_POST['verifpublier'])) {
                         $adresseController->addAdresse();
                         $bienController->publierValidation();
-                        var_dump($_FILES);
                         if ($_FILES['photocouv']["size"]>0) {$photoController->addPhotoCouv();}
                         header('Location: ' . URL . "offres/" . $_POST['idbien']);
                     } else {
