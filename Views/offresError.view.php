@@ -26,7 +26,7 @@ $searchresults = [
     <?php endif; ?>
     <div class="nothingfound">
         <div class="color">
-            <h1>Désolé, nous n'avons pas pu trouver d'offres correspondant à vos critères.</h1>
+            <h1>Désolés, nous n'avons pas pu trouver d'offres correspondant à vos critères.</h1>
         </div>
     </div>
 </div>

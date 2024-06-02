@@ -30,5 +30,10 @@ typeBien.addEventListener('change', function() {
     if (type == "terrain") {
         document.querySelector("#nbetages").value = "0";
         document.querySelector("#nbpieces").value = "0";
+        document.querySelector('#nbetages').disabled = true;
+        document.querySelector('#nbpieces').disabled = true;
+    } else {
+        document.querySelector('#nbetages').disabled = false;
+        document.querySelector('#nbpieces').disabled = false;
     }
 })
